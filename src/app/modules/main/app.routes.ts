@@ -1,23 +1,23 @@
-import { AppComponent } from './app.component';
-import { NgModule, Component } from '@angular/core';
+import { LoginComponent } from './pages/login/login.component';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 const AppRoutesValues = {
-  ROUTE_APP_AUTH:"auth",
+  ROUTE_APP_LOGIN:"login",
   ROUTE_APP_ADMIN:"admin"
 };
 const routes: Routes = [
   {
     path:'',
-    redirectTo:AppRoutesValues.ROUTE_APP_AUTH,
+    redirectTo:AppRoutesValues.ROUTE_APP_LOGIN,
     pathMatch:'full'
   },
   {
-    path:AppRoutesValues.ROUTE_APP_AUTH,
-    loadChildren:()=>import('../app/modules/auth/auth.module').then(m => m.AuthModule)
+    path:AppRoutesValues.ROUTE_APP_LOGIN,
+    component:LoginComponent
   },
   {
     path:AppRoutesValues.ROUTE_APP_ADMIN,
-    loadChildren:()=>import('../app/modules/admin/admin.module').then(m => m.AdminModule)
+    loadChildren:()=>import('../manage/manage.module').then(m => m.ManageModule)
   }
 ];
 

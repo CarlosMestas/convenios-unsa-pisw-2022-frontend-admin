@@ -1,8 +1,9 @@
+import { ManageAdminRoutingModule } from './../../manage-admins.routes';
 import { Observable } from 'rxjs';
-import { adminGetAllRequestAction } from './../../../../ngrx/actions/admin/admin.actions';
+import { adminGetAllRequestAction } from '@ngrx/actions/admin/admin.actions';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@app/ngrx/app.state';
-import { IAdmin } from './../../../../shared/interfaces/admin.interface';
+import { IAdmin } from '@shared/interfaces/admin.interface';
 import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { adminGetAllStateSelector } from '@app/ngrx/selectors/admin/admin.selectors';
 interface City {
@@ -16,8 +17,8 @@ interface City {
   templateUrl: './manage-admins.component.html',
   styleUrls: ['./manage-admins.component.scss']
 })
-export class ManageAdminsComponent implements OnInit, AfterViewInit  {
-
+export class ListAdminsComponent implements OnInit, AfterViewInit  {
+  createAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_CREATE_ADMIN
   selectedCities!: City[]
 
   displayedColumns: string[] = ['name', 'lastname','address', 'phone', 'email', 'role','actions'];

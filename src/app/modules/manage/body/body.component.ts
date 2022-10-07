@@ -1,4 +1,4 @@
-import { ISidenavToggle } from './../../../shared/interfaces/sidebar.interface';
+import { ISidenavToggle } from '@shared/interfaces/sidebar.interface';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of, delay } from 'rxjs';
 @Component({

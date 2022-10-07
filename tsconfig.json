@@ -24,7 +24,11 @@
     ],
     "paths": {
       "@app/*":["app/*"],
-      "@assets/*":["assets/*"]
+      "@assets/*":["assets/*"],
+      "@shared/*":["app/shared/*"],
+      "@modules/*":["app/modules/*"],
+      "@core/*":["app/core/*"],
+      "@ngrx/*":["app/ngrx/*"]
     }
   },
   "angularCompilerOptions": {

@@ -1,4 +1,4 @@
-import { IAppState } from './../../../../ngrx/app.state';
+import { IAppState } from '@ngrx/app.state';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import {IRole} from "@app/shared/interfaces/role.interface";

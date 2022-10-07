@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ISidenavItem, ISidenavToggle } from '../../interfaces/sidebar.interface';
 import {Output,EventEmitter,HostListener} from '@angular/core'
 import { faHouseUser,faFolder,faUsers,faSignOutAlt,faBars,faUsersCog} from '@fortawesome/free-solid-svg-icons';
+import { ManageRoutingModule } from '@app/modules/manage/manage.routes';
 
 
 
@@ -14,19 +15,19 @@ export class SidenavComponent implements OnInit {
   faBars = faBars
   sidenavData:{[name:string]:ISidenavItem} ={
     'home':{
-      url:'home',
+      url:ManageRoutingModule.ROUTES_VALUES.ROUTE_HOME,
       icon:faHouseUser,
       label:'Home',
       visible:true
     },
     'admins':{
-      url:'gestionar-administradores',
+      url:ManageRoutingModule.ROUTES_VALUES.ROUTE_ADMINS,
       icon:faUsersCog,
       label:'Administradores',
       visible:true
     },
     'convocations':{
-      url:'convocatorias',
+      url:ManageRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATIONS,
       icon:faFolder,
       label:'Convocatorias',
       visible:true
