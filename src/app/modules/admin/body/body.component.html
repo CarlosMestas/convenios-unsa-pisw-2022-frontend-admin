@@ -1,0 +1,20 @@
+<div [ngClass]="classLoaded">
+  <div id="loader-wrapper">
+    <div class="loader-container">
+      <div id="loader"></div>
+    </div>
+    <div class="loader-section section-left">
+      <img class="image-loader" src="../../../../../assets/images/shield-left.svg" width="80" align="right" />
+    </div>
+    <div class="loader-section section-right">
+      <img class="image-loader" src="../../../../../assets/images/shield-right.svg" width="80" />
+    </div>
+  </div>
+</div>
+
+<app-sidenav (OnToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<div class="body" [ngClass]="getClass()">
+  <router-outlet></router-outlet>
+</div>
+
+

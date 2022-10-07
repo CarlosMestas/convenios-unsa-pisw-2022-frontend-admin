@@ -1,0 +1,17 @@
+<div class="sidenav" [ngClass] = "collapsed?'sidenav-collapsed':''">
+  <div class="logo-container">
+    <button class="btn-side" (click)="toggleSideNav()">
+      <fa-icon class= "side-icon" [icon]="faBars"></fa-icon>
+    </button>
+    <div class="logo-text" *ngIf = "!collapsed">Administrador</div>
+  </div>
+
+  <ul class="sidenav-nav">
+    <!-- <app-sidenav-user-info class="sidenav-nav-user" *ngIf = "(user$ | async)" [user] = 'user$ | async' [collapsed] = "collapsed"></app-sidenav-user-info> -->
+    <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['home'].icon" [label]="sidenavData['home'].label" [url]="sidenavData['home'].url" *ngIf="sidenavData['home'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['admins'].icon" [label]="sidenavData['admins'].label" [url]="sidenavData['admins'].url" *ngIf="sidenavData['admins'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['convocations'].icon" [label]="sidenavData['convocations'].label" [url]="sidenavData['convocations'].url" *ngIf="sidenavData['convocations'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['users'].icon" [label]="sidenavData['users'].label" [url]="sidenavData['users'].url" *ngIf="sidenavData['users'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['logout'].icon" [label]="sidenavData['logout'].label" (click)="cerrarSesion()" *ngIf="sidenavData['logout'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+  </ul>
+</div>

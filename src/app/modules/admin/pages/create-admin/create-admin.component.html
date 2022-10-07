@@ -1,0 +1,74 @@
+<div class="register-container">
+  <div class="container-content">
+    <div class="header-container">
+      <div class="title">Creación de Nuevo Administrador</div>
+      <div class="description">Ingresar los datos del nuevo administrador a registrar</div>
+    </div>
+    <div class="general-cotainer">
+
+      <form [formGroup]="form" (ngSubmit)="submitCreateAdmin()" class="form-container">
+        <div class="fields-form">
+          <div class="form-item form-item-field-names">
+            <div class="form-label form-label-field-name">
+              Nombres
+            </div>
+            <input formControlName="name" class="form-input-text form-input-field-name" type="text" name="name" id="name" placeholder="Nombres" >
+          </div>
+          <div class="form-item form-item-field-lastname">
+            <div class="form-label form-label-field-lastname">
+              Apellidos
+            </div>
+            <input formControlName="lastname" class="form-input-text form-input-field-lastname" type="text" name="lastname" id="lastname" placeholder="Apellidos"  >
+          </div>
+          <div class="form-item form-item-field-address">
+            <div class="form-label form-label-field-address">
+              Dirección
+            </div>
+            <input formControlName="address" class="form-input-text form-input-field-address" type="text" name="address" id="address" placeholder="Dirección" >
+          </div>
+
+          <div class="form-item form-item-field-cell-phone">
+            <div class="form-label form-label-field-cell-phone">
+              Celular
+            </div>
+            <input formControlName="phone" class="form-input-text form-input-field-cell-phone" type="text" name="address" id="cell-phone" placeholder="Celular" >
+          </div>
+
+          <div class="form-item form-item-field-email">
+            <div class="form-label form-label-field-email">
+              Correo Electronico
+            </div>
+            <input formControlName="email" class="form-input-text form-input-field-email" type="text" name="email" id="email" placeholder="Correo" >
+          </div>
+
+          <div class="form-item form-item-field-password">
+            <div class="form-label form-label-field-password">
+              Contraseña
+            </div>
+            <input formControlName="password" class="form-input-text form-input-field-password" type="password" name="password" id="password" placeholder="Contraseña" >
+          </div>
+
+          <div class="form-item form-item-field-role">
+            <div class="form-label form-label-field-role">
+              Rol
+            </div>
+            <p-dropdown *ngIf="roles$|async as roles" formControlName="role" [options]="roles" optionLabel="name"></p-dropdown>
+          </div>
+
+        </div>
+
+        <div class="buttons-handler">
+          <div class="form-cancel-step" >
+            Cancelar
+          </div>
+          <button class="form-save-step" >
+            Guardar
+          </button>
+        </div>
+      </form>
+
+
+
+    </div>
+  </div>
+</div>

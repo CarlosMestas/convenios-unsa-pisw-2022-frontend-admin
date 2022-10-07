@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="main-controller">
+    <button class="button-create" mat-icon-button>
+      <mat-icon>add</mat-icon>
+      Crear Administrador
+    </button>
+  </div>
+  <div class="table-container mat-elevation-z1" *ngIf="adminsData$|async as adminsData">
+    <table mat-table [dataSource]="adminsData" multiTemplateDataRows class="table">
+      <!-- Number Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+      <!-- Title Column -->
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef>Apellido</th>
+        <td mat-cell *matCellDef="let row">{{row.lastname}}</td>
+      </ng-container>
+      <!-- address column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Dirección</th>
+        <td mat-cell *matCellDef="let row">{{row.address}}</td>
+      </ng-container>
+      <!-- phone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Número</th>
+        <td mat-cell *matCellDef="let row">{{row.phone}}</td>
+      </ng-container>
+
+      <!-- Created Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Correo</th>
+        <td mat-cell *matCellDef="let row">{{row.email}}</td>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Rol</th>
+        <td mat-cell *matCellDef="let row">{{row.role}}</td>
+      </ng-container>
+
+      <!-- actions -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
+        <td class="button-table-container" mat-cell *matCellDef="let row">
+          <button class="button-table-controller delete" mat-icon-button aria-label="expand row" (click)="remove(row)">
+            <!-- <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button class="button-table-controller edit" mat-icon-button aria-label="expand row" (click)="update(row)">
+            <!-- <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="button-table-controller view" mat-icon-button aria-label="expand row" (click)="detail(row)">
+            <!-- <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

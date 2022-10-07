@@ -1,0 +1,22 @@
+<div class="container">
+  <form class="form-container" (ngSubmit) = "loginSubmit()" [formGroup] = "formLogin"  action="">
+    <div class="form-item">
+      <label class="form-label" for="user">
+        Usuario
+      </label>
+      <input class="form-input-text" type="text" formControlName="user" id="user" placeholder="Ingresa tu correo">
+      <span class="invalid-field" *ngIf = "user && user.invalid && user.touched">El nombre de usuario es incorrecto</span>
+    </div>
+    <div class="form-item">
+      <label class="form-label" for="password">
+        Contraseña
+      </label>
+      <input class="form-input-text" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
+      <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">La contraseña es incorrecta</span>
+    </div>
+
+
+    <button class="submit-form" [disabled] = "formLogin.invalid">Iniciar Sesión</button>
+  </form>
+</div>
+
