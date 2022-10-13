@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { SidenavItemComponent } from './../../shared/components/sidenav-item/sidenav-item.component';
 import { SidenavComponent } from './../../shared/components/sidenav/sidenav.component';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
@@ -17,13 +17,13 @@ import { PrimeNGModule } from './primeng.module';
     SidenavItemComponent
   ],
   imports: [
-    CommonModule,
     FontAwesomeModule,
     RouterModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimeNGModule
+    PrimeNGModule,
+    CommonModule
   ],
   exports:[
     SidenavComponent,

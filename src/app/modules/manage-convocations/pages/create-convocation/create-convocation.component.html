@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="header">Crear Convocatoria</div>
+  <div class="content">
+    <div class="left">
+      <div class="p-inputgroup name">
+        <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+        </span>
+        <span class="p-form-element p-float-label">
+            <input type="text" id="inputgroup" pInputText [(ngModel)]="name">
+            <label for="inputgroup">Nombre</label>
+        </span>
+      </div>
+      <div class="p-inputgroup">
+        <span class="p-form-element p-inputgroup-addon">
+          <i class="pi pi-user"></i>
+        </span>
+        <span class="p-form-element p-float-label">
+            <p-dropdown inputId="typeconvocation" [autoDisplayFirst]="false" [options]="convocationTypes" [(ngModel)]="convocationTypeFiltered" optionLabel="name"></p-dropdown>
+            <label for="typeconvocation">Tipo de Convocatoria</label>
+        </span>
+      </div>
+
+      <div class="p-inputgroup">
+        <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+        </span>
+        <span class="p-form-element p-float-label">
+            <input type="text" id="inputgroup" pInputText [(ngModel)]="correlative">
+            <label for="inputgroup">Correlativo</label>
+        </span>
+      </div>
+
+      <div class="p-inputgroup">
+        <span class="p-form-element p-inputgroup-addon">
+          <i class="pi pi-user"></i>
+        </span>
+        <span class="p-form-element p-float-label">
+            <p-dropdown inputId="typeconvocation" [autoDisplayFirst]="false" [options]="convocationTypes" [(ngModel)]="convocationTypeFiltered" optionLabel="name"></p-dropdown>
+            <label for="typeconvocation">Modalidad Convocatoria</label>
+        </span>
+      </div>
+
+      <div class="p-inputgroup description">
+        <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+        </span>
+        <span class="p-form-element p-float-label">
+            <input type="text" id="inputgroup" pInputText [(ngModel)]="name">
+            <label for="inputgroup">Descripción</label>
+        </span>
+      </div>
+
+      <div class="p-inputgroup date-start">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <span class="p-float-label">
+              <p-calendar inputId="calendar-start" [(ngModel)]="date"></p-calendar>
+              <label for="calendar-start">Fecha de inicio</label>
+          </span>
+      </div>
+
+      <div class="p-inputgroup date-end">
+        <span class="p-form-element p-inputgroup-addon">
+          <i class="pi pi-user"></i>
+        </span>
+        <span class="p-float-label">
+            <p-calendar inputId="calendar-end" [(ngModel)]="date"></p-calendar>
+            <label for="calendar-end">Fecha de Finalización</label>
+        </span>
+      </div>
+
+      <div class="p-inputgroup importatnotes">
+        <span class="p-float-label">
+          <textarea inputId="importatnotes" rows="3" style="resize: none;" cols="30" [(ngModel)]="notaImportante" pInputTextarea></textarea>
+          <label for="importatnotes">Nota Importante</label>
+        </span>
+      </div>
+
+
+
+    </div>
+    <div class="right">
+      <p-fileUpload name="myfile[]"></p-fileUpload>
+      <!-- <p-image class="image-design" src="assets/images/post.png" alt="Image" width="300"></p-image> -->
+    </div>
+  </div>
+  <div class="footer-controls">
+    <p-button label="Siguiente" icon="pi pi-check"></p-button>
+    <p-button label="Cancelar" icon="pi pi-trash" class="p-button-danger"></p-button>
+  </div>
+</div>
