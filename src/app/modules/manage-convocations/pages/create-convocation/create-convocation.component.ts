@@ -1,5 +1,5 @@
 import { ManageConvocationsRouterModule } from './../../manage-convocations.routes';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ETypeConvocations } from './../../../../shared/interfaces/convocation.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, map } from 'rxjs';
@@ -26,7 +26,8 @@ export class CreateConvocationComponent implements OnInit {
   constructor(
     private typeConvocationService:TypeConvocationService,
     private modalityConvocationService:ModalityConvocationService,
-    private router:Router
+    private router:Router,
+    private activatedRoute:ActivatedRoute,
   ) {
     this.convocationTypes$ = new Observable<ITypeConvocationResponse[]>()
     this.convocationModalities$ = new Observable<IModalityConvocationResponse[]>()
@@ -67,7 +68,7 @@ export class CreateConvocationComponent implements OnInit {
 
     switch ((this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym) {
       case ETypeConvocations.COEVAN:
-        this.router.navigate([ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_CREATE_CONVOCATION_COEVAN])
+        this.router.navigate(["../"+ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_CREATE_CONVOCATION_COEVAN],{relativeTo: this.activatedRoute})
         break;
       default:
         break;
