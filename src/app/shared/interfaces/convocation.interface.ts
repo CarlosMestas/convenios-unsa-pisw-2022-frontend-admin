@@ -7,10 +7,15 @@ export enum ETypeConvocations{
   CODVIENEN="CODVIENEN",
 }
 
-export interface ITypeConvocation{
+export interface ITypeConvocationResponse{
   id:number,
   name:string,
   acronym:string
+}
+
+export interface IModalityConvocationResponse{
+  id:number,
+  name:string
 }
 
 

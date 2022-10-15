@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px auto 50px;
-  .header, .footer-controls{
+  .header{
     line-height: 50px;
   }
   .content{
@@ -15,12 +15,15 @@
       // background-color: aqua;
       height: 100%;
       width: 50%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(5, 60px) 160px;
-      gap: 1rem 1rem;
+
       min-width: 500px;
       padding: 1rem;
+      .form-content{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(5, 60px) 160px;
+        gap: 1rem 1rem;
+      }
     }
     .right{
       height: 100%;
@@ -45,7 +48,7 @@
   grid-column-end:span 2;
   grid-row-start: 4;
 }
-.p-inputgroup.importatnotes{
+.p-inputgroup.importantnotes{
   grid-column-start: 1;
   grid-column-end:span 2;
   grid-row-start: 6;
