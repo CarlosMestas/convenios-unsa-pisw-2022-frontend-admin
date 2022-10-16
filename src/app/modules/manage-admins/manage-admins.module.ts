@@ -8,14 +8,15 @@ import { ListAdminsComponent } from './pages/list-admins/manage-admins.component
 import { CreateAdminComponent } from './pages/create-admin/create-admin.component';
 import { ManageAdminRoutingModule } from './manage-admins.routes';
 import { UpdateAdminComponent } from './pages/update-admin/update-admin.component';
+import { ViewAdminComponent } from './pages/view-admin/view-admin.component'
 
 @NgModule({
   declarations: [
     BodyComponent,
     CreateAdminComponent,
     ListAdminsComponent,
-    UpdateAdminComponent
-
+    UpdateAdminComponent,
+    ViewAdminComponent
   ],
   imports: [
     CommonModule,

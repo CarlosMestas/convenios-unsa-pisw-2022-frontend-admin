@@ -1,8 +1,8 @@
-import { IAdminState } from "@app/shared/interfaces/admin.interface";
+import {IAdminState, IAdminViewState} from "@app/shared/interfaces/admin.interface";
 import { IAuthState } from "@app/shared/interfaces/auth.interface";
 import { IRoleState } from "@app/shared/interfaces/role.interface";
 import { ActionReducerMap } from "@ngrx/store";
-import { adminReducer } from "./reducers/admin/admin.reducer";
+import {adminReducer, adminViewItemReducer} from "./reducers/admin/admin.reducer";
 import { authReducer } from "./reducers/auth/auth.reducer";
 import { roleReducer } from "./reducers/role/role.reducer";
 
@@ -12,10 +12,12 @@ export interface IAppState{
   auth:IAuthState,
   admin:IAdminState,
   role:IRoleState
+  viewAdmin:IAdminViewState
 }
 //  de acuerdo a la estructura de la interface IAppState settear los reducers
 export const ROOT_REDUCERS: ActionReducerMap<IAppState> ={
   auth:authReducer,
   admin:adminReducer,
-  role:roleReducer
+  role:roleReducer,
+  viewAdmin: adminViewItemReducer
 }
