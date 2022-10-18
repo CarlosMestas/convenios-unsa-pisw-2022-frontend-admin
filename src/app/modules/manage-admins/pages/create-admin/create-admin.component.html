@@ -1,8 +1,9 @@
 <div class="register-container">
   <div class="container-content">
     <div class="header-container">
-      <div class="title">Creación de Nuevo Administrador</div>
-      <div class="description">Ingresar los datos del nuevo administrador a registrar</div>
+      <div class="title" *ngIf="!isEditForm">Creación de Nuevo Administrador</div>
+      <div class="title" *ngIf="isEditForm">Modificación de Administrador</div>
+      <div class="description" >Ingresar los datos del nuevo administrador a registrar</div>
     </div>
     <div class="general-cotainer">
 

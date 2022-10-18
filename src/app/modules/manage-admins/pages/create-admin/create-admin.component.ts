@@ -9,6 +9,7 @@ import { rolesGetAllRequestAction } from '@app/ngrx/actions/role/role.actions';
 import { adminRegisterRequestAction } from '@app/ngrx/actions/admin/admin.actions';
 import { AdminCreate } from '@app/shared/models/admin-create.model';
 import { Router } from '@angular/router'
+import {ManageAdminRoutingModule} from "@modules/manage-admins/manage-admins.routes";
 
 @Component({
   selector: 'app-create-admin',
@@ -21,6 +22,8 @@ export class CreateAdminComponent implements OnInit {
   selectedRole!:IRole
   isText = false
   passwordSuggest = ""
+  isEditForm = false
+  updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
 
   constructor(
     private store:Store<IAppState>,
@@ -43,7 +46,10 @@ export class CreateAdminComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
-    console.log(this.router.url); //  /tu-ruta
+    if(this.router.url == "/admin/administradores/"+this.updateAdminLink){
+      this.isEditForm = true
+      
+    }
   }
 
   generatePassword(){
