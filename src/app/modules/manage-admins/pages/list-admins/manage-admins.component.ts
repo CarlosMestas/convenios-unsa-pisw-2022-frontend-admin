@@ -19,6 +19,8 @@ interface City {
 })
 export class ListAdminsComponent implements OnInit, AfterViewInit  {
   createAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_CREATE_ADMIN
+  updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
+
   selectedCities!: City[]
 
   displayedColumns: string[] = ['name', 'lastname','address', 'phone', 'email', 'role','actions'];

@@ -8,6 +8,7 @@ import { roleGetAllStateSelector } from '@app/ngrx/selectors/role/role.selectors
 import { rolesGetAllRequestAction } from '@app/ngrx/actions/role/role.actions';
 import { adminRegisterRequestAction } from '@app/ngrx/actions/admin/admin.actions';
 import { AdminCreate } from '@app/shared/models/admin-create.model';
+import { Router } from '@angular/router'
 
 
 @Component({
@@ -20,8 +21,9 @@ export class CreateAdminComponent implements OnInit {
   form:FormGroup
   selectedRole!:IRole
   constructor(
-    private store:Store<IAppState>
-   ) {
+    private store:Store<IAppState>,
+    private router: Router
+  ) {
     this.form=new FormGroup({
       name:new FormControl('',[Validators.required]),
       lastname:new FormControl('',[Validators.required]),
@@ -39,6 +41,7 @@ export class CreateAdminComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
+    console.log(this.router.url); //  /tu-ruta
   }
 
 

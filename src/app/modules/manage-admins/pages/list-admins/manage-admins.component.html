@@ -49,7 +49,7 @@
             <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
             <mat-icon>delete</mat-icon>
           </button>
-          <button class="button-table-controller edit" mat-icon-button aria-label="expand row" (click)="update(row)">
+          <button class="button-table-controller edit" mat-icon-button aria-label="expand row" routerLink="{{'../'+ updateAdminLink}}">
             <!-- <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
             <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
             <mat-icon>edit</mat-icon>
