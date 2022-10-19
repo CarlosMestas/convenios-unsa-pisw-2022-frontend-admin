@@ -5,10 +5,10 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static('./dist/convenios-unsa-pisw-2022-admin'));
+app.use(express.static('./dist/convenios-unsa-pisw-2022-frontend-admin'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'dist/convenios-unsa-pisw-2022-admin/'}),
+    res.sendFile('index.html', {root: 'dist/convenios-unsa-pisw-2022-frontend-admin/'}),
 );
 
 // Start the app by listening on the default Heroku port
