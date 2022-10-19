@@ -9,7 +9,6 @@ import { rolesGetAllRequestAction } from '@app/ngrx/actions/role/role.actions';
 import { adminRegisterRequestAction } from '@app/ngrx/actions/admin/admin.actions';
 import { AdminCreate } from '@app/shared/models/admin-create.model';
 
-
 @Component({
   selector: 'app-create-admin',
   templateUrl: './create-admin.component.html',
@@ -19,6 +18,9 @@ export class CreateAdminComponent implements OnInit {
   roles$:Observable<IRole[]>
   form:FormGroup
   selectedRole!:IRole
+  isText = false
+  passwordSuggest = ""
+
   constructor(
     private store:Store<IAppState>
    ) {
@@ -27,7 +29,7 @@ export class CreateAdminComponent implements OnInit {
       lastname:new FormControl('',[Validators.required]),
       address:new FormControl(''),
       phone:new FormControl('',[Validators.required]),
-      email:new FormControl('',[Validators.required]),
+      email:new FormControl('',[Validators.required, Validators.email]),
       password:new FormControl('',[Validators.required]),
       role:new FormControl('',[Validators.required])
     }
@@ -41,20 +43,27 @@ export class CreateAdminComponent implements OnInit {
     this.roles$ = this.store.select(roleGetAllStateSelector)
   }
 
+  generatePassword(){
+    this.passwordSuggest = Array(10).fill("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$").map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+  }
 
   submitCreateAdmin(){
+    if(this.form.valid){
+      this.store.dispatch(adminRegisterRequestAction(
+        new AdminCreate(
+          this.form.value["name"],
+          this.form.value["lastname"],
+          this.form.value["address"],
+          this.form.value["phone"],
+          this.form.value["email"],
+          this.form.value["password"],
+          (this.form.value["role"] as IRole).id +"",
+        )
+      ))
+    }else{
+      console.log("Error en registro")
+    }
 
-    this.store.dispatch(adminRegisterRequestAction(
-      new AdminCreate(
-        this.form.value["name"],
-        this.form.value["lastname"],
-        this.form.value["address"],
-        this.form.value["phone"],
-        this.form.value["email"],
-        this.form.value["password"],
-        (this.form.value["role"] as IRole).id +"",
-      )
-    ))
 
   }
 

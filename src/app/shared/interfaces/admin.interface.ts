@@ -1,3 +1,5 @@
+import {Admin} from "@shared/models/admin.model";
+
 export interface IAdmin{
   id:number,
   name:string,
@@ -28,3 +30,9 @@ export interface IAdminState{
   error:IAdminError|null
 }
 
+export interface IAdminViewState{
+  working: boolean,
+  stateModal: boolean,
+  adminData: Admin,
+  error: null
+}
