@@ -1,0 +1,40 @@
+<p-dialog header="Crear Document" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="true" [resizable]="false" (onHide)="hideModalDialog()">
+    <form class="form-container" [formGroup]="formCreateDocument">
+
+    <div class="p-inputgroup name">
+        <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-info-circle"></i>
+        </span>
+        <span class="p-form-element p-float-label">
+            <input type="text" id="name" pInputText formControlName="name">
+            <label for="name">Nombre</label>
+        </span>
+    </div>
+    <div class="p-inputgroup documenttype" *ngIf="documentTypes$ | async as documentTypes">
+      <span class="p-form-element p-inputgroup-addon">
+        <i class="pi pi-car"></i>
+      </span>
+      <span class="p-float-label">
+          <p-dropdown inputId="documenttypes" [autoDisplayFirst]="false" [options]="documentTypes" optionLabel="name" formControlName="type"></p-dropdown>
+          <label for="documenttypes">Tipo de Documento</label>
+      </span>
+    </div>
+    <div class="p-inputgroup document">
+      <p-fileUpload name="myfile[]" (onSelect)="fileLoaded($event)"
+        accept="image/*" [maxFileSize]="1000000" [showUploadButton]="false" accept="*.pdf, application/pdf">
+      </p-fileUpload>
+    </div>
+      <div class="p-inputgroup description">
+        <span class="p-float-label">
+          <textarea inputId="description" rows="3" style="resize: none;" cols="30" formControlName="description" pInputTextarea></textarea>
+          <label for="description">Descripción</label>
+        </span>
+      </div>
+
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="createDocument()" label="Agregar" class="p-button-text"></p-button>
+        <button pButton type="button" (click)="hideModalDialog()" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+    </ng-template>
+</p-dialog>

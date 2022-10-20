@@ -3,7 +3,7 @@ import { IHttpServiceResponse, IHttpResponse } from './../../../shared/interface
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdminHelper } from './admin.helper';
-import {IAdmin, IAdminCreate} from '@app/shared/interfaces/admin.interface';
+import {IAdmin, IAdminCreate, IAdminData} from '@app/shared/interfaces/admin.interface';
 import { AdminLogin } from '@app/shared/models/admin-login.model';
 @Injectable({
   providedIn:"root"
@@ -15,6 +15,26 @@ export class AdminService extends AdminHelper{
 
   ){
     super(http)
+  }
+
+  getAdminById(idAdmin: number):Observable<IHttpServiceResponse<IAdminData>>{
+    const response:IHttpServiceResponse<IAdminData> = {
+      error:false,
+      msg:'',
+      data: {} as IAdminData
+    }
+    return this.http.get<IHttpResponse<IAdminData>>(this.url + AdminHelper.API_ADMIN_SERVICE_ROUTES.ADMIN_GET_BY_ID+'?id=' + idAdmin)
+      .pipe(
+        map(resp =>{
+          if(resp.code == 200){
+            console.log("registro exitoso")
+          }
+          response.data = resp.data
+            return response
+          }
+        ),
+        catchError(this.errorGet)
+      )
   }
   getAllAdmin():Observable<IHttpServiceResponse<IAdmin[]>>{
 
@@ -96,4 +116,27 @@ export class AdminService extends AdminHelper{
         catchError(this.errorSignUp)
       );
   }
+
+  updateAdmin(adminCreate:IAdminCreate, idAdmin: number): Observable<IHttpServiceResponse<IAdmin>> {
+    const response = {
+      error:false,
+      msg:'',
+      data:{} as IAdmin
+    };
+    return this.http.put<IHttpResponse<{admin:IAdmin, token:string}>>(
+      this.url+AdminHelper.API_ADMIN_SERVICE_ROUTES.ADMIN_UPDATE + '/' + idAdmin,
+      adminCreate
+    )
+      .pipe(
+        map( resp =>{
+          if(resp.code == 200){
+            console.log("update exitoso")
+            response.data = resp.data.admin
+          }
+          return response
+        }),
+        catchError(this.errorSignUp)
+      );
+  }
+
 }

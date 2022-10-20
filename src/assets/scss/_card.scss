@@ -1,0 +1,10 @@
+
+.body-container{
+  .p-card{
+    overflow-y: auto;
+    height: calc(100vh - 1rem);
+  }
+  .p-card-content{
+    padding: 0;
+  }
+}

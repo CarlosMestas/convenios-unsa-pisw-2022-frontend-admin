@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="header">Crear Convocatoria</div>
+  <div class="content">
+    <div class="left">
+      <form class="form-content" [formGroup]="formCreateConvocation">
+        <div class="p-inputgroup name">
+          <span class="p-form-element p-inputgroup-addon">
+              <i class="pi pi-user"></i>
+          </span>
+          <span class="p-form-element p-float-label">
+              <input type="text" id="inputgroup" pInputText formControlName="nameConvocation">
+              <label for="inputgroup">Nombre de la Convocatoria</label>
+          </span>
+        </div>
+        <div class="p-inputgroup" *ngIf="convocationTypes$|async as convocationTypes">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-briefcase"></i>
+          </span>
+          <span class="p-form-element p-float-label">
+              <p-dropdown inputId="typeconvocation" [autoDisplayFirst]="false" [options]="convocationTypes" optionLabel="name" formControlName="typeConvocation"></p-dropdown>
+              <label for="typeconvocation">Tipo de Convocatoria</label>
+          </span>
+        </div>
+
+        <div class="p-inputgroup">
+          <span class="p-form-element p-inputgroup-addon">
+              <i class="pi pi-tag"></i>
+          </span>
+          <span class="p-form-element p-float-label">
+              <input type="text" id="inputgroup" pInputText formControlName="correlative">
+              <label for="inputgroup">Correlativo</label>
+          </span>
+        </div>
+
+        <div class="p-inputgroup" *ngIf="convocationModalities$ | async as convocationModalities">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-car"></i>
+          </span>
+          <span class="p-form-element p-float-label">
+              <p-dropdown inputId="typeconvocation" [autoDisplayFirst]="false" [options]="convocationModalities" optionLabel="name" formControlName="modalityConvocation"></p-dropdown>
+              <label for="typeconvocation">Modalidad Convocatoria</label>
+          </span>
+        </div>
+
+        <div class="p-inputgroup description">
+          <span class="p-form-element p-inputgroup-addon">
+              <i class="pi pi-info-circle"></i>
+          </span>
+          <span class="p-form-element p-float-label">
+              <input type="text" id="inputgroup" pInputText formControlName="description">
+              <label for="inputgroup">Descripción</label>
+          </span>
+        </div>
+
+        <div class="p-inputgroup date-start">
+            <span class="p-form-element p-inputgroup-addon">
+              <i class="pi pi-calendar"></i>
+            </span>
+            <span class="p-float-label">
+                <p-calendar inputId="calendar-start" formControlName="startDate"></p-calendar>
+                <label for="calendar-start">Fecha de inicio</label>
+            </span>
+        </div>
+
+        <div class="p-inputgroup date-end">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-calendar"></i>
+          </span>
+          <span class="p-float-label">
+              <p-calendar inputId="calendar-end" formControlName="endDate" (onSelect)="generateCorrelative($event)"></p-calendar>
+              <label for="calendar-end">Fecha de Finalización</label>
+          </span>
+        </div>
+
+        <div class="p-inputgroup importantnotes">
+          <span class="p-float-label">
+            <textarea inputId="importantnotes" rows="3" style="resize: none;" cols="30" formControlName="importantNotes" pInputTextarea></textarea>
+            <label for="importantnotes">Nota Importante</label>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div class="right">
+      <p-fileUpload name="myfile[]" accept="image/*" [showUploadButton]="false" (onSelect)="fileLoaded($event)"></p-fileUpload>
+      <!-- <p-image class="image-design" src="assets/images/post.png" alt="Image" width="300"></p-image> -->
+    </div>
+  </div>
+  <div class="footer-controls">
+    <p-button label="Siguiente" (click)="createConvocationGeneralData()" icon="pi pi-check"></p-button>
+    <button pButton type="button" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+    <!-- <p-button label="Cancelar" icon="pi pi-trash" class="p-button-danger"></p-button> -->
+  </div>
+</div>

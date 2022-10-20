@@ -4,27 +4,31 @@ import { BodyComponent } from './body/body.component';
 import { CreateAdminComponent } from './pages/create-admin/create-admin.component';
 import { ListAdminsComponent } from './pages/list-admins/manage-admins.component';
 
-const AdminRoutesValues = {
+const routesValues = {
   ROUTE_CREATE_ADMIN:"crear-administrador",
   ROUTE_LIST_ADMINS:"lista-administradores",
   ROUTE_UPDATE_ADMIN:"modificar-administrador"
 };
-const AdminRoutes: Routes  = [
+const routes: Routes  = [
   {
     path:'',
     component:BodyComponent,
     children:[
       {
         path:'',
-        redirectTo:AdminRoutesValues.ROUTE_LIST_ADMINS,
+        redirectTo:routesValues.ROUTE_LIST_ADMINS,
         pathMatch:"full"
       },
       {
-        path: AdminRoutesValues.ROUTE_CREATE_ADMIN,
+        path: routesValues.ROUTE_CREATE_ADMIN,
         component:CreateAdminComponent
       },
       {
-        path: AdminRoutesValues.ROUTE_LIST_ADMINS,
+        path: routesValues.ROUTE_UPDATE_ADMIN,
+        component:CreateAdminComponent
+      },
+      {
+        path: routesValues.ROUTE_LIST_ADMINS,
         component:ListAdminsComponent
       }
     ]
@@ -32,9 +36,9 @@ const AdminRoutes: Routes  = [
 ]
 
 @NgModule({
-  imports:[RouterModule.forChild(AdminRoutes)],
+  imports:[RouterModule.forChild(routes)],
   exports:[RouterModule]
 })
 export class ManageAdminRoutingModule{
-  public static ROUTES_VALUES = AdminRoutesValues;
+  public static ROUTES_VALUES = routesValues;
 }

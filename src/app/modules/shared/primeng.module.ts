@@ -1,29 +1,57 @@
 import { NgModule } from "@angular/core";
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DropdownModule} from 'primeng/dropdown';
-import {InputTextModule} from 'primeng/inputtext';
-import {PasswordModule} from 'primeng/password';
+import {CardModule} from 'primeng/card';
+import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
-import {DialogModule} from 'primeng/dialog';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from "primeng/inputtext";
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import {CalendarModule} from 'primeng/calendar';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {ImageModule} from 'primeng/image';
+import {FileUploadModule} from 'primeng/fileupload';
+import {ChipsModule} from 'primeng/chips';
+import { DialogModule } from 'primeng/dialog';
+import {PasswordModule} from 'primeng/password';
+
 
 @NgModule({
-  declarations:[
-
-  ],
   imports:[
     MultiSelectModule,
     DropdownModule,
-    InputTextModule,
-    PasswordModule,
+    CardModule,
+    TableModule,
     ButtonModule,
+    SplitButtonModule,
+    ToastModule,
+    InputTextModule,
+    AutoCompleteModule,
+    CalendarModule,
+    InputTextareaModule,
+    ImageModule,
+    FileUploadModule,
+    ChipsModule,
+    PasswordModule,
     DialogModule
   ],
   exports:[
     MultiSelectModule,
     DropdownModule,
-    InputTextModule,
-    PasswordModule,
+    CardModule,
+    TableModule,
     ButtonModule,
+    SplitButtonModule,
+    ToastModule,
+    InputTextModule,
+    AutoCompleteModule,
+    CalendarModule,
+    InputTextareaModule,
+    ImageModule,
+    FileUploadModule,
+    ChipsModule,
+    PasswordModule,
     DialogModule
   ]
 })

@@ -12,7 +12,7 @@ import { RoleHelper } from './role.helper';
 export class RoleService extends RoleHelper{
 
   constructor(
-    protected override http:HttpClient,
+    protected override http:HttpClient
 
   ){
     super(http)

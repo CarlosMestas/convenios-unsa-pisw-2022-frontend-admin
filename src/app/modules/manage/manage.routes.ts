@@ -27,6 +27,10 @@ const AdminRoutes: Routes  = [
       {
         path: AdminRoutesValues.ROUTE_ADMINS,
         loadChildren:()=>import("../manage-admins/manage-admins.module").then(m=>m.ManageAdminsModule)
+      },
+      {
+        path:AdminRoutesValues.ROUTE_CONVOCATIONS,
+        loadChildren:()=>import('../manage-convocations/manage-convocations.module').then(m=>m.ManageConvocationsModule)
       }
     ]
   }

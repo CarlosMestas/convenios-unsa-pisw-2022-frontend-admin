@@ -47,4 +47,20 @@ export class AdminEffect{
       )
     )
   ))
+
+  adminUpdateRequestEffect$ = createEffect(()=>this.actions$.pipe(
+    ofType(adminRegisterRequestAction),
+    mergeMap((action, id)=>this.adminService.updateAdmin(action, id)
+      .pipe(
+        map(resp=>{
+            return {
+              type:AdminActions.ADMIN_REGISTER_SUCCESS_ACTION,
+              data:resp.data
+            }
+          }
+        ),
+        catchError(()=>EMPTY)
+      )
+    )
+  ))
 }
