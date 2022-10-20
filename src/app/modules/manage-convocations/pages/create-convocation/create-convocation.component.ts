@@ -93,4 +93,9 @@ export class CreateConvocationComponent implements OnInit {
         break;
     }
   }
+
+  generateCorrelative(date:Date){
+    let mili =date.getTime()
+    console.log(mili)
+  }
 }

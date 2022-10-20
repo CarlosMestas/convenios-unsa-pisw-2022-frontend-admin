@@ -8,7 +8,7 @@ export class CreateConvocationDocumentHelper{
 
 
   protected static API_ROUTES = {
-    CREATE_CONVOCATION_DOCUMENT_TYPE_GET_ALL:""
+    CREATE_CONVOCATION_DOCUMENT_TYPE_GET_ALL:"get-all-link-types"
   }
 
   public url = environment.url

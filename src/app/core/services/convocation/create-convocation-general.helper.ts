@@ -9,7 +9,7 @@ export class CreateConvocationGeneralHelper{
 
 
   protected static API_ROUTES = {
-    CREATE_CONVOCATION_GENERAL_POST:""
+    CREATE_CONVOCATION_GENERAL_POST:"create-convocation"
   }
 
   public url = environment.url

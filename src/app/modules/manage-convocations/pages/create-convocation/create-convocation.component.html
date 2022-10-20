@@ -67,7 +67,7 @@
             <i class="pi pi-calendar"></i>
           </span>
           <span class="p-float-label">
-              <p-calendar inputId="calendar-end" formControlName="endDate"></p-calendar>
+              <p-calendar inputId="calendar-end" formControlName="endDate" (onSelect)="generateCorrelative($event)"></p-calendar>
               <label for="calendar-end">Fecha de Finalización</label>
           </span>
         </div>

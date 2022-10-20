@@ -93,3 +93,17 @@
 .p-dialog .p-dialog-content{
   padding: .5rem;
 }
+
+.p-inputgroup .p-inputgroup-addon{
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.p-inputgroup .p-float-label:last-child input{
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.p-inputgroup .p-float-label:last-child .p-calendar input{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
