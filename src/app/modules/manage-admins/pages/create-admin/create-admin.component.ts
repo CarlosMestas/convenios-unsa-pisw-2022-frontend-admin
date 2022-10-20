@@ -8,9 +8,10 @@ import { roleGetAllStateSelector } from '@app/ngrx/selectors/role/role.selectors
 import { rolesGetAllRequestAction } from '@app/ngrx/actions/role/role.actions';
 import { adminRegisterRequestAction } from '@app/ngrx/actions/admin/admin.actions';
 import { AdminCreate } from '@app/shared/models/admin-create.model';
-import { Router } from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import {ManageAdminRoutingModule} from "@modules/manage-admins/manage-admins.routes";
-import {adminViewDataAdminStateSelector} from "@ngrx/selectors/admin/admin.selectors";
+import {adminGetStateSelector, adminViewDataAdminStateSelector} from "@ngrx/selectors/admin/admin.selectors";
+import {AdminService} from "@core/services/admin/admin.service";
 
 @Component({
   selector: 'app-create-admin',
@@ -25,10 +26,12 @@ export class CreateAdminComponent implements OnInit {
   passwordSuggest = ""
   isEditForm = false
   updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
-
+  idRole = 0
   constructor(
     private store:Store<IAppState>,
-    private router: Router
+    private router: Router,
+    private activatedRoute:ActivatedRoute,
+  private adminService: AdminService
   ) {
     this.form=new FormGroup({
       name:new FormControl('',[Validators.required]),
@@ -50,12 +53,15 @@ export class CreateAdminComponent implements OnInit {
     if(this.router.url == "/admin/administradores/"+this.updateAdminLink){
       this.isEditForm = true
       this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
-        this.form.controls['name'].reset(admin.name);
-        this.form.controls['lastname'].reset(admin.lastname);
-        this.form.controls['address'].reset(admin.address);
-        this.form.controls['phone'].reset(admin.phone);
-        this.form.controls['email'].reset(admin.email);
-
+        this.adminService.getAdminById(admin.id).subscribe(resp => {
+          this.form.controls['name'].reset(resp.data.name);
+          this.form.controls['lastname'].reset(resp.data.lastname);
+          this.form.controls['address'].reset(resp.data.address);
+          this.form.controls['phone'].reset(resp.data.phone);
+          this.form.controls['email'].reset(resp.data.email);
+          this.form.controls['password'].reset(resp.data.password);
+          this.form.controls['role'].setValue(resp.data.role.id)
+        })
       })
     }
   }
@@ -66,22 +72,27 @@ export class CreateAdminComponent implements OnInit {
 
   submitCreateAdmin(){
     if(this.form.valid){
-      this.store.dispatch(adminRegisterRequestAction(
-        new AdminCreate(
-          this.form.value["name"],
-          this.form.value["lastname"],
-          this.form.value["address"],
-          this.form.value["phone"],
-          this.form.value["email"],
-          this.form.value["password"],
-          (this.form.value["role"] as IRole).id +"",
-        )
-      ))
+      const adminSend=new AdminCreate(
+        this.form.value["name"],
+        this.form.value["lastname"],
+        this.form.value["address"],
+        this.form.value["phone"],
+        this.form.value["email"],
+        this.form.value["password"],
+        (this.form.value["role"] as IRole).id +""
+      )
+      if(!this.isEditForm){
+        this.store.dispatch(adminRegisterRequestAction( adminSend ))
+      }
+      else {
+        this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
+          this.adminService.updateAdmin(adminSend, admin.id).subscribe(r => {
+          })
+        })
+      }
+      this.router.navigate(["../lista-administradores"], {relativeTo: this.activatedRoute})
     }else{
       console.log("Error en registro")
     }
-
-
   }
-
 }

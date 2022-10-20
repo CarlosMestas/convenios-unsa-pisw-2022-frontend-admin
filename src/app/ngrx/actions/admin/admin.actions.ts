@@ -6,6 +6,7 @@ export const AdminActions = {
   ADMIN_GET_ALL_SUCCESS_ACTION:"[Service] Admin Get All Success",
   ADMIN_GET_ALL_ERROR_ACTION:"[Service] Admin Get All Error",
   ADMIN_REGISTER_REQUEST_ACTION:"[Register - Page] Admin Register Request",
+  ADMIN_UPDATE_REQUEST_ACTION:"[Update - Page] Admin Update Request",
   ADMIN_REGISTER_SUCCESS_ACTION:"[API - Heroku] Admin Register Success",
   ADMIN_REGISTER_ERROR_ACTION:"[Service] Admin Register Error",
   ADMIN_DATA_SUCCESS_ACTION:"[API - Heroku] Admin Data Success",
@@ -30,6 +31,12 @@ export const adminGetAllErrorAction = createAction(
   AdminActions.ADMIN_GET_ALL_ERROR_ACTION,
   props<IAdminError>()
 )
+
+export const adminUpdateRequestAction = createAction(
+  AdminActions.ADMIN_UPDATE_REQUEST_ACTION,
+  props<IAdminCreate>()
+)
+
 //actions to create
 export const adminRegisterRequestAction = createAction(
   AdminActions.ADMIN_REGISTER_REQUEST_ACTION,

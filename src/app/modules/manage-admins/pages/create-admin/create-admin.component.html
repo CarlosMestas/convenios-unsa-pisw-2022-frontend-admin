@@ -41,7 +41,7 @@
 
           <div class="form-item form-item-field-role">
             <label for="role" class="block">Rol</label>
-            <p-dropdown id="role" *ngIf="roles$|async as roles" formControlName="role" [options]="roles" optionLabel="name" class="form-input dis-passs"></p-dropdown>
+            <p-dropdown id="role" *ngIf="roles$|async as roles" formControlName="role" [options]="roles" optionValue="id" optionLabel="name" class="form-input dis-passs"></p-dropdown>
           </div>
 
         </div>
@@ -50,8 +50,11 @@
           <div class="form-cancel-step" routerLink="../">
             Cancelar
           </div>
-          <button class="form-save-step" >
+          <button *ngIf="!isEditForm" class="form-save-step" >
             Guardar
+          </button>
+          <button *ngIf="isEditForm" class="form-save-step" >
+            Modificar
           </button>
         </div>
       </form>

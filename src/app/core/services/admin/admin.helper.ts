@@ -1,5 +1,5 @@
 import { IAdminLogin } from './../../../shared/interfaces/auth.interface';
-import {IAdmin, IAdminCreate} from './../../../shared/interfaces/admin.interface';
+import {IAdmin, IAdminCreate, IAdminData} from './../../../shared/interfaces/admin.interface';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from "environments/environment";
@@ -11,8 +11,11 @@ export class AdminHelper{
   public static SSK_ADMIN_CREDENTIALS:string = "admin session storage credentials"
 
   protected static API_ADMIN_SERVICE_ROUTES = {
+    ADMIN_GET_BY_ID:"admins",
     ADMIN_GET_ALL:"admins/all",
-    ADMIN_CREATE:"admins/register"
+    ADMIN_CREATE:"admins/register",
+    ADMIN_UPDATE:"admins",
+    ADMIN_DELETE:"admins"
   }
 
   public url = environment.url
@@ -49,6 +52,19 @@ export class AdminHelper{
       error:true,
       msg: errorMessage,
       data: {} as IAdmin
+    })
+  }
+  errorGet(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage,
+      data: {} as IAdminData
     })
   }
   saveLocalStorageSesionToken(token:string, admin:string){

@@ -1,4 +1,5 @@
 import {Admin} from "@shared/models/admin.model";
+import {IRole} from "@shared/interfaces/role.interface";
 
 export interface IAdmin{
   id:number,
@@ -8,6 +9,16 @@ export interface IAdmin{
   phone:string,
   email:string,
   role:number
+}
+export interface IAdminData{
+  id:number,
+  name:string,
+  lastname:string,
+  address:string,
+  phone:string,
+  email:string,
+  password:string,
+  role:IRole
 }
 export interface IAdminCreate{
   name:string,
