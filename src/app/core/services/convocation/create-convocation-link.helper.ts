@@ -4,11 +4,11 @@ import { environment } from "environments/environment"
 import { of } from 'rxjs';
 
 
-export class ModalityConvocationHelper{
+export class CreateConvocationLinkHelper{
 
 
   protected static API_ROUTES = {
-    MODALITY_CONVOCATION_GET_ALL:"get-all-modalities"
+    CREATE_CONVOCATION_LINK_TYPE_GET_ALL:"get-all-link-types"
   }
 
   public url = environment.url
@@ -20,7 +20,7 @@ export class ModalityConvocationHelper{
 
   }
 
-  getAllConvocationModalitiesError(error:HttpErrorResponse){
+  getAllCreateConvocationLinkTypesError(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
       errorMessage = error.error.message
@@ -30,15 +30,17 @@ export class ModalityConvocationHelper{
     return of({
       error:true,
       msg: errorMessage,
-      //data: [] as IModalityConvocationResponse,
+      //data: [] as ILinkTypeResponse,
       data: [
         {
           id:1,
-          name:"Presencial"
+          name:"Formulario Universidad Destino",
+          category:"Formulario Universidad Destino"
         },
         {
           id:2,
-          name:"Virtual"
+          name:"Oferta Académica Universidad Destino",
+          category:"Oferta Académica Universidad Destino"
         }
       ]
     })

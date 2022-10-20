@@ -1,6 +1,9 @@
+import { createConvocationSetStateAction } from './../../../../ngrx/actions/convocation/create-convocation-general.actions';
+import { IAppState } from '@app/ngrx/app.state';
+import { Store } from '@ngrx/store';
 import { ManageConvocationsRouterModule } from './../../manage-convocations.routes';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ETypeConvocations } from './../../../../shared/interfaces/convocation.interface';
+import { ETypeConvocations, IFormCreateConvocationGeneral } from './../../../../shared/interfaces/convocation.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -22,12 +25,13 @@ export class CreateConvocationComponent implements OnInit {
 
   convocationTypes$:Observable<ITypeConvocationResponse[]>
   convocationModalities$:Observable<IModalityConvocationResponse[]>
-
+  aficheFile!:File
   constructor(
     private typeConvocationService:TypeConvocationService,
     private modalityConvocationService:ModalityConvocationService,
     private router:Router,
     private activatedRoute:ActivatedRoute,
+    private store:Store<IAppState>
   ) {
     this.convocationTypes$ = new Observable<ITypeConvocationResponse[]>()
     this.convocationModalities$ = new Observable<IModalityConvocationResponse[]>()
@@ -62,9 +66,24 @@ export class CreateConvocationComponent implements OnInit {
     )
 
   }
-
+  fileLoaded(event:any){
+    this.aficheFile = event.files[0]
+  }
   createConvocationGeneralData(){
-    console.log((this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym)
+    let dateini:Date = this.formCreateConvocation.value["startDate"]
+    let dateend:Date = this.formCreateConvocation.value["endDate"]
+    let createConvocation:IFormCreateConvocationGeneral = {
+      title: this.formCreateConvocation.value["nameConvocation"],
+      type: (this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).id,
+      correlative: this.formCreateConvocation.value["correlative"],
+      modality: (this.formCreateConvocation.value["modalityConvocation"] as IModalityConvocationResponse).id,
+      description: this.formCreateConvocation.value["description"],
+      start_date: dateini.getFullYear()+"-"+(dateini.getMonth()+1)+"-"+dateini.getDate(),
+      end_date: dateend.getFullYear()+"-"+(dateend.getMonth()+1)+"-"+dateend.getDate(),
+      important_notes: this.formCreateConvocation.value["importantNotes"],
+      afiche: this.aficheFile
+    }
+    this.store.dispatch(createConvocationSetStateAction({data:createConvocation}))
 
     switch ((this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym) {
       case ETypeConvocations.COEVAN:

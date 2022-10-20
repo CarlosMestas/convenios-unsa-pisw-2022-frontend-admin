@@ -81,7 +81,7 @@
       </form>
     </div>
     <div class="right">
-      <p-fileUpload name="myfile[]"></p-fileUpload>
+      <p-fileUpload name="myfile[]" accept="image/*" [showUploadButton]="false" (onSelect)="fileLoaded($event)"></p-fileUpload>
       <!-- <p-image class="image-design" src="assets/images/post.png" alt="Image" width="300"></p-image> -->
     </div>
   </div>

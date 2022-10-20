@@ -14,6 +14,8 @@ import { CreateConvocationCodvienenComponent } from './pages/create-convocation-
 import { CreateConvocationCodvanComponent } from './pages/create-convocation-codvan/create-convocation-codvan.component';
 import { CreateConvocationPiveComponent } from './pages/create-convocation-pive/create-convocation-pive.component';
 import { CreateConvocationPivdoComponent } from './pages/create-convocation-pivdo/create-convocation-pivdo.component';
+import { CreateDocumentComponent } from './components/create-document/create-document.component';
+import { CreateLinkComponent } from './components/create-link/create-link.component';
 
 @NgModule({
   declarations:[
@@ -27,6 +29,8 @@ import { CreateConvocationPivdoComponent } from './pages/create-convocation-pivd
     CreateConvocationCodvanComponent,
     CreateConvocationPiveComponent,
     CreateConvocationPivdoComponent,
+    CreateDocumentComponent,
+    CreateLinkComponent,
   ],
   imports:[
     ManageConvocationsRouterModule,

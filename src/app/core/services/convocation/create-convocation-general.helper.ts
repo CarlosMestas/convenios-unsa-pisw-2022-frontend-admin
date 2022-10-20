@@ -1,14 +1,15 @@
+import { IConvocationResponse } from './../../../shared/interfaces/convocation.interface';
 import { IModalityConvocationResponse, ITypeConvocationResponse } from '../../../shared/interfaces/convocation.interface';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http"
 import { environment } from "environments/environment"
 import { of } from 'rxjs';
 
 
-export class ModalityConvocationHelper{
+export class CreateConvocationGeneralHelper{
 
 
   protected static API_ROUTES = {
-    MODALITY_CONVOCATION_GET_ALL:"get-all-modalities"
+    CREATE_CONVOCATION_GENERAL_POST:""
   }
 
   public url = environment.url
@@ -20,7 +21,7 @@ export class ModalityConvocationHelper{
 
   }
 
-  getAllConvocationModalitiesError(error:HttpErrorResponse){
+  postCreateConvocationGeneralError(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
       errorMessage = error.error.message
@@ -30,17 +31,19 @@ export class ModalityConvocationHelper{
     return of({
       error:true,
       msg: errorMessage,
-      //data: [] as IModalityConvocationResponse,
-      data: [
+      //data: {} as IConvocationResponse,
+      data:
         {
-          id:1,
-          name:"Presencial"
-        },
-        {
-          id:2,
-          name:"Virtual"
+          id: 0,
+          title: '',
+          type: 0,
+          correlative: '',
+          modality: 0,
+          description: '',
+          start_date: '',
+          end_date: '',
+          important_notes: ''
         }
-      ]
     })
   }
 

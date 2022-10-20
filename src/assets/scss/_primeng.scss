@@ -1,0 +1,95 @@
+
+.p-inputtext, .p-multiselect-item, label, .p-dropdown-item, .p-datepicker, .p-datepicker table{
+  font-size: 13px;
+}
+
+
+
+.p-dropdown, .p-calendar, .p-multiselect {
+  height: 40px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  width: 100% !important;
+}
+.p-chips{
+  width: 100% !important;
+}
+.p-chips-multiple-container{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+/*
+* top-right
+* botton.right
+*/
+.p-chips-multiple-container,.p-multiselect{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.p-multiselect-label {
+  visibility: collapse;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.p-datepicker table td{
+  padding: 0px;
+}
+
+.p-fileupload{
+  padding: 1rem;
+}
+.p-button{
+  font-size: 14px;
+  border-radius: 3px !important;
+  height: 40px;
+}
+.p-inputgroup .p-float-label{
+  width: 100%;
+}
+.p-multiselect-header{
+  padding: .5rem 1.25rem !important;
+}
+
+
+//chip template
+.p-chips-token{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .chip-template{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+  }
+}
+/**
+------------FILES
+*/
+
+.p-fileupload{
+  padding: 0px;
+  .p-fileupload-buttonbar{
+    padding:.25rem ;
+  }
+  .p-fileupload-content{
+    padding:.25rem ;
+  }
+  .p-fileupload-row>div{
+    padding: .25rem;
+    font-size: 13px;
+  }
+  .p-fileupload-row>div>button{
+    height: 30px;
+  }
+
+}
+.p-dialog{
+  min-width: 600px;
+}
+.p-dialog .p-dialog-content{
+  padding: .5rem;
+}
