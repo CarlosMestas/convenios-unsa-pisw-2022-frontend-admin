@@ -1,16 +1,16 @@
 import { ManageAdminRoutingModule } from './../../manage-admins.routes';
 import { Observable } from 'rxjs';
-import { adminGetAllRequestAction } from '@ngrx/actions/admin/admin.actions';
+import {
+  adminChangeDataAdminStateAction,
+  adminChangeModalStateAction,
+  adminGetAllRequestAction
+} from '@ngrx/actions/admin/admin.actions';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@app/ngrx/app.state';
 import { IAdmin } from '@shared/interfaces/admin.interface';
 import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { adminGetAllStateSelector } from '@app/ngrx/selectors/admin/admin.selectors';
-interface City {
-  name: string,
-  code: string
-}
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manage-admins',
@@ -19,16 +19,17 @@ interface City {
 })
 export class ListAdminsComponent implements OnInit, AfterViewInit  {
   createAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_CREATE_ADMIN
-  selectedCities!: City[]
+  updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
 
   displayedColumns: string[] = ['name', 'lastname','address', 'phone', 'email', 'role','actions'];
-
   adminsData$: Observable<IAdmin[]>
 
   resultsLength = 0;
 
-  constructor(
-    private store:Store<IAppState>
+ constructor(
+    private store:Store<IAppState>,
+    private router:Router,
+    private activatedRoute:ActivatedRoute
   ) {
     this.adminsData$ = new Observable<IAdmin[]>()
    }
@@ -42,13 +43,15 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
   }
 
   detail(element:IAdmin):void{
-    console.log("tessssssst ",element)
+    this.store.dispatch(adminChangeModalStateAction({stateModal: true}))
+    this.store.dispatch(adminChangeDataAdminStateAction( {admin: element}))
   }
   remove(element:IAdmin):void{
 
   }
   update(element:IAdmin):void{
-
+    this.router.navigate(["../"+this.updateAdminLink], {relativeTo: this.activatedRoute})
+    this.store.dispatch(adminChangeDataAdminStateAction( {admin: element}))
   }
 
 }

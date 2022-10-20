@@ -4,13 +4,14 @@ import {Actions, createEffect, ofType} from '@ngrx/effects'
 import { Injectable } from "@angular/core"
 import { AdminService } from '@app/core/services/admin/admin.service';
 import { adminGetAllRequestAction } from '@app/ngrx/actions/admin/admin.actions';
-
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AdminEffect{
   constructor(
     private actions$:Actions,
-    private adminService:AdminService//:TODO: we'll continue using our auth service
+    private adminService:AdminService,//:TODO: we'll continue using our auth service
+    private route:Router
     ){
   }
 
@@ -33,6 +34,23 @@ export class AdminEffect{
   adminRegisterRequestEffect$ = createEffect(()=>this.actions$.pipe(
     ofType(adminRegisterRequestAction),
     mergeMap((action)=>this.adminService.registerAdmin(action)
+      .pipe(
+        map(resp=>{
+          this.route.navigate(['/admin/administradores/lista-administradores'])
+            return {
+              type:AdminActions.ADMIN_REGISTER_SUCCESS_ACTION,
+              data:resp.data
+            }
+          }
+        ),
+        catchError(()=>EMPTY)
+      )
+    )
+  ))
+
+  adminUpdateRequestEffect$ = createEffect(()=>this.actions$.pipe(
+    ofType(adminRegisterRequestAction),
+    mergeMap((action, id)=>this.adminService.updateAdmin(action, id)
       .pipe(
         map(resp=>{
             return {

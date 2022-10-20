@@ -14,6 +14,9 @@ import {ImageModule} from 'primeng/image';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ChipsModule} from 'primeng/chips';
 import { DialogModule } from 'primeng/dialog';
+import {PasswordModule} from 'primeng/password';
+
+
 @NgModule({
   imports:[
     MultiSelectModule,
@@ -30,6 +33,7 @@ import { DialogModule } from 'primeng/dialog';
     ImageModule,
     FileUploadModule,
     ChipsModule,
+    PasswordModule,
     DialogModule
   ],
   exports:[
@@ -47,6 +51,7 @@ import { DialogModule } from 'primeng/dialog';
     ImageModule,
     FileUploadModule,
     ChipsModule,
+    PasswordModule,
     DialogModule
   ]
 })

@@ -44,20 +44,20 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef aria-label="row actions">Acciones</th>
         <td class="button-table-container" mat-cell *matCellDef="let row">
-          <button class="button-table-controller delete" mat-icon-button aria-label="expand row" (click)="remove(row)">
+          <button class="button-table-controller view" mat-icon-button aria-label="expand row" (click)="detail(row)">
             <!-- <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
             <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
-            <mat-icon>delete</mat-icon>
+            <mat-icon>remove_red_eye</mat-icon>
           </button>
           <button class="button-table-controller edit" mat-icon-button aria-label="expand row" (click)="update(row)">
             <!-- <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
             <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
             <mat-icon>edit</mat-icon>
           </button>
-          <button class="button-table-controller view" mat-icon-button aria-label="expand row" (click)="detail(row)">
+          <button class="button-table-controller delete" mat-icon-button aria-label="expand row" (click)="remove(row)">
             <!-- <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
             <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon> -->
-            <mat-icon>remove_red_eye</mat-icon>
+            <mat-icon>delete</mat-icon>
           </button>
         </td>
       </ng-container>
@@ -67,3 +67,5 @@
     </table>
   </div>
 </div>
+
+<app-view-admin></app-view-admin>
