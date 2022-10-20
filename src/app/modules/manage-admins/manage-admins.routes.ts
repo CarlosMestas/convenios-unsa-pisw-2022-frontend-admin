@@ -24,6 +24,10 @@ const AdminRoutes: Routes  = [
         component:CreateAdminComponent
       },
       {
+        path: AdminRoutesValues.ROUTE_UPDATE_ADMIN,
+        component:CreateAdminComponent
+      },
+      {
         path: AdminRoutesValues.ROUTE_LIST_ADMINS,
         component:ListAdminsComponent
       }

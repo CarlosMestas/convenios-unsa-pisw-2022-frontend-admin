@@ -1,8 +1,9 @@
 <div class="register-container">
   <div class="container-content">
     <div class="header-container">
-      <div class="title">Creación de Nuevo Administrador</div>
-      <div class="description">Ingresar los datos del nuevo administrador a registrar</div>
+      <div class="title" *ngIf="!isEditForm">Creación de Nuevo Administrador</div>
+      <div class="title" *ngIf="isEditForm">Modificación de Administrador</div>
+      <div class="description" >Ingresar los datos del nuevo administrador a registrar</div>
     </div>
     <div class="general-cotainer">
 
@@ -40,7 +41,7 @@
 
           <div class="form-item form-item-field-role">
             <label for="role" class="block">Rol</label>
-            <p-dropdown id="role" *ngIf="roles$|async as roles" formControlName="role" [options]="roles" optionLabel="name" class="form-input dis-passs"></p-dropdown>
+            <p-dropdown id="role" *ngIf="roles$|async as roles" formControlName="role" [options]="roles" optionValue="id" optionLabel="name" class="form-input dis-passs"></p-dropdown>
           </div>
 
         </div>
@@ -49,8 +50,11 @@
           <div class="form-cancel-step" routerLink="../">
             Cancelar
           </div>
-          <button class="form-save-step" >
+          <button *ngIf="!isEditForm" class="form-save-step" >
             Guardar
+          </button>
+          <button *ngIf="isEditForm" class="form-save-step" >
+            Modificar
           </button>
         </div>
       </form>
