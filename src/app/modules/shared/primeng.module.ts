@@ -12,6 +12,8 @@ import {CalendarModule} from 'primeng/calendar';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {ImageModule} from 'primeng/image';
 import {FileUploadModule} from 'primeng/fileupload';
+import {ChipsModule} from 'primeng/chips';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   imports:[
     MultiSelectModule,
@@ -26,7 +28,9 @@ import {FileUploadModule} from 'primeng/fileupload';
     CalendarModule,
     InputTextareaModule,
     ImageModule,
-    FileUploadModule
+    FileUploadModule,
+    ChipsModule,
+    DialogModule
   ],
   exports:[
     MultiSelectModule,
@@ -41,7 +45,9 @@ import {FileUploadModule} from 'primeng/fileupload';
     CalendarModule,
     InputTextareaModule,
     ImageModule,
-    FileUploadModule
+    FileUploadModule,
+    ChipsModule,
+    DialogModule
   ]
 })
 export class PrimeNGModule{}
