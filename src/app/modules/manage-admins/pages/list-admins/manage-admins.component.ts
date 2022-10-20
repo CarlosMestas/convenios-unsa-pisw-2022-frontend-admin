@@ -12,12 +12,6 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { adminGetAllStateSelector } from '@app/ngrx/selectors/admin/admin.selectors';
 import { Router, ActivatedRoute } from '@angular/router';
 
-interface City {
-  name: string,
-  code: string
-}
-
-
 @Component({
   selector: 'app-manage-admins',
   templateUrl: './manage-admins.component.html',
@@ -27,7 +21,6 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
   createAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_CREATE_ADMIN
   updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
 
-  selectedCities!: City[]
   displayedColumns: string[] = ['name', 'lastname','address', 'phone', 'email', 'role','actions'];
   adminsData$: Observable<IAdmin[]>
 
