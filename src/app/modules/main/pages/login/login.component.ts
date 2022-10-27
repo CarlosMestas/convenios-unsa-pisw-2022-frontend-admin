@@ -36,20 +36,26 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  async enviarData(cred: any){
+    this.store.dispatch(adminAuthLoginRequestAction(cred))
+  }
   loginSubmit(){
     const credentials = new AdminLogin(
       this.formLogin.value["user"],
       this.formLogin.value["password"]
     )
-    this.store.dispatch(adminAuthLoginRequestAction(credentials))
-    this.store.select(authErrorStateSelector).subscribe(response => {
-      console.log("RESPUESTA", response)
-      if(response?.code == 400){
-        console.log("Datos incorrectos", response.msg)
-      }else {
-        this.router.navigate(["../admin"])
+    this.enviarData(credentials).then( r => {
+      this.store.select(authErrorStateSelector).subscribe(response => {
+        if(response?.code == 400){
+          console.log("Datos incorrectos", response.msg)
+        }else {
+          this.router.navigate(["../admin"])
+        }
+      })
       }
-    })
+    )
+
   }
 
 }
