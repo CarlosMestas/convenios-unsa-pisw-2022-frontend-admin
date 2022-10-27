@@ -5,14 +5,14 @@
         Usuario
       </label>
       <input class="form-input-text" type="text" formControlName="user" id="user" placeholder="Ingresa tu correo">
-      <span class="invalid-field" *ngIf = "user && user.invalid && user.touched">El nombre de usuario es incorrecto</span>
+      <span class="invalid-field" *ngIf = "user && user.invalid && (user.touched && user.value!='')">El nombre de usuario es incorrecto</span>
     </div>
     <div class="form-item">
       <label class="form-label" for="password">
         Contraseña
       </label>
       <input class="form-input-text" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
-      <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">La contraseña es incorrecta</span>
+      <span class="invalid-field" *ngIf = "password && password.invalid && (password.touched && password.value!='')">La contraseña es incorrecta</span>
     </div>
 
 

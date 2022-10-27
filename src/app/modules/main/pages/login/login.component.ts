@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { delay, Observable, map } from 'rxjs';
-import { of } from 'rxjs';
+import {Store} from "@ngrx/store";
+import {IAppState} from "@ngrx/app.state";
+import {adminAuthLoginRequestAction} from "@ngrx/actions/auth/auth.actions";
+import {authErrorStateSelector} from "@ngrx/selectors/auth/auth.selectors";
+import {AdminLogin} from "@shared/models/admin-login.model";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,8 +16,9 @@ export class LoginComponent implements OnInit {
 
   public formLogin:FormGroup
 
-
   constructor(
+    private store:Store<IAppState>,
+
     private router:Router
   ) {
     this.formLogin = new FormGroup({
@@ -32,7 +37,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   loginSubmit(){
-    this.router.navigate(["../admin"])
+    const credentials = new AdminLogin(
+      this.formLogin.value["user"],
+      this.formLogin.value["password"]
+    )
+    this.store.dispatch(adminAuthLoginRequestAction(credentials))
+    this.store.select(authErrorStateSelector).subscribe(response => {
+      console.log("RESPUESTA", response)
+      if(response?.code == 400){
+        console.log("Datos incorrectos", response.msg)
+      }else {
+        this.router.navigate(["../admin"])
+      }
+    })
   }
 
 }
