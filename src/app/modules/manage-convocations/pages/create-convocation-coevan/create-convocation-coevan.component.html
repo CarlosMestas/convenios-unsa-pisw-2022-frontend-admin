@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="header">Crear Convocatoria COEVAN</div>
+  <div class="content">
+      <form class="form-content" [formGroup]="formCreateConvocationCoevan">
+
+        <div class="p-inputgroup" *ngIf="academicNetworks$ | async as academicNetworks">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-car"></i>
+          </span>
+          <span class="p-float-label">
+              <p-dropdown inputId="academicnetwork" [autoDisplayFirst]="false" [options]="academicNetworks" optionLabel="name" formControlName="academicNetwork" (onChange)="changeAcademicNetwork($event)"></p-dropdown>
+              <label for="academicnetwork">Red Académica</label>
+          </span>
+        </div>
+
+        <div class="p-inputgroup" *ngIf="universitiesByAcademicNetwork$|async as universitiesByAcademicNetwork">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-briefcase"></i>
+          </span>
+          <span class="p-float-label">
+              <p-dropdown inputId="university" [autoDisplayFirst]="false" [options]="universitiesByAcademicNetwork" optionLabel="name" formControlName="university"></p-dropdown>
+              <label for="university">Universidad</label>
+          </span>
+        </div>
+
+        <div class="p-inputgroup" *ngIf="requirements$|async as requirements">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-briefcase"></i>
+          </span>
+          <span class="p-float-label">
+            <p-multiSelect inputId="multiselect" [options]="requirements" [(ngModel)]="requirementsSelected" optionLabel="description" [virtualScroll]="true" [filter]="false" formControlName="requirements">
+            <ng-template pTemplate="header">
+            </ng-template>
+            <ng-template let-description pTemplate="selectedItems">
+                <div class="country-item country-item-value" *ngFor="let option of description">
+                    <div>{{option.description}}</div>
+                </div>
+                <div *ngIf="!requirementsSelected || requirementsSelected.length === 0" class="country-placeholder">
+                    Select Countries
+                </div>
+            </ng-template>
+            </p-multiSelect>
+            <label for="multiselect">Requerimientos</label>
+          </span>
+          <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-danger"></button>
+        </div>
+
+        <div class="p-inputgroup">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-briefcase"></i>
+          </span>
+          <span class="p-float-label">
+            <p-chips inputId="documents" field="name" [(ngModel)]="documents" formControlName="documents">
+              <ng-template let-item pTemplate="item">
+                <div class="chip-template">
+                  <i class="pi pi-file-pdf"></i> {{item.name}}
+                </div>
+                <div class="center">{{item.type}}</div>
+
+              </ng-template>
+            </p-chips>
+              <label for="documents">Documents</label>
+          </span>
+          <button (click)="displayCreateDocumentModal=true" type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-danger"></button>
+          <app-create-document *ngIf="displayCreateDocumentModal" [displayModal]="displayCreateDocumentModal" (emitDisplayModal)="displayCreateDocumentModal=false"></app-create-document>
+        </div>
+
+        <div class="p-inputgroup">
+          <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-briefcase"></i>
+          </span>
+          <span class="p-float-label">
+            <p-chips inputId="links" field="name" [(ngModel)]="links" formControlName="links">
+              <ng-template let-link pTemplate="item">
+                <div class="chip-template">
+                  <i class="pi pi-globe"></i> {{link.name}}
+                </div>
+                <div class="center">{{link.type}}</div>
+              </ng-template>
+            </p-chips>
+              <label for="links">Links</label>
+          </span>
+          <button (click)="displayCreateLinkModal=true" type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-danger"></button>
+          <app-create-link *ngIf="displayCreateLinkModal" [displayModal]="displayCreateLinkModal" (emitDisplayModal)="displayCreateLinkModal=false"></app-create-link>
+
+        </div>
+
+
+
+
+
+
+        <!-- <div class="p-inputgroup date-end">
+          <p-fileUpload name="myfile[]" [multiple]="multiple"></p-fileUpload>
+        </div>
+
+        <div class="p-inputgroup date-end">
+          <p-fileUpload name="myfile[]" [multiple]="multiple"></p-fileUpload>
+        </div> -->
+      </form>
+
+  </div>
+  <div class="footer-controls">
+    <p-button label="Guardar" (click)="createConvocationDetailCoevan()" icon="pi pi-check"></p-button>
+    <button pButton type="button" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+    <!-- <p-button label="Cancelar" icon="pi pi-trash" class="p-button-danger"></p-button> -->
+  </div>
+</div>

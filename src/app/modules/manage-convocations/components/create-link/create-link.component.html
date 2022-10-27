@@ -1,0 +1,47 @@
+<p-dialog header="Crear Link" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="true" [resizable]="false" (onHide)="hideModalDialog()">
+
+    <form class="form-container" [formGroup]="formCreateLink">
+
+      <div class="p-inputgroup name">
+          <span class="p-form-element p-inputgroup-addon">
+              <i class="pi pi-info-circle"></i>
+          </span>
+          <span class="p-form-element p-float-label">
+              <input type="text" id="name" pInputText formControlName="name">
+              <label for="name">Nombre</label>
+          </span>
+      </div>
+      <div class="p-inputgroup linktype" *ngIf="linkTypes$ | async as linkTypes">
+        <span class="p-form-element p-inputgroup-addon">
+          <i class="pi pi-car"></i>
+        </span>
+        <span class="p-float-label">
+            <p-dropdown inputId="linktype" [autoDisplayFirst]="false" [options]="linkTypes" optionLabel="name" formControlName="type"></p-dropdown>
+            <label for="linktype">Tipo de Link</label>
+        </span>
+      </div>
+      <div class="p-inputgroup url">
+        <span class="p-form-element p-inputgroup-addon">
+            <i class="pi pi-info-circle"></i>
+        </span>
+        <span class="p-form-element p-float-label">
+            <input type="text" id="url" pInputText formControlName="url">
+            <label for="url">Url</label>
+        </span>
+      </div>
+        <div class="p-inputgroup description">
+          <span class="p-float-label">
+            <textarea inputId="description" rows="3" style="resize: none;" cols="30" formControlName="description" pInputTextarea></textarea>
+            <label for="description">Descripción</label>
+          </span>
+        </div>
+
+      </form>
+
+
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="createLink()" label="Agregar" class="p-button-text"></p-button>
+            <button pButton type="button" (click)="hideModalDialog()" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+        </ng-template>
+</p-dialog>

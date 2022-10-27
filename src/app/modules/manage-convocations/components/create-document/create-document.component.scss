@@ -1,0 +1,35 @@
+.form-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 60px) auto;
+  gap: 1rem;
+  padding: 1rem;
+}
+.p-inputgroup{
+  place-self: center;
+}
+.p-inputgroup.description{
+  height: 100%;
+}
+
+.p-inputgroup.documenttype{
+  grid-column-start: 1;
+  grid-column-end:span 1;
+  grid-row-start: 1;
+}
+.p-inputgroup.name{
+  grid-column-start: 1;
+  grid-column-end:span 1;
+  grid-row-start: 2;
+}
+.p-inputgroup.document{
+  grid-column-start: 1;
+  grid-column-end:span 1;
+  grid-row-start: 3;
+}
+.p-inputgroup.description{
+  grid-column-start: 2;
+  grid-column-end:span 1;
+  grid-row-start: 1;
+  grid-row-end: span 3;
+}
