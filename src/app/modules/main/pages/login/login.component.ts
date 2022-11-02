@@ -14,7 +14,7 @@ import {AuthService} from "@core/services/auth/auth.service";
 export class LoginComponent implements OnInit {
 
   public formLogin:FormGroup
-
+  public exist = true
   constructor(
     private store:Store<IAppState>,
     private authService:AuthService,
@@ -37,14 +37,20 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit(){
+    this.exist = true
     const credentials = new AdminLogin(
       this.formLogin.value["user"],
       this.formLogin.value["password"]
     )
 
     this.authService.login(credentials.user,credentials.password).subscribe(response => {
-      console.log("Datos incorrectos", response)
-      this.router.navigate(["../admin"])
+      if(!response.error){
+        this.router.navigate(["../admin"])
+      }
+      else {
+        console.log("Datos incorrectos", response.msg)
+        this.exist = false
+      }
     })
   }
 
