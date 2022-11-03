@@ -10,7 +10,7 @@ import { adminRegisterRequestAction } from '@app/ngrx/actions/admin/admin.action
 import { AdminCreate } from '@app/shared/models/admin-create.model';
 import {ActivatedRoute, Router} from '@angular/router'
 import {ManageAdminRoutingModule} from "@modules/manage-admins/manage-admins.routes";
-import {adminGetStateSelector, adminViewDataAdminStateSelector} from "@ngrx/selectors/admin/admin.selectors";
+import {adminViewDataAdminStateSelector} from "@ngrx/selectors/admin/admin.selectors";
 import {AdminService} from "@core/services/admin/admin.service";
 
 @Component({
