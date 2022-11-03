@@ -1,4 +1,4 @@
-import { IAdmin } from './../../../shared/interfaces/admin.interface';
+import {IAdmin, IAdminData, ILoginAdmin} from './../../../shared/interfaces/admin.interface';
 import { of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from "environments/environment";
@@ -42,7 +42,7 @@ export class AuthHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: {} as IAdmin
+      data: {} as IAdminData
     })
   }
 }

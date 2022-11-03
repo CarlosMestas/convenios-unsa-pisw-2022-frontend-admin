@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { IAdmin } from './../../../shared/interfaces/admin.interface';
+import {IAdmin, IAdminData, ILoginAdmin} from './../../../shared/interfaces/admin.interface';
 import { IHttpResponse, IHttpServiceResponse } from './../../../shared/interfaces/transactions/http-response.transaction';
 import { Observable, map, catchError } from 'rxjs';
 import { AuthHelper } from './auth.helper';
@@ -15,13 +15,13 @@ export class AuthService extends AuthHelper{
     super(http)
   }
 
-  login(user:string, password:String):Observable<IHttpServiceResponse<IAdmin>>{
-    const response:IHttpServiceResponse<IAdmin> = {
+  login(user:string, password:String):Observable<IHttpServiceResponse<IAdminData>>{
+    const response:IHttpServiceResponse<IAdminData> = {
       error:false,
       msg:'',
-      data:{} as IAdmin
+      data:{} as IAdminData
     };
-    return this.http.post<IHttpResponse<IAdmin>>(
+    return this.http.post<IHttpResponse<ILoginAdmin>>(
       this.url + AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
       {
         "email":user,
@@ -30,7 +30,7 @@ export class AuthService extends AuthHelper{
       ).pipe(
         map( r =>{
           //response.msg = r.msg
-          response.data = r.data
+          response.data = r.data.user
           if (r.code == 400){
             response.error = true
           }
