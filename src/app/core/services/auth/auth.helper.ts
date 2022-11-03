@@ -8,7 +8,7 @@ export class AuthHelper{
   public static ADMIN_LOGIN_TOKEN:string = "userLoginToken";
   protected static API_AUTH_SERVICE_ROUTES = {
     LOGOUT:"logout",
-    LOGIN:"login"
+    LOGIN:"admins/login"
   }
 
   public url = environment.url

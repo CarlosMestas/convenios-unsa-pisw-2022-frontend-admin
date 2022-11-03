@@ -24,12 +24,15 @@ export class AuthService extends AuthHelper{
     return this.http.post<IHttpResponse<IAdmin>>(
       this.url + AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
       {
-        "user":user,
+        "email":user,
         "password":password
       }
       ).pipe(
         map( r =>{
-          response.data = r.data
+          //response.msg = r.msg
+          if (r.code == 400){
+            response.error = true
+          }
           return response
         }
         ),
