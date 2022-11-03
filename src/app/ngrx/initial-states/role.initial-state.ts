@@ -7,6 +7,6 @@ export const RoleInitialState:IRoleState = {
 }
 
 export const RoleInitState:IRole = {
-  id: 1,
+  id: 0,
   name: 'Adminstrador',
 }
