@@ -30,6 +30,7 @@ export class AuthService extends AuthHelper{
       ).pipe(
         map( r =>{
           //response.msg = r.msg
+          response.data = r.data
           if (r.code == 400){
             response.error = true
           }

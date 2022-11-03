@@ -45,10 +45,11 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(credentials.user,credentials.password).subscribe(response => {
       if(!response.error){
+        console.log("data, ", response.data)
         this.router.navigate(["../admin"])
       }
       else {
-        console.log("Datos incorrectos", response.msg)
+        //console.log("Datos incorrectos", response.msg)
         this.exist = false
       }
     })
