@@ -19,8 +19,8 @@
       min-width: 500px;
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(2,40px) repeat(3, auto);
-      gap: 2rem;
+      grid-template-rows: repeat(2,auto) repeat(3, auto);
+      gap: .25rem;
       padding: 1rem 0rem;
     }
   }

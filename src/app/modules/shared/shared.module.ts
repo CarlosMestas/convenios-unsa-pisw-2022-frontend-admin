@@ -8,7 +8,7 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from './primeng.module';
 
-
+import {HttpClientModule} from "@angular/common/http"
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { PrimeNGModule } from './primeng.module';
     FormsModule,
     ReactiveFormsModule,
     PrimeNGModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   exports:[
     SidenavComponent,
@@ -33,7 +34,8 @@ import { PrimeNGModule } from './primeng.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimeNGModule
+    PrimeNGModule,
+    HttpClientModule
   ]
 })
 export class SharedModule { }

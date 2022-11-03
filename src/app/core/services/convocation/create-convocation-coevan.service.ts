@@ -24,9 +24,13 @@ export class CreateConvocationCoevanService extends CreateConvocationCoevanHelpe
       msg:'',
       data:{} as IConvocationCoevanResponseDetail
     }
+
+    console.log("files:",coevanForm.getAll("files[]"))
+    console.log("documents:",coevanForm.getAll("documents"))
     return this.http.post<IHttpResponse<IConvocationCoevanResponseDetail>>(this.url + CreateConvocationCoevanHelper.API_ROUTES.CREATE_CONVOCATION_COEVAN_POST,coevanForm)
     .pipe(
       map(resp=>{
+        console.log(resp)
         response.data=resp.data
         return response
       }),

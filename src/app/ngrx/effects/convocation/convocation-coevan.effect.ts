@@ -22,8 +22,6 @@ export class ConvocationCoevanEffect{
     ofType(postCreateConvocationCoevanRequestAction),
     mergeMap((action)=>{
       let formData:FormData = new FormData()
-
-      console.log("print - bofere append",action.data.general)
       formData.append("title",action.data.general.title)
       formData.append("type",action.data.general.type.toString())
       formData.append("correlative",action.data.general.correlative)
@@ -33,13 +31,13 @@ export class ConvocationCoevanEffect{
       formData.append("end_date",action.data.general.end_date)
       formData.append("important_notes",action.data.general.important_notes)
       formData.append("afiche",action.data.general.afiche,action.data.general.afiche.name)
-      console.log("print - after append")
       return this.createConvocationGeneralService.postCreateConvocationGeneral(formData)
       .pipe(
         mergeMap(resp=>{
+
             let formCoevan =  action.data.coevan
-            console.log("is form empty?:",formCoevan)
-            formCoevan.append("id_convocation",resp.data.id.toString())
+            //formCoevan.append("id_convocation",resp.data.id.toString())
+            // formCoevan.append("id_convocation","1")
             return this.createConvocationCoevanService.postCreateConvocationCoevan(formCoevan)
             .pipe(
               map(resp=>({

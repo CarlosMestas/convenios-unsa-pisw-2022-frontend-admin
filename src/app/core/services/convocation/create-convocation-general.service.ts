@@ -24,6 +24,7 @@ export class CreateConvocationGeneralService extends CreateConvocationGeneralHel
       msg:'',
       data:{} as IConvocationResponse
     }
+
     return this.http.post<IHttpResponse<IConvocationResponse>>(this.url + CreateConvocationGeneralHelper.API_ROUTES.CREATE_CONVOCATION_GENERAL_POST,generalForm)
     .pipe(
       map(resp=>{

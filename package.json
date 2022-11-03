@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "start:proxy": "ng serve --proxy-config proxy.conf.json --c=production",
     "start": "node server.js",
     "start:prod": "ng serve --c=production",
     "start:dev": "ng serve --c=dev",
@@ -29,6 +30,7 @@
     "@fortawesome/angular-fontawesome": "^0.10.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@material-design-icons/svg": "^0.13.0",
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
