@@ -124,10 +124,16 @@
             <p-dropdown id="role" *ngIf="roles$|async as roles" formControlName="role" [options]="roles" optionValue="id" optionLabel="name" class="form-input dis-passs"></p-dropdown>
           </div>
         </div>
+
         <div class="buttons-handler">
-          <p-button label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success" (click)="submitUpdateAdmin()"></p-button>
-          <button pButton pRipple  label="Cancelar" class="p-button-outlined p-button-danger" (click)="cancelEditProfile()"></button>
+          <div class="form-cancel-step" routerLink="../">
+            Cancelar
+          </div>
+          <button  class="form-save-step" >
+            Guardar
+          </button>
         </div>
+
       </form>
     </div>
   </div>
