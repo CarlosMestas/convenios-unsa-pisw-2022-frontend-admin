@@ -3,6 +3,10 @@ import { ISidenavItem, ISidenavToggle } from '../../interfaces/sidebar.interface
 import {Output,EventEmitter,HostListener} from '@angular/core'
 import { faHouseUser,faFolder,faUsers,faSignOutAlt,faBars,faUsersCog} from '@fortawesome/free-solid-svg-icons';
 import { ManageRoutingModule } from '@app/modules/manage/manage.routes';
+import {roleGetStateSelector} from "@ngrx/selectors/role/roleLog.selectors";
+import {Store} from "@ngrx/store";
+import {IAppState} from "@ngrx/app.state";
+import {Router} from "@angular/router";
 
 
 
@@ -24,7 +28,7 @@ export class SidenavComponent implements OnInit {
       url:ManageRoutingModule.ROUTES_VALUES.ROUTE_ADMINS,
       icon:faUsersCog,
       label:'Administradores',
-      visible:true
+      visible: true
     },
     'convocations':{
       url:ManageRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATIONS,
@@ -49,7 +53,10 @@ export class SidenavComponent implements OnInit {
   collapsed:boolean = true
   screenWidth:number = 0
   @Output () OnToggleSideNav: EventEmitter <ISidenavToggle> = new EventEmitter();
-  constructor() { }
+  constructor(
+    private store:Store<IAppState>,
+    private router:Router
+  ) { }
   @HostListener('window:resize',['$event'])
   onResize(event:any){
     this.screenWidth = window.innerWidth
@@ -70,8 +77,12 @@ export class SidenavComponent implements OnInit {
   }
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
+    this.store.select(roleGetStateSelector).subscribe(evt => {
+        this.sidenavData['admins'].visible = evt.id==1
+    })
   }
   cerrarSesion(){
-    // this.store.dispatch(userLogoutRequestAction())//TODO: call user logout action
+    this.router.navigate(["../login"])
+    //this.store.dispatch(userLogoutRequestAction())//TODO: call user logout action
   }
 }

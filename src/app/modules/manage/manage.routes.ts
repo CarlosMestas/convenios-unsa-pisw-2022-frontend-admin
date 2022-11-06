@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 import { BodyComponent } from './body/body.component';
-
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component'
+import { AuthGuard } from '../../core/guards/auth/auth.guard';
 
 
 const AdminRoutesValues = {
@@ -26,7 +26,8 @@ const AdminRoutes: Routes  = [
       },
       {
         path: AdminRoutesValues.ROUTE_ADMINS,
-        loadChildren:()=>import("../manage-admins/manage-admins.module").then(m=>m.ManageAdminsModule)
+        loadChildren:()=>import("../manage-admins/manage-admins.module").then(m=>m.ManageAdminsModule),
+        canActivate:[AuthGuard]
       },
       {
         path:AdminRoutesValues.ROUTE_CONVOCATIONS,

@@ -5,6 +5,7 @@ import {Store} from "@ngrx/store";
 import {IAppState} from "@ngrx/app.state";
 import {AdminLogin} from "@shared/models/admin-login.model";
 import {AuthService} from "@core/services/auth/auth.service";
+import {setRoleAction} from "@ngrx/actions/role/roleLog.actions";
 
 @Component({
   selector: 'app-login',
@@ -45,10 +46,11 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(credentials.user,credentials.password).subscribe(response => {
       if(!response.error){
+        this.store.dispatch(setRoleAction(response.data.role))
         this.router.navigate(["../admin"])
       }
       else {
-        console.log("Datos incorrectos", response.msg)
+        //console.log("Datos incorrectos", response.msg)
         this.exist = false
       }
     })
