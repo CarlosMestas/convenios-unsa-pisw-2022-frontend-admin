@@ -27,9 +27,10 @@ export class AdminService extends AdminHelper{
       .pipe(
         map(resp =>{
           if(resp.code == 200){
-            console.log("registro exitoso")
+            response.data = resp.data
+          } else {
+            console.log("Error en obtener datos")
           }
-          response.data = resp.data
             return response
           }
         ),
@@ -108,7 +109,7 @@ export class AdminService extends AdminHelper{
     .pipe(
         map( resp =>{
           if(resp.code == 200){
-            console.log("registro exitoso")
+            console.log("Registro exitoso")
           }
           response.data = resp.data.admin
           return response

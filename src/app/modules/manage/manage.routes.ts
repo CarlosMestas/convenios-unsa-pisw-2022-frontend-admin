@@ -2,11 +2,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 import { BodyComponent } from './body/body.component';
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component'
+import {ProfileAdminComponent} from "./pages/profile-admin/profile-admin.component";
 import { AuthGuard } from '../../core/guards/auth/auth.guard';
 
 
 const AdminRoutesValues = {
   ROUTE_HOME:"home",
+  ROUTE_PROFILE:"perfil",
   ROUTE_ADMINS:"administradores",
   ROUTE_CONVOCATIONS:"convocatorias"
 };
@@ -23,6 +25,10 @@ const AdminRoutes: Routes  = [
       {
         path: AdminRoutesValues.ROUTE_HOME,
         component:HomeAdminComponent
+      },
+      {
+        path: AdminRoutesValues.ROUTE_PROFILE,
+        component:ProfileAdminComponent
       },
       {
         path: AdminRoutesValues.ROUTE_ADMINS,

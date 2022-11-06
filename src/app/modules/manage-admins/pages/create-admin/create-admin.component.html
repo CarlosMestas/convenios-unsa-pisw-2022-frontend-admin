@@ -17,21 +17,18 @@
             <label for="lastname" class="block">Apellidos</label>
             <input id="lastname" formControlName="lastname" type="text" placeholder="Apellidos" class="form-input" pInputText />
           </div>
-          <div class="form-item form-item-field-address">
-            <label for="address" class="block">Dirección</label>
-            <input id="address" formControlName="address" type="text" placeholder="Direccción" class="form-input" pInputText />
-          </div>
-
-          <div class="form-item form-item-field-cell-phone">
-            <label for="phone" class="block">Celular</label>
-            <input id="phone" formControlName="phone" type="text" placeholder="Celular" class="form-input" pInputText />
-          </div>
-
           <div class="form-item form-item-field-email">
             <label for="email" class="block">Correo Electrónico</label>
             <input id="email" formControlName="email" type="text" placeholder="Correo Electrónico" class="form-input" pInputText />
           </div>
-
+                   <div class="form-item form-item-field-cell-phone">
+            <label for="phone" class="block">Celular</label>
+            <input id="phone" formControlName="phone" type="text" placeholder="Celular" class="form-input" pInputText />
+          </div>
+          <div class="form-item form-item-field-address">
+            <label for="address" class="block">Dirección</label>
+            <input id="address" formControlName="address" type="text" placeholder="Direccción" class="form-input" pInputText />
+          </div>
           <div class="form-item form-item-field-password">
             <label for="password" class="block">Contraseña</label>
             <p-password id="password" [(ngModel)]="passwordSuggest" formControlName="password" class="form-input dis-passs" [toggleMask]="true"></p-password>
@@ -46,14 +43,12 @@
 
         </div>
 
+
         <div class="buttons-handler">
           <div class="form-cancel-step" routerLink="../">
             Cancelar
           </div>
-          <button *ngIf="!isEditForm" class="form-save-step" >
-            Guardar
-          </button>
-          <button *ngIf="isEditForm" class="form-save-step" >
+          <button class="form-save-step" >
             Modificar
           </button>
         </div>

@@ -50,5 +50,6 @@ export interface IAdminViewState{
   working: boolean,
   stateModal: boolean,
   adminData: Admin,
+  idAdmin: number,
   error: null
 }

@@ -6,12 +6,14 @@ import { ManageRoutingModule } from './manage.routes';
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component'
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import {ProfileAdminComponent} from "./pages/profile-admin/profile-admin.component";
 
 
 @NgModule({
   declarations: [
     BodyComponent,
-    HomeAdminComponent
+    HomeAdminComponent,
+    ProfileAdminComponent
   ],
   imports: [
     CommonModule,
