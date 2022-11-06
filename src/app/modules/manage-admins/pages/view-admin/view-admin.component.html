@@ -2,9 +2,9 @@
   <p-dialog [header]="'Ver datos de: '+adminData.name+' '+ adminData.lastname" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"
             [draggable]="false" [resizable]="false" (onHide)="closeDialog()">
     <div class="content-container">
-
-      <div class="icon-circle"> <i class="pi pi-user"></i>  </div>
-      <div class="bi-content">
+      <div class="bi-content-icon-label-name">
+        <div class="icon-circle"> <i class="pi pi-user"></i>  </div>
+        <div class="bi-content">
           <div>
             <h4 class="label-data">Nombres: </h4>
             <p class="m-0">{{adminData.name}}</p>
@@ -13,30 +13,39 @@
             <h4 class="label-data">Apellidos: </h4>
             <p class="m-0">{{adminData.lastname}}</p>
           </div>
+        </div>
       </div>
 
       <div class="item-data">
-        <div class="icon-circle"> <i class="pi pi-envelope"></i>  </div>
-        <h4 class="label-data">Correo: </h4>
-        <p class="m-0">{{adminData.email}}</p>
+        <div class="bi-content-icon-label">
+          <div class="icon-circle"> <i class="pi pi-envelope"></i>  </div>
+          <h4 class="label-data">Correo: </h4>
+        </div>
+        <p class="m-1 pad-left-label">{{adminData.email}}</p>
       </div>
 
       <div class="item-data">
-        <div class="icon-circle"> <i class="pi pi-home"></i>  </div>
-        <h4 class="label-data">Dirección: </h4>
-        <p class="m-0">{{adminData.address}}</p>
+        <div class="bi-content-icon-label">
+          <div class="icon-circle"> <i class="pi pi-home"></i>  </div>
+          <h4 class="label-data">Dirección: </h4>
+        </div>
+        <p class="m-1 pad-left-label">{{adminData.address}}</p>
       </div>
 
       <div class="item-data">
-        <div class="icon-circle"> <i class="pi pi-phone"></i>  </div>
-        <h4 class="label-data">Número de teléfono/celular: </h4>
-        <p class="m-0">{{adminData.phone}}</p>
+        <div class="bi-content-icon-label">
+          <div class="icon-circle"> <i class="pi pi-phone"></i>  </div>
+          <h4 class="label-data">Número de teléfono/celular: </h4>
+        </div>
+        <p class="m-1 pad-left-label">{{adminData.phone}}</p>
       </div>
 
       <div class="item-data">
-        <div class="icon-circle"> <i class="pi pi-id-card"></i>  </div>
-        <h4 class="label-data">Rol: </h4>
-        <p class="m-0">{{adminData.role}}</p>
+        <div class="bi-content-icon-label">
+          <div class="icon-circle"> <i class="pi pi-id-card"></i>  </div>
+          <h4 class="label-data">Rol: </h4>
+        </div>
+        <p class="m-1 pad-left-label">{{adminData.role}}</p>
       </div>
     </div>
 

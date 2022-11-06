@@ -6,12 +6,26 @@
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: #000000;
-  .bi-content{
+
+  .bi-content-icon-label-name{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2em;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1em;
+    .bi-content{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2em;
+    }
   }
   .item-data{
     padding-top: 10px;
+    .bi-content-icon-label{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-gap: 1em;
+    }
+  }
+  .pad-left-label{
+    padding-left: 32px;
   }
 }

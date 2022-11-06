@@ -47,15 +47,10 @@
         </div>
 
         <div class="buttons-handler">
-          <div class="form-cancel-step" routerLink="../">
-            Cancelar
-          </div>
-          <button *ngIf="!isEditForm" class="form-save-step" >
-            Guardar
-          </button>
-          <button *ngIf="isEditForm" class="form-save-step" >
-            Modificar
-          </button>
+          <button pButton pRipple type="button" label="Cancelar" class="p-button-outlined p-button-danger" routerLink="../"></button>
+
+          <p-button *ngIf="!isEditForm" label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success"></p-button>
+          <p-button *ngIf="isEditForm" label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success"></p-button>
         </div>
       </form>
 
