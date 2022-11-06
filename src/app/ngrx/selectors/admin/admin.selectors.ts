@@ -24,3 +24,8 @@ export const adminViewDataAdminStateSelector = createSelector(
   adminViewItemStateSelector,
   (adminState:IAdminViewState)=>adminState.adminData
 )
+
+export const idAdminStateSelector = createSelector(
+  adminViewItemStateSelector,
+  (adminState:IAdminViewState)=>adminState.idAdmin
+)

@@ -1,0 +1,136 @@
+<div class="main-container">
+  <div class="profile-admin-container">
+    <div class="header-container">
+      <div class="title" *ngIf="!isEdit">Mi perfil</div>
+      <div class="title" *ngIf="isEdit">Modificación mi perfil</div>
+      <div class="description" *ngIf="isEdit">Modifica tus datos de tu perfil</div>
+    </div>
+    <div class="content-container"  *ngIf="!isEdit">
+      <div class="bi-content-icon-label-name">
+        <div class="icon-circle"> <i class="pi pi-user"></i>  </div>
+        <div class="bi-content">
+          <div>
+            <h4 class="label-data">Nombres: </h4>
+            <p class="m-0">{{adminData.name}}</p>
+          </div>
+          <div>
+            <h4 class="label-data">Apellidos: </h4>
+            <p class="m-0">{{adminData.lastname}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="bi-content">
+        <div class="item-data">
+          <div class="bi-content-icon-label">
+            <div class="icon-circle"> <i class="pi pi-envelope"></i>  </div>
+            <h4 class="label-data">Correo: </h4>
+          </div>
+          <p class="m-1 pad-left-label">{{adminData.email}}</p>
+        </div>
+        <div class="item-data">
+          <div class="bi-content-icon-label">
+            <div class="icon-circle"> <i class="pi pi-phone"></i>  </div>
+            <h4 class="label-data">Celular: </h4>
+          </div>
+          <p class="m-1 pad-left-label">{{adminData.phone}}</p>
+        </div>
+      </div>
+      <div class="bi-content">
+        <div class="item-data">
+          <div class="bi-content-icon-label">
+            <div class="icon-circle"> <i class="pi pi-home"></i>  </div>
+            <h4 class="label-data">Dirección: </h4>
+          </div>
+          <p class="m-1 pad-left-label">{{adminData.address}}</p>
+        </div>
+        <div class="item-data">
+          <div class="bi-content-icon-label">
+            <div class="icon-circle"> <i class="pi pi-key"></i>  </div>
+            <h4 class="label-data">Contraseña: </h4>
+          </div>
+          <p class="m-1 pad-left-label">{{adminData.password}}</p>
+        </div>
+      </div>
+        <div class="item-data">
+          <div class="bi-content-icon-label">
+            <div class="icon-circle"> <i class="pi pi-id-card"></i>  </div>
+            <h4 class="label-data">Rol: </h4>
+          </div>
+          <p class="m-1 pad-left-label">{{adminData.role.name}}</p>
+        </div>
+      <div class="buttons-handler">
+        <div class="buton-edit"><button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="editProfile()"></button></div>
+      </div>
+    </div>
+
+    <div class="content-container"  *ngIf="isEdit">
+      <form [formGroup]="form" (ngSubmit)="submitUpdateAdmin()" class="form-container">
+        <div class="bi-content">
+          <div class="item-data">
+            <div class="bi-content-icon-label">
+              <div class="icon-circle"> <i class="pi pi-envelope"></i>  </div>
+              <h4 class="label-data">Nombres: </h4>
+            </div>
+            <input id="name" formControlName="name"  type="text" placeholder="Nombres" class="form-input" pInputText />
+          </div>
+          <div class="item-data">
+            <div class="bi-content-icon-label">
+              <div class="icon-circle"> <i class="pi pi-phone"></i>  </div>
+              <h4 class="label-data">Apellidos: </h4>
+            </div>
+            <input id="lastname" formControlName="lastname" type="text" placeholder="Apellidos" class="form-input" pInputText />
+          </div>
+        </div>
+
+        <div class="bi-content">
+          <div class="item-data">
+            <div class="bi-content-icon-label">
+              <div class="icon-circle"> <i class="pi pi-envelope"></i>  </div>
+              <h4 class="label-data">Correo: </h4>
+            </div>
+            <input id="email" formControlName="email" type="text" placeholder="Correo Electrónico" class="form-input" pInputText />
+          </div>
+          <div class="item-data">
+            <div class="bi-content-icon-label">
+              <div class="icon-circle"> <i class="pi pi-phone"></i>  </div>
+              <h4 class="label-data">Celular: </h4>
+            </div>
+            <input id="phone" formControlName="phone" type="text" placeholder="Celular" class="form-input" pInputText />
+          </div>
+        </div>
+        <div class="bi-content">
+          <div class="item-data">
+            <div class="bi-content-icon-label">
+              <div class="icon-circle"> <i class="pi pi-home"></i>  </div>
+              <h4 class="label-data">Dirección: </h4>
+            </div>
+            <input id="address" formControlName="address" type="text" placeholder="Direccción" class="form-input" pInputText />
+          </div>
+          <div class="item-data">
+            <div class="bi-content-icon-label">
+              <div class="icon-circle"> <i class="pi pi-key"></i>  </div>
+              <h4 class="label-data">Contraseña: </h4>
+            </div>
+            <p-password id="password" [(ngModel)]="passwordSuggest" formControlName="password" class="form-input dis-passs" [toggleMask]="true"></p-password>
+            <span class="text-suggest-pass" (click)="generatePassword()">Sugerir contraseña</span>
+          </div>
+        </div>
+        <div class="bi-content">
+        <div class="item-data">
+            <div class="bi-content-icon-label">
+              <div class="icon-circle"> <i class="pi pi-id-card"></i>  </div>
+              <h4 class="label-data">Rol: </h4>
+            </div>
+            <p-dropdown id="role" *ngIf="roles$|async as roles" formControlName="role" [options]="roles" optionValue="id" optionLabel="name" class="form-input dis-passs"></p-dropdown>
+          </div>
+        </div>
+        <div class="buttons-handler">
+          <button pButton pRipple type="button" label="Cancelar" class="p-button-outlined p-button-danger" (click)="cancelEditProfile()"></button>
+
+          <p-button *ngIf="!isEdit" label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success"></p-button>
+          <p-button *ngIf="isEdit" label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success"></p-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

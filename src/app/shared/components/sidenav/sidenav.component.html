@@ -7,7 +7,7 @@
   </div>
 
   <ul class="sidenav-nav">
-    <!-- <app-sidenav-user-info class="sidenav-nav-user" *ngIf = "(user$ | async)" [user] = 'user$ | async' [collapsed] = "collapsed"></app-sidenav-user-info> -->
+    <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['perfil'].icon" [label]="sidenavData['perfil'].label" [url]="sidenavData['perfil'].url" *ngIf="sidenavData['perfil'].visible" [collapsed]="collapsed" ></app-sidenav-item>
     <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['home'].icon" [label]="sidenavData['home'].label" [url]="sidenavData['home'].url" *ngIf="sidenavData['home'].visible" [collapsed]="collapsed" ></app-sidenav-item>
     <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['admins'].icon" [label]="sidenavData['admins'].label" [url]="sidenavData['admins'].url" *ngIf="sidenavData['admins'].visible" [collapsed]="collapsed" ></app-sidenav-item>
     <app-sidenav-item class="sidenav-nav-item" [icon]="sidenavData['convocations'].icon" [label]="sidenavData['convocations'].label" [url]="sidenavData['convocations'].url" *ngIf="sidenavData['convocations'].visible" [collapsed]="collapsed" ></app-sidenav-item>

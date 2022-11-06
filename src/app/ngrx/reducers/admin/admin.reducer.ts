@@ -7,7 +7,7 @@ import {
   adminRegisterRequestAction,
   adminRegisterErrorAction,
   adminChangeModalStateAction,
-  adminChangeDataAdminStateAction,
+  adminChangeDataAdminStateAction, idAdminStateAction,
 } from '@app/ngrx/actions/admin/admin.actions';
 import { adminiInitialState } from '@app/ngrx/initial-states/admin.initial-state';
 import { createReducer, on } from '@ngrx/store';
@@ -49,5 +49,8 @@ export const adminViewItemReducer = createReducer(
   }),
   on(adminChangeDataAdminStateAction,(state, params)=>{
     return {...state, working:false, adminData: params.admin}
+  }),
+  on(idAdminStateAction,(state, params)=>{
+    return {...state, working:false, idAdmin: params.id}
   })
 )
