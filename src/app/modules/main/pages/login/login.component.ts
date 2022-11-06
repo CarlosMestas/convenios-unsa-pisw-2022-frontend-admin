@@ -6,6 +6,7 @@ import {IAppState} from "@ngrx/app.state";
 import {AdminLogin} from "@shared/models/admin-login.model";
 import {AuthService} from "@core/services/auth/auth.service";
 import {setRoleAction} from "@ngrx/actions/role/roleLog.actions";
+import {setIdAdminStateAction} from "@ngrx/actions/admin/admin.actions";
 
 @Component({
   selector: 'app-login',
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(credentials.user,credentials.password).subscribe(response => {
       if(!response.error){
         this.store.dispatch(setRoleAction(response.data.role))
+        this.store.dispatch(setIdAdminStateAction({id:response.data.id}))
         this.router.navigate(["../admin"])
       }
       else {

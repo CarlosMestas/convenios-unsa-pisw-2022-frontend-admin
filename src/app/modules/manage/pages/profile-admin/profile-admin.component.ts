@@ -1,16 +1,15 @@
 import { Store } from '@ngrx/store';
 import { IAppState } from '@ngrx/app.state';
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "@core/services/auth/auth.service";
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {AdminService} from "@core/services/admin/admin.service";
-import {IAdmin} from "@shared/interfaces/admin.interface";
 import {Observable} from "rxjs";
-import {Admin, AdminData} from "@shared/models/admin.model";
-import {adminViewDataAdminStateSelector, adminViewStateModalStateSelector} from "@ngrx/selectors/admin/admin.selectors";
+import {AdminData} from "@shared/models/admin.model";
+import {
+  idAdminStateSelector
+} from "@ngrx/selectors/admin/admin.selectors";
 import {IRole} from "@shared/interfaces/role.interface";
 import {AdminCreate} from "@shared/models/admin-create.model";
-import {adminRegisterRequestAction} from "@ngrx/actions/admin/admin.actions";
 import {rolesGetAllRequestAction} from "@ngrx/actions/role/role.actions";
 import {roleGetAllStateSelector} from "@ngrx/selectors/role/role.selectors";
 import {Role} from "@shared/models/role.model";
@@ -48,8 +47,8 @@ export class ProfileAdminComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
-    this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
-      this.adminService.getAdminById(1).subscribe(resp => {
+    this.store.select(idAdminStateSelector).subscribe(id => {
+      this.adminService.getAdminById(id).subscribe(resp => {
         this.adminData = resp.data
       })
     })
@@ -69,16 +68,17 @@ export class ProfileAdminComponent implements OnInit {
         this.form.value["password"],
         (this.form.value["role"] as IRole).id +""
       )
-      this.adminService.updateAdmin(adminSend, this.adminData.id).subscribe(r => {})
+      this.adminService.updateAdmin(adminSend, this.adminData.id).subscribe(r => {
+        this.cancelEditProfile()
+      })
 
-      this.isEdit = false
     }else{
       console.log("Error en actualizar")
     }
   }
   editProfile(): void {
-    this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
-      this.adminService.getAdminById(1).subscribe(resp => {
+    this.store.select(idAdminStateSelector).subscribe(id => {
+      this.adminService.getAdminById(id).subscribe(resp => {
         this.form.controls['name'].reset(resp.data.name);
         this.form.controls['lastname'].reset(resp.data.lastname);
         this.form.controls['address'].reset(resp.data.address);
@@ -91,6 +91,11 @@ export class ProfileAdminComponent implements OnInit {
     this.isEdit = true
   }
   cancelEditProfile(): void {
+    this.store.select(idAdminStateSelector).subscribe(id => {
+      this.adminService.getAdminById(id).subscribe(resp => {
+        this.adminData = resp.data
+      })
+    })
     this.isEdit = false
   }
 

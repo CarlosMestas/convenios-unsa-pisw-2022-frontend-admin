@@ -59,12 +59,12 @@
           <p class="m-1 pad-left-label">{{adminData.role.name}}</p>
         </div>
       <div class="buttons-handler">
-        <div class="buton-edit"><button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="editProfile()"></button></div>
+        <div class="buton-edit"><p-button  pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="editProfile()"></p-button></div>
       </div>
     </div>
 
     <div class="content-container"  *ngIf="isEdit">
-      <form [formGroup]="form" (ngSubmit)="submitUpdateAdmin()" class="form-container">
+      <form [formGroup]="form" class="form-container">
         <div class="bi-content">
           <div class="item-data">
             <div class="bi-content-icon-label">
@@ -125,10 +125,8 @@
           </div>
         </div>
         <div class="buttons-handler">
-          <button pButton pRipple type="button" label="Cancelar" class="p-button-outlined p-button-danger" (click)="cancelEditProfile()"></button>
-
-          <p-button *ngIf="!isEdit" label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success"></p-button>
-          <p-button *ngIf="isEdit" label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success"></p-button>
+          <p-button label="Guardar" icon="pi pi-check" class="p-button-raised p-button-success" (click)="submitUpdateAdmin()"></p-button>
+          <button pButton pRipple  label="Cancelar" class="p-button-outlined p-button-danger" (click)="cancelEditProfile()"></button>
         </div>
       </form>
     </div>

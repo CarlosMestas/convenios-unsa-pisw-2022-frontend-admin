@@ -61,7 +61,7 @@ export const adminChangeDataAdminStateAction = createAction(
   AdminActions.ADMIN_VIEW_ADMIN_DATA_ACTION,
   props<{admin:IAdmin}>()
 )
-export const idAdminStateAction = createAction(
+export const setIdAdminStateAction = createAction(
   AdminActions.ADMIN_VIEW_ADMIN_DATA_ACTION,
   props<{id:number}>()
 )
