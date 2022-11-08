@@ -135,14 +135,22 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     let documents:IDocument[] = (this.formCreateConvocationCoevan.value["documents"]) as IDocument[]
     let documentsObject:IDocumentWOFile[] =[]
     documents.forEach((value,index,array)=>{
-      documentsObject.push()
+      // documentsObject.push(
+      //   {
+      //     name:value.name,
+      //     type:value.type,
+      //     description:value.description
+      //   }
+        newCoevanConvocation.append("documents",JSON.stringify({
+          name:value.name,
+          type:value.type,
+          description:value.description
+        }))
+
       // newCoevanConvocation.append("files[]", value.document)
-      newCoevanConvocation.append("documents",JSON.stringify({
-        name:value.name,
-        type:value.type,
-        description:value.description
-      }))
+
     })
+      // newCoevanConvocation.append("documents",JSON.stringify(documentsObject))
 
     this.convocationCoevanService.postCreateConvocationCoevan(newCoevanConvocation).subscribe(resp=>{
       console.log(resp)
