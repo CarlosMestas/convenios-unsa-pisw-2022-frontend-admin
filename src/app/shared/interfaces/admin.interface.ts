@@ -1,6 +1,11 @@
 import {Admin} from "@shared/models/admin.model";
 import {IRole} from "@shared/interfaces/role.interface";
 
+export interface ILoginAdmin{
+  token: '',
+  user: IAdminData
+}
+
 export interface IAdmin{
   id:number,
   name:string,
@@ -45,5 +50,6 @@ export interface IAdminViewState{
   working: boolean,
   stateModal: boolean,
   adminData: Admin,
+  idAdmin: number,
   error: null
 }

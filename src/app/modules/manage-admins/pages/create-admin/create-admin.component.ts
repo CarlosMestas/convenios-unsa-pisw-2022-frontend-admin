@@ -22,7 +22,6 @@ export class CreateAdminComponent implements OnInit {
   roles$:Observable<IRole[]>
   form:FormGroup
   selectedRole!:IRole
-  isText = false
   passwordSuggest = ""
   isEditForm = false
   updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
@@ -31,7 +30,7 @@ export class CreateAdminComponent implements OnInit {
     private store:Store<IAppState>,
     private router: Router,
     private activatedRoute:ActivatedRoute,
-  private adminService: AdminService
+    private adminService: AdminService
   ) {
     this.form=new FormGroup({
       name:new FormControl('',[Validators.required]),
@@ -41,9 +40,7 @@ export class CreateAdminComponent implements OnInit {
       email:new FormControl('',[Validators.required, Validators.email]),
       password:new FormControl('',[Validators.required]),
       role:new FormControl('',[Validators.required])
-    }
-    )
-
+    } )
     this.roles$ = new Observable<IRole[]>()
   }
 

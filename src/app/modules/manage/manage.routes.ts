@@ -1,12 +1,14 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
 import { BodyComponent } from './body/body.component';
-
 import { HomeAdminComponent } from './pages/home-admin/home-admin.component'
+import {ProfileAdminComponent} from "./pages/profile-admin/profile-admin.component";
+import { AuthGuard } from '../../core/guards/auth/auth.guard';
 
 
 const AdminRoutesValues = {
   ROUTE_HOME:"home",
+  ROUTE_PROFILE:"perfil",
   ROUTE_ADMINS:"administradores",
   ROUTE_CONVOCATIONS:"convocatorias"
 };
@@ -25,8 +27,13 @@ const AdminRoutes: Routes  = [
         component:HomeAdminComponent
       },
       {
+        path: AdminRoutesValues.ROUTE_PROFILE,
+        component:ProfileAdminComponent
+      },
+      {
         path: AdminRoutesValues.ROUTE_ADMINS,
-        loadChildren:()=>import("../manage-admins/manage-admins.module").then(m=>m.ManageAdminsModule)
+        loadChildren:()=>import("../manage-admins/manage-admins.module").then(m=>m.ManageAdminsModule),
+        canActivate:[AuthGuard]
       },
       {
         path:AdminRoutesValues.ROUTE_CONVOCATIONS,

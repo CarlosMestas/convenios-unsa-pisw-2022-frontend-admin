@@ -5,5 +5,6 @@ export const ViewAdminInitialState:IAdminViewState = {
   working: false,
   stateModal: false,
   adminData: new Admin(0,'','','','','',0),
+  idAdmin: 0,
   error: null
 }
