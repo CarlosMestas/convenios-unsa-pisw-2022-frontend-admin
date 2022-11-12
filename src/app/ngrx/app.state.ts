@@ -10,6 +10,8 @@ import { createConvocationGeneralReducer } from "./reducers/convocation/create-c
 import { formCreateConvocationCoevanReducer } from "./reducers/convocation/form-create-coevan.reducer";
 import { roleReducer } from "./reducers/role/role.reducer";
 import {roleLogReducer} from "@ngrx/reducers/role/roleLog.reducer";
+import {IComponents} from "@shared/interfaces/components.interface";
+import {componentsReducer} from "@ngrx/reducers/components/components.reducer";
 
 // TODO: para colocar las interfaces que definen a sus estados iniciales(initial-states)
 // de los módulos que están trabajando
@@ -21,7 +23,8 @@ export interface IAppState{
   convocationCoevan:IConvocationCoevanState
   role:IRoleState
   viewAdmin:IAdminViewState,
-  roleLog: IRole
+  roleLog: IRole,
+  components: IComponents
 }
 //  de acuerdo a la estructura de la interface IAppState settear los reducers
 export const ROOT_REDUCERS: ActionReducerMap<IAppState> ={
@@ -33,4 +36,5 @@ export const ROOT_REDUCERS: ActionReducerMap<IAppState> ={
   convocationCoevan:convocationCoevanReducer,
   viewAdmin: adminViewItemReducer,
   roleLog: roleLogReducer,
+  components: componentsReducer
 }

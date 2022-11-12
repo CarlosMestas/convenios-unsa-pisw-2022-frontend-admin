@@ -15,6 +15,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {ChipsModule} from 'primeng/chips';
 import { DialogModule } from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {PasswordModule} from 'primeng/password';
     FileUploadModule,
     ChipsModule,
     PasswordModule,
-    DialogModule
+    DialogModule,
+    ProgressSpinnerModule
   ],
   exports:[
     MultiSelectModule,
@@ -52,7 +54,8 @@ import {PasswordModule} from 'primeng/password';
     FileUploadModule,
     ChipsModule,
     PasswordModule,
-    DialogModule
+    DialogModule,
+    ProgressSpinnerModule
   ]
 })
 export class PrimeNGModule{}

@@ -59,7 +59,7 @@ $height: 100vh;
 	// margin: 10.2% 0 0 0;
 	border-radius: 50%;
 	border: 10px solid transparent;
-	border-top-color: rgb(41,74,142);
+	border-top-color: rgb(92, 34, 50);
 	-webkit-animation: spin 2s linear infinite;
 			animation: spin 2s linear infinite;
 	z-index: 11;
@@ -67,38 +67,9 @@ $height: 100vh;
   .image-loader{
     background-color: transparent;
 	  height: 300px;
-    margin-top: calc(($height - 300px)/2);
+    margin-top: calc((100% - 300px)/2);
   }
-  /* Medio */
- /* #loader:before {
-	content: "             ";
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	right: 5px;
-	bottom: 5px;
-	border-radius: 50%;
-	border: 10px solid transparent;
-	border-top-color: rgb(64,113,210);
-	-webkit-animation: spin-reverse 5s linear infinite !important;
-			animation: spin-reverse 5s linear infinite !important;
-  }
-*/
-  /* Interno*/
-  /*#loader:after {
-	content: "";
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	right: 15px;
-	bottom: 15px;
-	border-radius: 50%;
-	border: 10px solid transparent;
-	border-top-color: rgb(185,204,243);
-	-webkit-animation: spin 10s linear infinite;
-			animation: spin 10s linear infinite;
-  }
-  */
+
   @-webkit-keyframes spin {
     0% {
       -webkit-transform: rotate(0deg);
@@ -142,7 +113,7 @@ $height: 100vh;
 	top: 0;
 	width: 50.002%;
 	height: 100%;
-	background: rgb(45,63,100);
+	background: rgb(92, 34, 50);
 	z-index: 10;
   }
 
