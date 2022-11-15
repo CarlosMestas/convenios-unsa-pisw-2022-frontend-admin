@@ -55,113 +55,24 @@ export class ListConvocationComponent implements OnInit {
       this.customers = [
         {
           id:1000,
-          name:"James Butt",
+          name:"Convocatoria Ordinaria Estudiantes VAN",
           country:{
-             name:"Algeria",
+             name:"COEVAN-2022-B",
              code:"dz"
           },
           company:"Benton, John B Jr",
           date:"2015-09-13",
-          status:"unqualified",
+          status:"activo",
           verified:true,
           activity:17,
           representative:{
-             name:"Ioni Bowcher",
+             name:"11/12/2022",
              image:"amyelsner.png"
           },
           balance:false
-       },
-       {
-        id:1000,
-        name:"James Butt",
-        country:{
-           name:"Algeria",
-           code:"dz"
-        },
-        company:"Benton, John B Jr",
-        date:"2015-09-13",
-        status:"unqualified",
-        verified:true,
-        activity:17,
-        representative:{
-           name:"Ioni Bowcher",
-           image:"amyelsner.png"
-        },
-        balance:false
-     },
-     {
-      id:1000,
-      name:"James Butt",
-      country:{
-         name:"Algeria",
-         code:"dz"
-      },
-      company:"Benton, John B Jr",
-      date:"2015-09-13",
-      status:"unqualified",
-      verified:true,
-      activity:17,
-      representative:{
-         name:"Ioni Bowcher",
-         image:"amyelsner.png"
-      },
-      balance:false
-   },
-   {
-    id:1000,
-    name:"James Butt",
-    country:{
-       name:"Algeria",
-       code:"dz"
-    },
-    company:"Benton, John B Jr",
-    date:"2015-09-13",
-    status:"unqualified",
-    verified:true,
-    activity:17,
-    representative:{
-       name:"Ioni Bowcher",
-       image:"amyelsner.png"
-    },
-    balance:false
- },
- {
-  id:1000,
-  name:"James Butt",
-  country:{
-     name:"Algeria",
-     code:"dz"
-  },
-  company:"Benton, John B Jr",
-  date:"2015-09-13",
-  status:"unqualified",
-  verified:true,
-  activity:17,
-  representative:{
-     name:"Ioni Bowcher",
-     image:"amyelsner.png"
-  },
-  balance:false
-},
-{
-  id:1000,
-  name:"James Butt",
-  country:{
-     name:"Algeria",
-     code:"dz"
-  },
-  company:"Benton, John B Jr",
-  date:"2015-09-13",
-  status:"unqualified",
-  verified:true,
-  activity:17,
-  representative:{
-     name:"Ioni Bowcher",
-     image:"amyelsner.png"
-  },
-  balance:false
-}
-      ];
+       }
+    ];
+
       this.representatives = [
         {name: "Amy Elsner", image: 'amyelsner.png'},
         {name: "Anna Fali", image: 'annafali.png'},

@@ -126,29 +126,31 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     newCoevanConvocation.append("id_convocation","1")
     newCoevanConvocation.append("id_academic_network",(this.formCreateConvocationCoevan.value["academicNetwork"]).toString())
     newCoevanConvocation.append("id_university",(this.formCreateConvocationCoevan.value["university"]).toString())
-    //newCoevanConvocation.append("links",JSON.stringify(this.formCreateConvocationCoevan.value["links"]))
+
+    //newCoevanConvocation.append("links",JSON.stringify())
     //newCoevanConvocation.append("requirements",JSON.stringify(this.filterRequirement(this.formCreateConvocationCoevan.value["requirements"] as IRequirementResponse[])))
 
 
 
 
     let documents:IDocument[] = (this.formCreateConvocationCoevan.value["documents"]) as IDocument[]
+    let links: ILink[] = (this.formCreateConvocationCoevan.value["links"]) as ILink[]
     let documentsObject:IDocumentWOFile[] =[]
+    links.forEach((value, index,array)=>{
+      newCoevanConvocation.append("links[]",JSON.stringify({
+        name:value.name,
+        type:value.type,
+        url:value.url,
+        description:value.description
+      }))
+    })
+
     documents.forEach((value,index,array)=>{
-      // documentsObject.push(
-      //   {
-      //     name:value.name,
-      //     type:value.type,
-      //     description:value.description
-      //   }
-        newCoevanConvocation.append("documents",JSON.stringify({
+        newCoevanConvocation.append("documents[]",JSON.stringify({
           name:value.name,
           type:value.type,
           description:value.description
         }))
-
-      // newCoevanConvocation.append("files[]", value.document)
-
     })
       // newCoevanConvocation.append("documents",JSON.stringify(documentsObject))
 
