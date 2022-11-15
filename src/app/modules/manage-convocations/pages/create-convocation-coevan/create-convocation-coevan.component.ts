@@ -138,9 +138,8 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     let documentsObject:IDocumentWOFile[] =[]
 
     requirements.forEach((value, index,array)=>{
-      newCoevanConvocation.append("requirements[]",JSON.stringify({
-        id:value
-      }))
+      newCoevanConvocation.append("requirements[]",JSON.stringify(value
+      ))
     })
 
 
