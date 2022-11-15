@@ -132,10 +132,18 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
 
 
 
-
+    let requirements:number[] = (this.formCreateConvocationCoevan.value["requirements"]) as number[]
     let documents:IDocument[] = (this.formCreateConvocationCoevan.value["documents"]) as IDocument[]
     let links: ILink[] = (this.formCreateConvocationCoevan.value["links"]) as ILink[]
     let documentsObject:IDocumentWOFile[] =[]
+
+    requirements.forEach((value, index,array)=>{
+      newCoevanConvocation.append("requirements[]",JSON.stringify({
+        id:value
+      }))
+    })
+
+
     links.forEach((value, index,array)=>{
       newCoevanConvocation.append("links[]",JSON.stringify({
         name:value.name,
