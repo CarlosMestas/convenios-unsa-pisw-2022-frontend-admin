@@ -48,7 +48,6 @@ export class CreateAdminComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
-
     if(this.router.url == "/admin/administradores/"+this.updateAdminLink){
       this.store.dispatch(showLoadComponentAction())
       this.isEditForm = true
@@ -77,6 +76,7 @@ export class CreateAdminComponent implements OnInit {
 
   submitCreateAdmin(){
     this.store.dispatch(showLoadComponentAction())
+
     if(this.form.valid){
       const adminSend=new AdminCreate(
         this.form.value["name"],
@@ -85,16 +85,14 @@ export class CreateAdminComponent implements OnInit {
         this.form.value["phone"],
         this.form.value["email"],
         this.form.value["password"],
-        (this.form.value["role"] as IRole).id +""
+        this.form.value["role"]
       )
       if(!this.isEditForm){
-        console.log("CREAR ADMIN", adminSend)
         this.adminService.registerAdmin(adminSend).subscribe(r => {
           this.store.dispatch(unshowLoadComponentAction())
         })
       }
       else {
-        console.log("EDITAR ADMIN", adminSend)
         this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
           this.adminService.updateAdmin(adminSend, admin.id).subscribe(r => {
             this.store.dispatch(unshowLoadComponentAction())
