@@ -30,8 +30,8 @@ export class CreateConvocationCoevanService extends CreateConvocationCoevanHelpe
     return this.http.post<IHttpResponse<IConvocationCoevanResponseDetail>>(this.url + CreateConvocationCoevanHelper.API_ROUTES.CREATE_CONVOCATION_COEVAN_POST,coevanForm)
     .pipe(
       map(resp=>{
-        console.log(resp)
         response.data=resp.data
+        console.log(resp)
         return response
       }),
       catchError(this.postCreateConvocationCoevanError)
