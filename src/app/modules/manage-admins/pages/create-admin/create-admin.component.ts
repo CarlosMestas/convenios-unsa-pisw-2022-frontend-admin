@@ -6,7 +6,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { Store } from '@ngrx/store';
 import { roleGetAllStateSelector } from '@app/ngrx/selectors/role/role.selectors';
 import { rolesGetAllRequestAction } from '@app/ngrx/actions/role/role.actions';
-import { adminRegisterRequestAction } from '@app/ngrx/actions/admin/admin.actions';
 import { AdminCreate } from '@app/shared/models/admin-create.model';
 import {ActivatedRoute, Router} from '@angular/router'
 import {ManageAdminRoutingModule} from "@modules/manage-admins/manage-admins.routes";

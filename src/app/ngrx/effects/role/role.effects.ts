@@ -1,8 +1,6 @@
-import { AdminActions, adminRegisterRequestAction } from './../../actions/admin/admin.actions';
 import { mergeMap, map, catchError, EMPTY } from 'rxjs';
 import {Actions, createEffect, ofType} from '@ngrx/effects'
 import { Injectable } from "@angular/core"
-import { adminGetAllRequestAction } from '@app/ngrx/actions/admin/admin.actions';
 import { RoleService } from '@app/core/services/roles/role.service';
 import { RolesActions, rolesGetAllRequestAction } from '@app/ngrx/actions/role/role.actions';
 
