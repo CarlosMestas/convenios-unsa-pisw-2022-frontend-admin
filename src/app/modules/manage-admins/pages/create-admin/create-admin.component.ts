@@ -12,6 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {ManageAdminRoutingModule} from "@modules/manage-admins/manage-admins.routes";
 import {adminViewDataAdminStateSelector} from "@ngrx/selectors/admin/admin.selectors";
 import {AdminService} from "@core/services/admin/admin.service";
+import {showLoadComponentAction, unshowLoadComponentAction} from "@ngrx/actions/components/components.actions";
 
 @Component({
   selector: 'app-create-admin',
@@ -45,9 +46,9 @@ export class CreateAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
     if(this.router.url == "/admin/administradores/"+this.updateAdminLink){
+      this.store.dispatch(showLoadComponentAction())
       this.isEditForm = true
       this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
         this.adminService.getAdminById(admin.id).subscribe(resp => {
@@ -58,8 +59,13 @@ export class CreateAdminComponent implements OnInit {
           this.form.controls['email'].reset(resp.data.email);
           this.form.controls['password'].reset(resp.data.password);
           this.form.controls['role'].setValue(resp.data.role.id)
+
+          this.store.dispatch(unshowLoadComponentAction())
         })
       })
+    }
+    else {
+      this.isEditForm = false
     }
   }
 
@@ -68,6 +74,7 @@ export class CreateAdminComponent implements OnInit {
   }
 
   submitCreateAdmin(){
+    this.store.dispatch(showLoadComponentAction())
     if(this.form.valid){
       const adminSend=new AdminCreate(
         this.form.value["name"],
@@ -84,6 +91,7 @@ export class CreateAdminComponent implements OnInit {
       else {
         this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
           this.adminService.updateAdmin(adminSend, admin.id).subscribe(r => {
+            this.store.dispatch(unshowLoadComponentAction())
           })
         })
       }

@@ -12,6 +12,8 @@ export const AdminActions = {
   ADMIN_DATA_SUCCESS_ACTION:"[API - Heroku] Admin Data Success",
   ADMIN_VIEW_STATE_MODAL_ACTION:"[Component] Admin View State Success",
   ADMIN_VIEW_ADMIN_DATA_ACTION:"[Component] Admin View Data Success",
+  SAVE_ID_ADMIN_LOGGED_ACTION:"[Component] Save Id Admin Logged",
+
 }
 
 // definición de los actions
@@ -62,6 +64,6 @@ export const adminChangeDataAdminStateAction = createAction(
   props<{admin:IAdmin}>()
 )
 export const setIdAdminStateAction = createAction(
-  AdminActions.ADMIN_VIEW_ADMIN_DATA_ACTION,
+  AdminActions.SAVE_ID_ADMIN_LOGGED_ACTION,
   props<{id:number}>()
 )

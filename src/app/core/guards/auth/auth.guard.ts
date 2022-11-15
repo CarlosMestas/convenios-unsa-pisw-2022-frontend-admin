@@ -23,7 +23,6 @@ export class AuthGuard implements CanActivate {
     this.store.select(roleGetStateSelector).subscribe(evt => {
       rol = evt.id
     })
-    console.log("ROOOL", rol)
     if( rol==1 ){
       return true;
       }else{
