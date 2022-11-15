@@ -13,7 +13,6 @@ export const AdminActions = {
   ADMIN_VIEW_STATE_MODAL_ACTION:"[Component] Admin View State Success",
   ADMIN_VIEW_ADMIN_DATA_ACTION:"[Component] Admin View Data Success",
   SAVE_ID_ADMIN_LOGGED_ACTION:"[Component] Save Id Admin Logged",
-
 }
 
 // definición de los actions

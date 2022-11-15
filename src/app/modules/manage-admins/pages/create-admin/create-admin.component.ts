@@ -46,7 +46,9 @@ export class CreateAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
+
     if(this.router.url == "/admin/administradores/"+this.updateAdminLink){
       this.store.dispatch(showLoadComponentAction())
       this.isEditForm = true
@@ -86,9 +88,13 @@ export class CreateAdminComponent implements OnInit {
         (this.form.value["role"] as IRole).id +""
       )
       if(!this.isEditForm){
-        this.store.dispatch(adminRegisterRequestAction( adminSend ))
+        console.log("CREAR ADMIN", adminSend)
+        this.adminService.registerAdmin(adminSend).subscribe(r => {
+          this.store.dispatch(unshowLoadComponentAction())
+        })
       }
       else {
+        console.log("EDITAR ADMIN", adminSend)
         this.store.select(adminViewDataAdminStateSelector).subscribe(admin => {
           this.adminService.updateAdmin(adminSend, admin.id).subscribe(r => {
             this.store.dispatch(unshowLoadComponentAction())
@@ -98,6 +104,7 @@ export class CreateAdminComponent implements OnInit {
       this.router.navigate(["../lista-administradores"], {relativeTo: this.activatedRoute})
     }else{
       console.log("Error en registro")
+      this.store.dispatch(unshowLoadComponentAction())
     }
   }
 }
