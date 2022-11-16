@@ -154,7 +154,10 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
           description:value.description
         }))
     })
-      // newCoevanConvocation.append("documents",JSON.stringify(documentsObject))
+
+    documents.forEach((value,index,array)=>{
+      newCoevanConvocation.append("files[]",value.document,value.document.name)
+    })
 
       // this.convocationCoevanService.postCreateConvocationCoevan(newCoevanConvocation).subscribe(resp=>{
       //   console.log(resp)
