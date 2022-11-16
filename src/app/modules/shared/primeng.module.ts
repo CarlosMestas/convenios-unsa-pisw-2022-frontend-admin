@@ -16,6 +16,7 @@ import {ChipsModule} from 'primeng/chips';
 import { DialogModule } from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {BadgeModule} from 'primeng/badge';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ChipsModule,
     PasswordModule,
     DialogModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    BadgeModule
   ],
   exports:[
     MultiSelectModule,
@@ -55,7 +57,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ChipsModule,
     PasswordModule,
     DialogModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    BadgeModule
   ]
 })
 export class PrimeNGModule{}

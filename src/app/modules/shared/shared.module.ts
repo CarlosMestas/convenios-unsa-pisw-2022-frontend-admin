@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from './primeng.module';
+import {MenuTopBarComponent} from "@shared/components/menu-top-bar/menu-top-bar.component";
 
 
 
@@ -14,7 +15,8 @@ import { PrimeNGModule } from './primeng.module';
 @NgModule({
   declarations: [
     SidenavComponent,
-    SidenavItemComponent
+    SidenavItemComponent,
+    MenuTopBarComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -33,7 +35,8 @@ import { PrimeNGModule } from './primeng.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimeNGModule
+    PrimeNGModule,
+    MenuTopBarComponent
   ]
 })
 export class SharedModule { }
