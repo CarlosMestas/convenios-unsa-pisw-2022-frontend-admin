@@ -36,7 +36,7 @@ export class ConvocationCoevanEffect{
         mergeMap(resp=>{
 
             let formCoevan =  action.data.coevan
-            //formCoevan.append("id_convocation",resp.data.id.toString())
+            formCoevan.append("id_convocation",resp.data.id.toString())
             // formCoevan.append("id_convocation","1")
             return this.createConvocationCoevanService.postCreateConvocationCoevan(formCoevan)
             .pipe(

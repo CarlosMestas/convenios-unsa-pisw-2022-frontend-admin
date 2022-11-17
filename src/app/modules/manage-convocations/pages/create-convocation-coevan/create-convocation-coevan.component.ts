@@ -127,15 +127,17 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     newCoevanConvocation.append("id_academic_network",(this.formCreateConvocationCoevan.value["academicNetwork"]).toString())
     newCoevanConvocation.append("id_university",(this.formCreateConvocationCoevan.value["university"]).toString())
 
-    //newCoevanConvocation.append("links",JSON.stringify())
-    //newCoevanConvocation.append("requirements",JSON.stringify(this.filterRequirement(this.formCreateConvocationCoevan.value["requirements"] as IRequirementResponse[])))
-
-
-
-
+    let requirements:number[] = (this.formCreateConvocationCoevan.value["requirements"]) as number[]
     let documents:IDocument[] = (this.formCreateConvocationCoevan.value["documents"]) as IDocument[]
     let links: ILink[] = (this.formCreateConvocationCoevan.value["links"]) as ILink[]
     let documentsObject:IDocumentWOFile[] =[]
+
+    requirements.forEach((value, index,array)=>{
+      newCoevanConvocation.append("requirements[]",JSON.stringify(value
+      ))
+    })
+
+
     links.forEach((value, index,array)=>{
       newCoevanConvocation.append("links[]",JSON.stringify({
         name:value.name,
@@ -152,18 +154,21 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
           description:value.description
         }))
     })
-      // newCoevanConvocation.append("documents",JSON.stringify(documentsObject))
 
-    this.convocationCoevanService.postCreateConvocationCoevan(newCoevanConvocation).subscribe(resp=>{
-      console.log(resp)
-    }
-    )
+    documents.forEach((value,index,array)=>{
+      newCoevanConvocation.append("files[]",value.document,value.document.name)
+    })
+
+      this.convocationCoevanService.postCreateConvocationCoevan(newCoevanConvocation).subscribe(resp=>{
+        console.log(resp)
+      }
+      )
 
 
-    // this.store.dispatch(postCreateConvocationCoevanRequestAction({data:{
-    //   general:this.formCreateConvocationGeneral,
-    //   coevan:newCoevanConvocation
-    // }}))
+    this.store.dispatch(postCreateConvocationCoevanRequestAction({data:{
+      general:this.formCreateConvocationGeneral,
+      coevan:newCoevanConvocation
+    }}))
 
 
 
