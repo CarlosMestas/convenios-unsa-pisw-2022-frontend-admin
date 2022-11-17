@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from './primeng.module';
+import {MenuTopBarComponent} from "@shared/components/menu-top-bar/menu-top-bar.component";
 
 import {HttpClientModule} from "@angular/common/http"
 
@@ -14,7 +15,8 @@ import {HttpClientModule} from "@angular/common/http"
 @NgModule({
   declarations: [
     SidenavComponent,
-    SidenavItemComponent
+    SidenavItemComponent,
+    MenuTopBarComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -35,7 +37,7 @@ import {HttpClientModule} from "@angular/common/http"
     FormsModule,
     ReactiveFormsModule,
     PrimeNGModule,
-    HttpClientModule
+    MenuTopBarComponent
   ]
 })
 export class SharedModule { }

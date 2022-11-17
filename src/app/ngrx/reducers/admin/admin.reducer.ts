@@ -3,9 +3,6 @@ import {
   adminGetAllRequestAction,
   adminGetAllSuccessAction,
   adminGetSuccessAction,
-  adminRegisterSuccessAction,
-  adminRegisterRequestAction,
-  adminRegisterErrorAction,
   adminChangeModalStateAction,
   adminChangeDataAdminStateAction,
   setIdAdminStateAction,
@@ -27,17 +24,7 @@ export const adminReducer = createReducer(
   }),
   on(adminGetAllErrorAction,(state, error)=>{
     return {...state, working:false, error}
-  }),
-  on(adminRegisterSuccessAction,(state) =>{
-    return {...state, working:false}
-  }),
-  on(adminRegisterRequestAction,(state) =>{
-    return {...state,working:true}
-  }),
-
-  on(adminRegisterErrorAction,(state,error)=>{
-    return {...state, working:false, error}
-  }),
+  })
 )
 
 export const adminViewItemReducer = createReducer(

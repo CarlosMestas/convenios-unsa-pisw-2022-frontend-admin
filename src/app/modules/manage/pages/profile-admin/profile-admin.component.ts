@@ -13,6 +13,7 @@ import {AdminCreate} from "@shared/models/admin-create.model";
 import {rolesGetAllRequestAction} from "@ngrx/actions/role/role.actions";
 import {roleGetAllStateSelector} from "@ngrx/selectors/role/role.selectors";
 import {Role} from "@shared/models/role.model";
+import {showLoadComponentAction, unshowLoadComponentAction} from "@ngrx/actions/components/components.actions";
 
 @Component({
   selector: 'app-profile-admin',
@@ -45,11 +46,13 @@ export class ProfileAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(showLoadComponentAction())
     this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
     this.store.select(idAdminStateSelector).subscribe(id => {
       this.adminService.getAdminById(id).subscribe(resp => {
         this.adminData = resp.data
+        this.store.dispatch(unshowLoadComponentAction())
       })
     })
   }

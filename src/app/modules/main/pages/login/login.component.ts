@@ -7,6 +7,7 @@ import {AdminLogin} from "@shared/models/admin-login.model";
 import {AuthService} from "@core/services/auth/auth.service";
 import {setRoleAction} from "@ngrx/actions/role/roleLog.actions";
 import {setIdAdminStateAction} from "@ngrx/actions/admin/admin.actions";
+import {showLoadComponentAction, unshowLoadComponentAction} from "@ngrx/actions/components/components.actions";
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit(){
+    this.store.dispatch(showLoadComponentAction())
     this.exist = true
     const credentials = new AdminLogin(
       this.formLogin.value["user"],
@@ -50,9 +52,10 @@ export class LoginComponent implements OnInit {
         this.store.dispatch(setRoleAction(response.data.role))
         this.store.dispatch(setIdAdminStateAction({id:response.data.id}))
         this.router.navigate(["../admin"])
+        this.store.dispatch(unshowLoadComponentAction())
       }
       else {
-        //console.log("Datos incorrectos", response.msg)
+        this.store.dispatch(unshowLoadComponentAction())
         this.exist = false
       }
     })

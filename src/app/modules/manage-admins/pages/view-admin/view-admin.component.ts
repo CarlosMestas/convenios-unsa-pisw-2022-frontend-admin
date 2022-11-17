@@ -1,5 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {IAdmin} from "@shared/interfaces/admin.interface";
+import {Component, OnInit} from '@angular/core';
 import {Admin} from "@shared/models/admin.model";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";

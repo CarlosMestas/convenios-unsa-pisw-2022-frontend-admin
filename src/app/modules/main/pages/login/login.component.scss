@@ -2,54 +2,51 @@ $height: 100vh;
 .container{
   width: 100vw;
   height: 100vh;
-  background-color:rgb(45,63,100);
+  background-image: url("../../../../../assets/images/fondolog.jpg");
   display: flex;
   flex-direction: row;
-  align-items: center;
+  z-index: -1;
+  justify-content: center;
 }
-
+.vector-fondo{
+  opacity:.80;
+  width: 100vw;
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+}
+.vector-unsa{
+  z-index: 2;
+  position: absolute;
+  height: 25vh;
+  top: 8px;
+}
 .form-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: auto;
-  padding: 2rem 2rem;
-  width: 18rem;
-  background-color: rgb(45,63,100);
-  border: 3px solid rgb(27, 40, 68);
+  width: 20rem;
+  z-index: 3;
 }
 
 //-------- form
 
 .form-label{
-  width: 100%;
-  font-size: 12px;
-  color: #dddddd;
-}
-.form-label:hover{
-  .container{
-    display: block;
-  }
+  font-size: 14px;
+  color: #2d3034;
+  font-weight: 600;
 }
 
-.form-input-text{
+.content-inputs{
+  display: grid;
+  gap: 10px;
+}
+.form-input{
   width: 100%;
-  height: 40px;
-  padding: 0 .6rem;
-  border: 2px solid rgba($color: #C1C1C1, $alpha: 1);
-  border-radius: 3px;
-  background-color: rgb(244, 244, 252);
 }
 .form-item{
   width: 100%;
   display: grid;
   grid-template-rows: 1rem 40px 1rem;
   gap: .25rem;
-}
-.invalid-field{
-  color: red;
-  font-size: 12px;
-  line-height: 1rem;
 }
 
 .submit-form{
