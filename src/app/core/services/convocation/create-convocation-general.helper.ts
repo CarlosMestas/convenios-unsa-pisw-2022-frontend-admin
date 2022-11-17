@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 export class CreateConvocationGeneralHelper{
 
 
-  protected static API_ROUTES = {
+  public static API_ROUTES = {
     CREATE_CONVOCATION_GENERAL_POST:"create-convocation"
   }
 

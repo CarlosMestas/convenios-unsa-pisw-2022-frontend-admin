@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from './primeng.module';
 import {MenuTopBarComponent} from "@shared/components/menu-top-bar/menu-top-bar.component";
 
-
+import {HttpClientModule} from "@angular/common/http"
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import {MenuTopBarComponent} from "@shared/components/menu-top-bar/menu-top-bar.
     FormsModule,
     ReactiveFormsModule,
     PrimeNGModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   exports:[
     SidenavComponent,

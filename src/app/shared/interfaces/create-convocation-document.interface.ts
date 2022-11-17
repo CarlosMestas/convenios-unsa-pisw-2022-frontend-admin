@@ -5,6 +5,12 @@ export interface IDocument{
   description:string
 }
 
+export interface IDocumentWOFile{
+  name:string,
+  type:number,
+  description:string
+}
+
 export interface IDocumentDetail{
   name:string,
   type:IDocumentTypeResponse,

@@ -1,9 +1,11 @@
+import { CreateConvocationGeneralService } from '@app/core/services/convocation/create-convocation-general.service';
+import { CreateConvocationCoevanService } from '@app/core/services/convocation/create-convocation-coevan.service';
 import { ManageConvocationsRouterModule } from './../../manage-convocations.routes';
 import { Router, ActivatedRoute } from '@angular/router';
 import { postCreateConvocationCoevanRequestAction } from './../../../../ngrx/actions/convocation/create-convocation-coevan.actions';
 import { IFormCreateConvocationGeneral } from './../../../../shared/interfaces/convocation.interface';
 import { ILink } from './../../../../shared/interfaces/create-convocation-link.interface';
-import { IDocument } from './../../../../shared/interfaces/create-convocation-document.interface';
+import { IDocument, IDocumentWOFile } from './../../../../shared/interfaces/create-convocation-document.interface';
 import { IUniversityResponse } from './../../../../shared/interfaces/university.interface';
 import { IAppState } from './../../../../ngrx/app.state';
 import { Store } from '@ngrx/store';
@@ -27,7 +29,6 @@ import { formCreateConvocationGeneralStateSelector } from '@app/ngrx/selectors/c
   styleUrls: ['./create-convocation-coevan.component.scss']
 })
 export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
-
   multiple:boolean = true
   displayCreateDocumentModal:boolean
   displayCreateLinkModal:boolean
@@ -59,13 +60,15 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     private universityService:UniversityService,
     private router:Router,
     private activatedRoute:ActivatedRoute,
+    private convocationCoevanService:CreateConvocationCoevanService
   ) {
     this.formCreateConvocationCoevan = new FormGroup({
       academicNetwork: new FormControl({},[Validators.required]),
       university: new FormControl({},[Validators.required]),
       requirements: new FormControl({},[Validators.required]),
       documents: new FormControl({},[Validators.required]),
-      links: new FormControl({},[Validators.required])
+      links: new FormControl({},[Validators.required]),
+      frecCardiaca:new FormControl({},[Validators.required]),
     })
     this.requirements$ = new Observable<IRequirementResponse[]>()
     this.universitiesByAcademicNetwork$ = new Observable<IUniversityResponse[]>()
@@ -115,20 +118,56 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     this.formCreateConvocationGeneralSubscription$.unsubscribe()
   }
   createConvocationDetailCoevan(){
+
+    console.log(this.formCreateConvocationCoevan.value["academicNetwork"].toString())
+    console.log(this.formCreateConvocationCoevan.value["university"].toString())
+
     let newCoevanConvocation = new FormData()
-    newCoevanConvocation.append("id_academic_network",(this.formCreateConvocationCoevan.value["academicNetwork"] as IAcademicNetworkResponse).id.toString())
-    newCoevanConvocation.append("id_university",(this.formCreateConvocationCoevan.value["university"] as IUniversityResponse).id.toString())
-    newCoevanConvocation.append("documents",JSON.stringify(this.formCreateConvocationCoevan.value["documents"]))
-    newCoevanConvocation.append("links",JSON.stringify(this.formCreateConvocationCoevan.value["links"]))
-    newCoevanConvocation.append("requirements",JSON.stringify(this.filterRequirement(this.formCreateConvocationCoevan.value["requirements"] as IRequirementResponse[])))
-    console.log("is form detail coevan empty?:",newCoevanConvocation)
+    newCoevanConvocation.append("id_convocation","1")
+    newCoevanConvocation.append("id_academic_network",(this.formCreateConvocationCoevan.value["academicNetwork"]).toString())
+    newCoevanConvocation.append("id_university",(this.formCreateConvocationCoevan.value["university"]).toString())
 
-    this.router.navigate(["../"+ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_LIST_CONVOCATION],{relativeTo: this.activatedRoute})
+    //newCoevanConvocation.append("links",JSON.stringify())
+    //newCoevanConvocation.append("requirements",JSON.stringify(this.filterRequirement(this.formCreateConvocationCoevan.value["requirements"] as IRequirementResponse[])))
 
-    this.store.dispatch(postCreateConvocationCoevanRequestAction({data:{
-      general:this.formCreateConvocationGeneral,
-      coevan:newCoevanConvocation
-    }}))
+
+
+
+    let documents:IDocument[] = (this.formCreateConvocationCoevan.value["documents"]) as IDocument[]
+    let links: ILink[] = (this.formCreateConvocationCoevan.value["links"]) as ILink[]
+    let documentsObject:IDocumentWOFile[] =[]
+    links.forEach((value, index,array)=>{
+      newCoevanConvocation.append("links[]",JSON.stringify({
+        name:value.name,
+        type:value.type,
+        url:value.url,
+        description:value.description
+      }))
+    })
+
+    documents.forEach((value,index,array)=>{
+        newCoevanConvocation.append("documents[]",JSON.stringify({
+          name:value.name,
+          type:value.type,
+          description:value.description
+        }))
+    })
+      // newCoevanConvocation.append("documents",JSON.stringify(documentsObject))
+
+    this.convocationCoevanService.postCreateConvocationCoevan(newCoevanConvocation).subscribe(resp=>{
+      console.log(resp)
+    }
+    )
+
+
+    // this.store.dispatch(postCreateConvocationCoevanRequestAction({data:{
+    //   general:this.formCreateConvocationGeneral,
+    //   coevan:newCoevanConvocation
+    // }}))
+
+
+
+    // this.router.navigate(["../"+ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_LIST_CONVOCATION],{relativeTo: this.activatedRoute})
 
 
   }
@@ -141,9 +180,9 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     return values
   }
 
-  changeAcademicNetwork(event:{originalEvent:PointerEvent,value:IAcademicNetworkResponse}){
-    console.log(event.value.id)
-    this.universitiesByAcademicNetwork$=this.universityService.getUniversityByAcademicNetwork(event.value.id)
+  changeAcademicNetwork(event:any){
+    console.log(event.value)
+    this.universitiesByAcademicNetwork$=this.universityService.getUniversityByAcademicNetwork(event.value)
     .pipe(
         map(resp=>{
           return resp.data

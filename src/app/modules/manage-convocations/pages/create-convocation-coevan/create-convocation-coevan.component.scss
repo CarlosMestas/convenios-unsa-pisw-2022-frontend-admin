@@ -8,6 +8,8 @@
     height: 50px;
     width: 100%;
     line-height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
   }
   .content{
     overflow-y: auto;
@@ -19,8 +21,8 @@
       min-width: 500px;
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(2,40px) repeat(3, auto);
-      gap: 2rem;
+      grid-template-rows: repeat(2,auto) repeat(3, auto);
+      gap: .25rem;
       padding: 1rem 0rem;
     }
   }

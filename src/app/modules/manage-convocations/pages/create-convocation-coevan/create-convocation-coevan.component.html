@@ -3,47 +3,38 @@
   <div class="content">
       <form class="form-content" [formGroup]="formCreateConvocationCoevan">
 
-        <div class="p-inputgroup" *ngIf="academicNetworks$ | async as academicNetworks">
-          <span class="p-form-element p-inputgroup-addon">
-            <i class="pi pi-car"></i>
-          </span>
-          <span class="p-float-label">
-              <p-dropdown inputId="academicnetwork" [autoDisplayFirst]="false" [options]="academicNetworks" optionLabel="name" formControlName="academicNetwork" (onChange)="changeAcademicNetwork($event)"></p-dropdown>
-              <label for="academicnetwork">Red Académica</label>
-          </span>
-        </div>
+        <mat-form-field class="flex-auto" appearance="fill" *ngIf="academicNetworks$|async as academicNetworks">
+          <mat-label>Red Académica</mat-label>
+          <mat-select formControlName="academicNetwork" (selectionChange)="changeAcademicNetwork($event)">
+							<mat-option *ngFor="let academicNetwork of academicNetworks" [value]="academicNetwork.id">
+								{{academicNetwork.name}}
+						  </mat-option>
+					</mat-select>
+          <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+          <mat-hint>(obligatorio)</mat-hint>
+        </mat-form-field>
 
-        <div class="p-inputgroup" *ngIf="universitiesByAcademicNetwork$|async as universitiesByAcademicNetwork">
-          <span class="p-form-element p-inputgroup-addon">
-            <i class="pi pi-briefcase"></i>
-          </span>
-          <span class="p-float-label">
-              <p-dropdown inputId="university" [autoDisplayFirst]="false" [options]="universitiesByAcademicNetwork" optionLabel="name" formControlName="university"></p-dropdown>
-              <label for="university">Universidad</label>
-          </span>
-        </div>
+        <mat-form-field class="flex-auto" appearance="fill" *ngIf="universitiesByAcademicNetwork$|async as universitiesByAcademicNetwork">
+          <mat-label>University</mat-label>
+          <mat-select formControlName="university">
+							<mat-option *ngFor="let university of universitiesByAcademicNetwork" [value]="university.id">
+								{{university.name}}
+						  </mat-option>
+					</mat-select>
+          <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+          <mat-hint>(obligatorio)</mat-hint>
+        </mat-form-field>
 
-        <div class="p-inputgroup" *ngIf="requirements$|async as requirements">
-          <span class="p-form-element p-inputgroup-addon">
-            <i class="pi pi-briefcase"></i>
-          </span>
-          <span class="p-float-label">
-            <p-multiSelect inputId="multiselect" [options]="requirements" [(ngModel)]="requirementsSelected" optionLabel="description" [virtualScroll]="true" [filter]="false" formControlName="requirements">
-            <ng-template pTemplate="header">
-            </ng-template>
-            <ng-template let-description pTemplate="selectedItems">
-                <div class="country-item country-item-value" *ngFor="let option of description">
-                    <div>{{option.description}}</div>
-                </div>
-                <div *ngIf="!requirementsSelected || requirementsSelected.length === 0" class="country-placeholder">
-                    Select Countries
-                </div>
-            </ng-template>
-            </p-multiSelect>
-            <label for="multiselect">Requerimientos</label>
-          </span>
-          <button type="button" pButton pRipple icon="pi pi-plus" styleClass="p-button-danger"></button>
-        </div>
+        <mat-form-field class="flex-auto" appearance="fill" *ngIf="requirements$|async as requirements">
+          <mat-label>Requerimientos</mat-label>
+          <mat-select formControlName="requirements" multiple>
+							<mat-option *ngFor="let requirement of requirements" [value]="requirement.id">
+								{{requirement.description}}
+						  </mat-option>
+					</mat-select>
+          <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+          <mat-hint>(obligatorio)</mat-hint>
+        </mat-form-field>
 
         <div class="p-inputgroup">
           <span class="p-form-element p-inputgroup-addon">

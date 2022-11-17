@@ -13,6 +13,7 @@ export class CreateConvocationCoevanHelper{
 
   protected static API_ROUTES = {
     CREATE_CONVOCATION_COEVAN_POST:"create-convocation-coevan"
+    // CREATE_CONVOCATION_COEVAN_POST:"coevans"
   }
 
   public url = environment.url

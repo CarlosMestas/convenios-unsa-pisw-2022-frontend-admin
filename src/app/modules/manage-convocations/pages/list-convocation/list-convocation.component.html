@@ -1,6 +1,6 @@
 <div class="card">
-  <h5>Filter Row</h5>
-  <p>Filters are displayed inline within a separate row.</p>
+  <h3>Convocatorias</h3>
+  <p>Tabla de convocatorias</p>
   <p-table #dt2 [value]="customers" dataKey="id"
       [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
       [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -9,17 +9,17 @@
           <div class="flex">
               <span class="p-input-icon-left ml-auto">
                   <i class="pi pi-search"></i>
-                  <input pInputText type="text" (input)="dt2.filterGlobal($event.target, 'contains')" placeholder="Search keyword" class="p-inputtext p-component p-element" />
+                  <input pInputText type="text" (input)="dt2.filterGlobal($event.target, 'contains')" placeholder="Buscar Convocatoria" class="p-inputtext p-component p-element" />
               </span>
               <p-button label="Nueva Convocatoria" [routerLink]="createConvocationLink" icon="pi pi-check"></p-button>
           </div>
       </ng-template>
       <ng-template pTemplate="header">
           <tr>
-              <th>Name</th>
-              <th>Country</th>
-              <th>Agent</th>
-              <th>Status</th>
+              <th>Nombre</th>
+              <th>Correlativo</th>
+              <th>Fecha Finalización</th>
+              <th>Estado</th>
               <th style="width: 6rem">Verified</th>
           </tr>
           <tr>
@@ -75,9 +75,9 @@
               <td>
                   <span [class]="'customer-badge status-' + customer.status">{{customer.status}}</span>
               </td>
-              <td>
+              <!-- <td>
                   <i class="pi" [ngClass]="{'true-icon pi-check-circle': customer.verified, 'false-icon pi-times-circle': !customer.verified}"></i>
-              </td>
+              </td> -->
           </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
