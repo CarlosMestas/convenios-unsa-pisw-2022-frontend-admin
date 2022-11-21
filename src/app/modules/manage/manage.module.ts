@@ -7,13 +7,17 @@ import { HomeAdminComponent } from './pages/home-admin/home-admin.component'
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {ProfileAdminComponent} from "./pages/profile-admin/profile-admin.component";
+import {
+  AccountRequestPanelComponent
+} from "@modules/manage/components/account-request-panel/account-request-panel.component";
 
 
 @NgModule({
   declarations: [
     BodyComponent,
     HomeAdminComponent,
-    ProfileAdminComponent
+    ProfileAdminComponent,
+    AccountRequestPanelComponent
   ],
   imports: [
     CommonModule,

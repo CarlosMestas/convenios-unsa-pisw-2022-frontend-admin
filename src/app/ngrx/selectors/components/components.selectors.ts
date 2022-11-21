@@ -6,5 +6,10 @@ export const componentsStateSelector = (state:IAppState) =>state.components
 
 export const showLoadComponentStateSelector = createSelector(
   componentsStateSelector,
-  (authState:IComponents) => authState.showLoadingComponent
+  (component:IComponents) => component.showLoadingComponent
+)
+
+export const showAccountRequestPanelSelector = createSelector(
+  componentsStateSelector,
+  (component:IComponents) => component.showAccountRequestPanel
 )

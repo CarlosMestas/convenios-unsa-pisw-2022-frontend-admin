@@ -1,0 +1,12 @@
+.menu-top{
+  display: flex;
+  .title{
+    display: flex;
+    align-items: center;
+    .tittle-text{
+      display: flex;
+      color: white;
+      padding: 10px;
+    }
+  }
+}
