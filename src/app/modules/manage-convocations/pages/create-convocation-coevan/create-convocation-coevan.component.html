@@ -36,6 +36,23 @@
           <mat-hint>(obligatorio)</mat-hint>
         </mat-form-field>
 
+        <div class="p-inputgroup semester">
+
+          <mat-form-field class="flex-auto" appearance="fill">
+            <mat-label>Semestre</mat-label>
+            <mat-select formControlName="semester">
+                <mat-option value="2022-A">
+                  {{"2022-A"}}
+                </mat-option>
+                <mat-option value="2022-B">
+                  {{"2022-B"}}
+                </mat-option>
+            </mat-select>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
+        </div>
+
         <div class="p-inputgroup">
           <span class="p-form-element p-inputgroup-addon">
             <i class="pi pi-briefcase"></i>
@@ -76,26 +93,6 @@
 
         </div>
 
-        <div class="p-inputgroup semester">
-
-          <mat-form-field class="flex-auto" appearance="fill">
-            <mat-label>Semestre</mat-label>
-            <mat-select formControlName="semester">
-                <mat-option value="2022-A">
-                  {{"2022-A"}}
-                </mat-option>
-                <mat-option value="2022-B">
-                  {{"2022-B"}}
-                </mat-option>
-            </mat-select>
-            <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
-            <mat-hint>(obligatorio)</mat-hint>
-          </mat-form-field>
-        </div>
-
-
-
-
 
         <!-- <div class="p-inputgroup date-end">
           <p-fileUpload name="myfile[]" [multiple]="multiple"></p-fileUpload>
@@ -107,48 +104,107 @@
       </form>
       <div class="text-content">
         <form [formGroup]="formCreateConvCoevanTextTemplate">
+          <mat-tab-group animationDuration="0ms" color="#5c2232" backgroundColor="primary">
+            <mat-tab label="Aval Institucional">
 
+              <div class="p-inputgroup">
+                <mat-form-field class="flex-auto" appearance="fill">
+                  <mat-label>Tag</mat-label>
+                  <mat-select (selectionChange)="textInsert(aval,$event.value)">
+                      <mat-option value="<STUDENT_NAME>">{{"Nombre estudiante"}}</mat-option>
+                      <mat-option value="<STUDENT_LASTNAME>">{{"Apellido estudiante"}}</mat-option>
+                      <mat-option value="<MODALITY>">{{"Modalidad"}}</mat-option>
+                      <mat-option value="<UNIVERSITY_TARGET>">{{"Universidad Destino"}}</mat-option>
+                      <mat-option value="<ACADEMIC_NETWORK_NAME>">{{"Red Académica Nombre Largo"}}</mat-option>
+                      <mat-option value="<ACADEMIC_NETWORK_ACRONYM>">{{"Red Académica Acrónimo"}}</mat-option>
+                      <mat-option value="<SEMESTER>">{{"Semestre"}}</mat-option>
+                      <mat-option value="<FACULTY>">{{"Facultad"}}</mat-option>
+                      <mat-option value="<PROFESSIONAL_PROGRAM>">{{"Programa profesional"}}</mat-option>
+                  </mat-select>
+                  <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+                  <mat-hint>(obligatorio)</mat-hint>
+                </mat-form-field>
+              </div>
+
+              <div class="p-inputgroup">
+                <mat-form-field class="flex-auto" appearance="fill">
+                  <mat-label>Aval Institucional</mat-label>
+                  <textarea #aval formControlName="avaltext" class="example-right-align" matInput></textarea>
+                  <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+                  <mat-hint>(obligatorio)</mat-hint>
+                </mat-form-field>
+              </div>
+            </mat-tab>
+
+            <mat-tab label="Reconocimiento Académico">
+
+              <div class="p-inputgroup">
+                <mat-form-field class="flex-auto" appearance="fill">
+                  <mat-label>Tag</mat-label>
+                  <mat-select (selectionChange)="textInsert(academicCourse,$event.value)">
+                      <mat-option value="<STUDENT_NAME>">{{"Nombre estudiante"}}</mat-option>
+                      <mat-option value="<STUDENT_LASTNAME>">{{"Apellido estudiante"}}</mat-option>
+                      <mat-option value="<MODALITY>">{{"Modalidad"}}</mat-option>
+                      <mat-option value="<UNIVERSITY_TARGET>">{{"Universidad Destino"}}</mat-option>
+                      <mat-option value="<ACADEMIC_NETWORK_NAME>">{{"Red Académica Nombre Largo"}}</mat-option>
+                      <mat-option value="<ACADEMIC_NETWORK_ACRONYM>">{{"Red Académica Acrónimo"}}</mat-option>
+                      <mat-option value="<SEMESTER>">{{"Semestre"}}</mat-option>
+                      <mat-option value="<FACULTY>">{{"Facultad"}}</mat-option>
+                      <mat-option value="<PROFESSIONAL_PROGRAM>">{{"Programa profesional"}}</mat-option>
+                  </mat-select>
+                  <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+                  <mat-hint>(obligatorio)</mat-hint>
+                </mat-form-field>
+              </div>
+
+              <div class="p-inputgroup">
+                <mat-form-field class="flex-auto" appearance="fill">
+                  <mat-label>Reconocimiento Académico</mat-label>
+                  <textarea #academicCourse formControlName="coursestext" class="example-right-align" matInput></textarea>
+                  <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+                  <mat-hint>(obligatorio)</mat-hint>
+                </mat-form-field>
+              </div>
+
+            </mat-tab>
+            <mat-tab label="Declaración de Compromiso">
+
+              <div class="p-inputgroup">
+                <mat-form-field class="flex-auto" appearance="fill">
+                  <mat-label>Tag</mat-label>
+                  <mat-select (selectionChange)="textInsert(comprom,$event.value)">
+                      <mat-option value="<STUDENT_NAME>">{{"Nombre estudiante"}}</mat-option>
+                      <mat-option value="<STUDENT_LASTNAME>">{{"Apellido estudiante"}}</mat-option>
+                      <mat-option value="<MODALITY>">{{"Modalidad"}}</mat-option>
+                      <mat-option value="<UNIVERSITY_TARGET>">{{"Universidad Destino"}}</mat-option>
+                      <mat-option value="<ACADEMIC_NETWORK_NAME>">{{"Red Académica Nombre Largo"}}</mat-option>
+                      <mat-option value="<ACADEMIC_NETWORK_ACRONYM>">{{"Red Académica Acrónimo"}}</mat-option>
+                      <mat-option value="<SEMESTER>">{{"Semestre"}}</mat-option>
+                      <mat-option value="<FACULTY>">{{"Facultad"}}</mat-option>
+                      <mat-option value="<PROFESSIONAL_PROGRAM>">{{"Programa profesional"}}</mat-option>
+                  </mat-select>
+                  <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+                  <mat-hint>(obligatorio)</mat-hint>
+                </mat-form-field>
+              </div>
+
+              <div class="p-inputgroup">
+                <mat-form-field class="flex-auto" appearance="fill">
+                  <mat-label>Declaración de Compromiso</mat-label>
+                  <textarea #comprom formControlName="commitment" class="example-right-align" matInput></textarea>
+                  <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+                  <mat-hint>(obligatorio)</mat-hint>
+                </mat-form-field>
+              </div>
+
+            </mat-tab>
+          </mat-tab-group>
         </form>
-        <mat-tab-group animationDuration="0ms" color="#5c2232" backgroundColor="primary">
-          <mat-tab label="Aval Institucional">
-            <div class="p-inputgroup importantnotes">
-
-              <mat-form-field class="flex-auto" appearance="fill">
-                <mat-label>Aval Institucional</mat-label>
-                <textarea formControlName="avaltext" class="example-right-align" matInput></textarea>
-                <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
-                <mat-hint>(obligatorio)</mat-hint>
-              </mat-form-field>
-            </div>
-          </mat-tab>
-          <mat-tab label="Reconocimiento Académico">
-            <div class="p-inputgroup importantnotes">
-
-              <mat-form-field class="flex-auto" appearance="fill">
-                <mat-label>Reconocimiento Académico</mat-label>
-                <textarea formControlName="coursestext" class="example-right-align" matInput></textarea>
-                <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
-                <mat-hint>(obligatorio)</mat-hint>
-              </mat-form-field>
-            </div>
-          </mat-tab>
-          <mat-tab label="Declaración de Compromiso">
-            <div class="p-inputgroup importantnotes">
-
-              <mat-form-field class="flex-auto" appearance="fill">
-                <mat-label>Declaración de Compromiso</mat-label>
-                <textarea formControlName="commitment" class="example-right-align" matInput></textarea>
-                <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
-                <mat-hint>(obligatorio)</mat-hint>
-              </mat-form-field>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
       </div>
   </div>
   <div class="footer-controls">
     <p-button label="Guardar" (click)="createConvocationDetailCoevan()" icon="pi pi-check"></p-button>
-    <button pButton type="button" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+    <button pButton type="button" icon="pi pi-trash" label="Cancelar" routerLink="../" class="p-button-outlined p-button-danger"></button>
     <!-- <p-button label="Cancelar" icon="pi pi-trash" class="p-button-danger"></p-button> -->
   </div>
 </div>

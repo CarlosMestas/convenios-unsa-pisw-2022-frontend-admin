@@ -214,6 +214,15 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     )
   }
 
+  textInsert(text:HTMLTextAreaElement, event:string){
+    let idx = text.selectionEnd
+    let textValue = text.value
+    let result = textValue.slice(0, idx) + event + textValue.slice(idx + Math.abs(0));
+    text.value = result
+    text.selectionEnd = idx + event.length
+  }
+
+
   aval:string = "La autoridad abajo firmante avala la postulación del estudiante Agustino: <STUDENT_LASTNAME>, <STUDENT_NAME>, para que efectúe el semestre académico <SEMESTER>, a través del programa de intercambio estudiantil <ACADEMIC_NETWORK_ACRONYM> en la <UNIVERSITY_TARGET>, a desarrollarse durante el semestre académico <SEMESTER>, tras considerar que la Movilidad Académica a efectuar será "+
   " de gran utilidad para su desarrollo profesional, y un significativo aporte para su perfil de egresado."
   courses:string = "Como responsable académico de la facultad <FACULTY>/<PROFESSIONAL_PROGRAM> de la UNSA, doy mi conformidad de los cursos a llevarse de manera <MODALITY> para efectos de reconocimiento o capacitación, siempre y cuando el estudiante los apruebe en la <UNIVERSITY_TARGET>, donde efectuará movilidad académica <MODALITY> en el Marco de la <ACADEMIC_NETWORK_NAME> – <ACADEMIC_NETWORK_ACRONYM>"

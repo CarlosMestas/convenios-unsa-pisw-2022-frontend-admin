@@ -39,7 +39,10 @@ export class CreateConvocationComponent implements OnInit {
     this.formCreateConvocation = new FormGroup({
       nameConvocation:new FormControl('',[Validators.required]),
       typeConvocation:new FormControl('',[Validators.required]),
-      correlative:new FormControl(''),
+      correlative:new FormControl({
+        value:'',
+        disabled:true
+      }),
       modalityConvocation:new FormControl('',[Validators.required]),
       description:new FormControl('',[Validators.required]),
       startDate:new FormControl(new Date(),[Validators.required]),
@@ -66,6 +69,11 @@ export class CreateConvocationComponent implements OnInit {
     this.convocationModalities$=this.modalityConvocationService.getAllModalityConvocations()
     .pipe(
         map(resp=>{
+          this.formCreateConvocation.patchValue(
+            {
+              modalityConvocation: resp.data[0]
+            }
+          )
           return resp.data
         }
       )
@@ -115,7 +123,7 @@ export class CreateConvocationComponent implements OnInit {
     let date = (this.formCreateConvocation.value["startDate"] as Date)
     this.formCreateConvocation.patchValue(
       {
-        correlative: date!.getFullYear()+""+ (date!.getMonth()+1) + "-" +(this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym
+        correlative: date!.getFullYear()+""+ (date!.getMonth()+1) + "" + date.getDate() + "-" +(this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym
       }
     )
   }

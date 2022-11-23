@@ -8,7 +8,7 @@
         <div class="p-inputgroup name">
           <mat-form-field class="flex-auto" appearance="fill">
             <mat-label>Nombre de la Convocatoria</mat-label>
-            <input formControlName="nameConvocation" matInput type="text" class="example-right-align" placeholder="Convocatoria Ordinaria estudiantes Van">
+            <input formControlName="nameConvocation" matInput type="text" class="example-right-align" placeholder="AGUSTINO, EL 2022-B, ESTUDIA EN LA RPU – UPCH">
             <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
             <mat-hint>(obligatorio)</mat-hint>
           </mat-form-field>
@@ -22,7 +22,7 @@
                   {{convocationType.name}}
                 </mat-option>
             </mat-select>
-            <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:type_specimen"></mat-icon>
             <mat-hint>(obligatorio)</mat-hint>
           </mat-form-field>
         </div>
@@ -40,11 +40,11 @@
           <mat-form-field class="flex-auto" appearance="fill" *ngIf="convocationModalities$|async as convocationModalities">
             <mat-label>Modalidad Convocatoria</mat-label>
             <mat-select formControlName="modalityConvocation">
-                <mat-option *ngFor="let convocationModalitie of convocationModalities" [value]="convocationModalitie">
-                  {{convocationModalitie.name}}
+                <mat-option *ngFor="let convocationModality of convocationModalities" [value]="convocationModality">
+                  {{convocationModality.name}}
                 </mat-option>
             </mat-select>
-            <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:merge_type"></mat-icon>
             <mat-hint>(obligatorio)</mat-hint>
           </mat-form-field>
         </div>
@@ -68,7 +68,7 @@
           <mat-form-field class="flex-auto" appearance="fill">
             <mat-label>Descripción</mat-label>
             <input formControlName="description" matInput type="text" class="example-right-align" placeholder="">
-            <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:description"></mat-icon>
             <mat-hint>(obligatorio)</mat-hint>
           </mat-form-field>
         </div>
@@ -78,7 +78,7 @@
           <mat-form-field class="flex-auto" appearance="fill">
             <mat-label>Nota Importante</mat-label>
             <textarea formControlName="importantNotes" class="example-right-align" matInput></textarea>
-            <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:speaker_notes"></mat-icon>
             <mat-hint>(obligatorio)</mat-hint>
           </mat-form-field>
         </div>
@@ -106,7 +106,7 @@
   </div>
   <div class="footer-controls">
     <p-button label="Siguiente" (click)="createConvocationGeneralData()" icon="pi pi-check"></p-button>
-    <button pButton type="button" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+    <button pButton type="button" icon="pi pi-trash" label="Cancelar" routerLink="../"  class="p-button-outlined p-button-danger"></button>
     <!-- <p-button label="Cancelar" icon="pi pi-trash" class="p-button-danger"></p-button> -->
   </div>
 </div>
