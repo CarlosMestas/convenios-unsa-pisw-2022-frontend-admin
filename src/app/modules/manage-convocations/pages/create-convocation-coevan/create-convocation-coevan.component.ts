@@ -73,19 +73,13 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
       semester: new FormControl({},[Validators.required]),
     })
     this.formCreateConvCoevanTextTemplate = new FormGroup({
-      avaltext: new FormControl(
-        {
-          value:this.aval
-        }
+      avaltext: new FormControl(this.aval,[Validators.required]
         ),
       coursestext: new FormControl(
-        {
-          value:this.courses
-        }),
+        this.courses,[Validators.required]
+        ),
       commitment: new FormControl(
-        {
-          value:this.commitment
-        }
+        this.commitment,[Validators.required]
       )
     })
     this.requirements$ = new Observable<IRequirementResponse[]>()
@@ -182,9 +176,9 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
       )
 
       console.log(this.formCreateConvocationCoevan.value["semester"])
-      console.log(this.formCreateConvCoevanTextTemplate.value["avaltext"].value)
-      console.log(this.formCreateConvCoevanTextTemplate.value["coursestext"].value)
-      console.log(this.formCreateConvCoevanTextTemplate.value["commitment"].value)
+      console.log(this.formCreateConvCoevanTextTemplate.value["avaltext"].toString())
+      console.log(this.formCreateConvCoevanTextTemplate.value["coursestext"].toString())
+      console.log(this.formCreateConvCoevanTextTemplate.value["commitment"].toString())
 
       newCoevanConvocation.append("semester",(this.formCreateConvocationCoevan.value["semester"]))
 
