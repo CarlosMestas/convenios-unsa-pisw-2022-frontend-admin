@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { IModalityConvocationResponse, ITypeConvocationResponse } from '@app/shared/interfaces/convocation.interface';
 import { ModalityConvocationService } from '@app/core/services/convocation/modality-convocation.service';
 import { TypeConvocationService } from '@app/core/services/convocation/type-convocation.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-create-convocation',
@@ -41,8 +42,8 @@ export class CreateConvocationComponent implements OnInit {
       correlative:new FormControl(''),
       modalityConvocation:new FormControl('',[Validators.required]),
       description:new FormControl('',[Validators.required]),
-      startDate:new FormControl('',[Validators.required]),
-      endDate:new FormControl('',[Validators.required]),
+      startDate:new FormControl(new Date(),[Validators.required]),
+      endDate:new FormControl(new Date(),[Validators.required]),
       importantNotes:new FormControl('',[Validators.required])
     }
     )
@@ -52,6 +53,11 @@ export class CreateConvocationComponent implements OnInit {
     this.convocationTypes$=this.typeConvocationService.getAllTypeConvocations()
     .pipe(
         map(resp=>{
+          this.formCreateConvocation.patchValue(
+            {
+              typeConvocation: resp.data[0]
+            }
+          )
           return resp.data
         }
       )
@@ -69,7 +75,14 @@ export class CreateConvocationComponent implements OnInit {
   fileLoaded(event:any){
     this.aficheFile = event.files[0]
   }
+
+
+
   createConvocationGeneralData(){
+
+    console.log("test modality", this.formCreateConvocation.value["modalityConvocation"])
+
+
     let dateini:Date = this.formCreateConvocation.value["startDate"]
     let dateend:Date = this.formCreateConvocation.value["endDate"]
     let createConvocation:IFormCreateConvocationGeneral = {
@@ -83,7 +96,10 @@ export class CreateConvocationComponent implements OnInit {
       important_notes: this.formCreateConvocation.value["importantNotes"],
       afiche: this.aficheFile
     }
+
     this.store.dispatch(createConvocationSetStateAction({data:createConvocation}))
+
+
 
     switch ((this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym) {
       case ETypeConvocations.COEVAN:
@@ -94,8 +110,15 @@ export class CreateConvocationComponent implements OnInit {
     }
   }
 
-  generateCorrelative(date:Date){
-    let mili =date.getTime()
-    console.log(mili)
+  generateCorrelative(event: any) {
+
+    let date = (this.formCreateConvocation.value["startDate"] as Date)
+    this.formCreateConvocation.patchValue(
+      {
+        correlative: date!.getFullYear()+""+ (date!.getMonth()+1) + "-" +(this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym
+      }
+    )
   }
+
+
 }

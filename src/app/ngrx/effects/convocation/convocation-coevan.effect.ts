@@ -22,6 +22,9 @@ export class ConvocationCoevanEffect{
     ofType(postCreateConvocationCoevanRequestAction),
     mergeMap((action)=>{
       let formData:FormData = new FormData()
+
+      console.log("change to string test")
+
       formData.append("title",action.data.general.title)
       formData.append("type",action.data.general.type.toString())
       formData.append("correlative",action.data.general.correlative)
@@ -34,7 +37,7 @@ export class ConvocationCoevanEffect{
       return this.createConvocationGeneralService.postCreateConvocationGeneral(formData)
       .pipe(
         mergeMap(resp=>{
-
+            console.log("change to string test")
             let formCoevan =  action.data.coevan
             formCoevan.append("id_convocation",resp.data.id.toString())
             // formCoevan.append("id_convocation","1")

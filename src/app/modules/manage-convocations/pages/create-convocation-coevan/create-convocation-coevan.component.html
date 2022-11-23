@@ -76,6 +76,22 @@
 
         </div>
 
+        <div class="p-inputgroup semester">
+
+          <mat-form-field class="flex-auto" appearance="fill">
+            <mat-label>Semestre</mat-label>
+            <mat-select formControlName="semester">
+                <mat-option value="2022-A">
+                  {{"2022-A"}}
+                </mat-option>
+                <mat-option value="2022-B">
+                  {{"2022-B"}}
+                </mat-option>
+            </mat-select>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
+        </div>
 
 
 
@@ -89,7 +105,46 @@
           <p-fileUpload name="myfile[]" [multiple]="multiple"></p-fileUpload>
         </div> -->
       </form>
+      <div class="text-content">
+        <form [formGroup]="formCreateConvCoevanTextTemplate">
 
+        </form>
+        <mat-tab-group animationDuration="0ms" color="#5c2232" backgroundColor="primary">
+          <mat-tab label="Aval Institucional">
+            <div class="p-inputgroup importantnotes">
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Aval Institucional</mat-label>
+                <textarea formControlName="avaltext" class="example-right-align" matInput></textarea>
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+            </div>
+          </mat-tab>
+          <mat-tab label="Reconocimiento Académico">
+            <div class="p-inputgroup importantnotes">
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Reconocimiento Académico</mat-label>
+                <textarea formControlName="coursestext" class="example-right-align" matInput></textarea>
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+            </div>
+          </mat-tab>
+          <mat-tab label="Declaración de Compromiso">
+            <div class="p-inputgroup importantnotes">
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Declaración de Compromiso</mat-label>
+                <textarea formControlName="commitment" class="example-right-align" matInput></textarea>
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
   </div>
   <div class="footer-controls">
     <p-button label="Guardar" (click)="createConvocationDetailCoevan()" icon="pi pi-check"></p-button>

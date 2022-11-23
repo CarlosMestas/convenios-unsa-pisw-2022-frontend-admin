@@ -1,5 +1,5 @@
 .container{
-  height: calc(100vh - 3.5rem);
+  height: calc(100vh - 3.5rem - 60px);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -21,7 +21,7 @@
       .form-content{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(5, 60px) 160px;
+        grid-template-rows: repeat(5, auto) auto;
         gap: 1rem 1rem;
       }
     }
@@ -54,12 +54,8 @@
   grid-row-start: 6;
 }
 
-.p-inputgroup.date-start{
-  grid-row-start: 5;
-}
-.p-inputgroup.date-end{
-  grid-row-start: 5;
-}
+
+
 
 .p-inputgroup {
   place-self: center;
