@@ -190,13 +190,13 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
 
       newCoevanConvocation.append(
         "avaltext",
-        this.formCreateConvCoevanTextTemplate.value["avaltext"])
+        this.formCreateConvCoevanTextTemplate.value["avaltext"].toString())
       newCoevanConvocation.append(
         "coursestext",
-        this.formCreateConvCoevanTextTemplate.value["coursestext"])
+        this.formCreateConvCoevanTextTemplate.value["coursestext"].toString())
       newCoevanConvocation.append(
         "commitment",
-        this.formCreateConvCoevanTextTemplate.value["commitment"])
+        this.formCreateConvCoevanTextTemplate.value["commitment"].toString())
 
 
 
