@@ -134,7 +134,6 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
 
 
     let newCoevanConvocation = new FormData()
-    newCoevanConvocation.append("id_convocation","1")
     newCoevanConvocation.append("id_academic_network",(this.formCreateConvocationCoevan.value["academicNetwork"]))
     newCoevanConvocation.append("id_university",(this.formCreateConvocationCoevan.value["university"]))
 
@@ -170,15 +169,7 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
       newCoevanConvocation.append("files[]",value.document,value.document.name)
     })
 
-      this.convocationCoevanService.postCreateConvocationCoevan(newCoevanConvocation).subscribe(resp=>{
-        console.log(resp)
-      }
-      )
 
-      console.log(this.formCreateConvocationCoevan.value["semester"])
-      console.log(this.formCreateConvCoevanTextTemplate.value["avaltext"].toString())
-      console.log(this.formCreateConvCoevanTextTemplate.value["coursestext"].toString())
-      console.log(this.formCreateConvCoevanTextTemplate.value["commitment"].toString())
 
       newCoevanConvocation.append("semester",(this.formCreateConvocationCoevan.value["semester"]))
 
@@ -200,9 +191,7 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     }}))
 
 
-
     // this.router.navigate(["../"+ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_LIST_CONVOCATION],{relativeTo: this.activatedRoute})
-
 
   }
 
