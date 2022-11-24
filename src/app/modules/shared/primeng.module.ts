@@ -18,6 +18,8 @@ import {PasswordModule} from 'primeng/password';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {BadgeModule} from 'primeng/badge';
 import {SidebarModule} from 'primeng/sidebar';
+import {AvatarModule} from 'primeng/avatar';
+import {ListboxModule} from 'primeng/listbox';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import {SidebarModule} from 'primeng/sidebar';
     DialogModule,
     ProgressSpinnerModule,
     BadgeModule,
-    SidebarModule
+    SidebarModule,
+    AvatarModule,
+    ListboxModule
   ],
   exports:[
     MultiSelectModule,
@@ -61,7 +65,9 @@ import {SidebarModule} from 'primeng/sidebar';
     DialogModule,
     ProgressSpinnerModule,
     BadgeModule,
-    SidebarModule
+    SidebarModule,
+    AvatarModule,
+    ListboxModule
   ]
 })
 export class PrimeNGModule{}

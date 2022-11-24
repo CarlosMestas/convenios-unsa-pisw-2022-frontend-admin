@@ -1,11 +1,35 @@
-<p-sidebar [(visible)]="display" position="right" [baseZIndex]="10000" (onHide)="hidePanel()">
-  <h3>Right Sidebar</h3>
-  <div class="menu-top">
-    <div class="title">
-      <h3 class="tittle-text">Solicitudes de creación de cuenta</h3>
-    </div>
+<p-sidebar [(visible)]="display"
+           position="right"
+           [baseZIndex]="10000"
+           [style]="{width:'30em'}"
+           (onHide)="hidePanel()"
+>
+  <ng-template pTemplate="content">
+    <h3 class="tittle-panel">Solicitudes de creación de cuenta</h3>
+    <p-listbox [options]="requestsExternal"  optionLabel="name" [style]="{'width':'100%'}">
+      <ng-template let-request pTemplate="item">
+        <p-card styleClass="p-card-shadow">
+          <ng-template pTemplate="header">
+            <div class="header-card">
+              <p-avatar label="{{request.name[0]}}"></p-avatar>
+              <p>{{request.name}}</p>
+            </div>
+          </ng-template>
+          <div class="container-content-request">
+            <p> Correo: usuario@gmail.com</p>
+            <p> Nombres: John Doe</p>
+          </div>
+          <ng-template pTemplate="footer">
+            <p-button label="Aprobar" icon="pi pi-check"></p-button>
+            <p-button label="Rechazar" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+          </ng-template>
+        </p-card>
+      </ng-template>
+    </p-listbox>
 
-  </div>
+
+  </ng-template>
+
 </p-sidebar>
 
 

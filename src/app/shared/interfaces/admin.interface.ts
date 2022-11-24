@@ -3,7 +3,7 @@ import {IRole} from "@shared/interfaces/role.interface";
 
 export interface ILoginAdmin{
   token: '',
-  user: IAdminData
+  user: IAdmin
 }
 
 export interface IAdmin{
