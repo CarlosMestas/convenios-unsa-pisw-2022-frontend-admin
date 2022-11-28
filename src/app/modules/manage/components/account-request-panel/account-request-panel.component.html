@@ -3,35 +3,75 @@
            [baseZIndex]="10000"
            [style]="{width:'30em'}"
            (onHide)="hidePanel()"
+           [showCloseIcon]="false"
 >
+  <span class="icon-close" (click)="hidePanel()">
+    <i class="pi pi-times-circle " style="font-size: 1.5rem"></i>
+  </span>
   <ng-template pTemplate="content">
-    <h3 class="tittle-panel">Solicitudes de creación de cuenta</h3>
+    <h3 class="tittle-panel">Solicitudes de creación de cuenta UNSA</h3>
     <p-listbox [options]="requestsExternal"  optionLabel="name" [style]="{'width':'100%'}">
       <ng-template let-request pTemplate="item">
-        <p-card styleClass="p-card-shadow">
-          <ng-template pTemplate="header">
-            <div class="header-card">
-              <p-avatar label="{{request.name[0]}}"></p-avatar>
-              <p>{{request.name}}</p>
-            </div>
-          </ng-template>
-          <div class="container-content-request">
-            <p> Correo: usuario@gmail.com</p>
-            <p> Nombres: John Doe</p>
+        <div class="container-content-request" [ngClass]="request.status_request==1?'attend':'no-attend'">
+          <div class="header-card">
+            <p-avatar label="{{request.name[0]}}"></p-avatar>
+            <p class="txt-name">{{request.name + " " + request.lastname}}</p>
           </div>
-          <ng-template pTemplate="footer">
-            <p-button label="Aprobar" icon="pi pi-check"></p-button>
+          <div class="body">
+            <p> Correo: {{request.email}}</p>
+            <button pButton pRipple label="Ver justificación" icon="pi pi-download"></button>
+
+          </div>
+          <div class="footer" *ngIf="request.status_request==0">
+            <p-button label="Aprobar" icon="pi pi-check" styleClass="p-button-success" (click)="showDialog(request.id, request.email)"></p-button>
             <p-button label="Rechazar" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
-          </ng-template>
-        </p-card>
+          </div>
+        </div>
       </ng-template>
     </p-listbox>
-
-
   </ng-template>
-
 </p-sidebar>
 
+<p-dialog header="Confirmación de creación de cuenta UNSA"
+          [(visible)]="displayDialog"
+          [modal]="true"
+          [breakpoints]="{'600px': '45vw'}"
+          [style]="{width: '35vw'}"
+>
+  <div class="content-dialog">
+    <div class="form-input">
+      <label class="block form-label" for="email">
+        Nuevo correo
+      </label>
+      <span class="p-input-icon-left form-input">
+          <i class="pi pi-envelope"></i>
+          <input id="email"
+                 type="email"
+                 class="form-input"
+                 name="email"
+                 [(ngModel)]="newExternalStudent.emailCreated"
+                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                 required #email ="ngModel"
+                 [class.is-invalid]= "email.invalid && email.touched "
+                 placeholder="Ingrese el correo creado"
+                 pInputText>
+    </span>
+    </div>
 
+    <div class="footer-dialog-msg">
+      <p>No olvide enviar el correo creado: <span class="email-links">{{newExternalStudent.emailCreated}}</span></p>
+      <p> al correo: <span class="email-links">{{newExternalStudent.oldEmail}}</span> para confirmar su creación de cuenta, gracias.</p>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button (click)="closeDialog()" label="Cancelar" styleClass="p-button-text"></p-button>
+    <p-button (click)="acceptRequest()"
+              label="Aprobar"
+              styleClass="p-button-text"
+              [disabled]="(email.errors && (email.dirty && email.touched))!=null"
+    ></p-button>
+  </ng-template>
+</p-dialog>
 
+<!--<p-toast key="myKey1" [baseZIndex]="5000"></p-toast> -->
 

@@ -6,7 +6,7 @@
   </div>
   <div class="buttons-container">
     <p-button label="Solicitudes" icon="pi pi-users"
-              styleClass="p-button-info" badge="8"
+              styleClass="p-button-info" [badge]="numRequestExternal"
               badgeClass="p-badge-danger"
               (onClick)="showPanel()"
     ></p-button>
