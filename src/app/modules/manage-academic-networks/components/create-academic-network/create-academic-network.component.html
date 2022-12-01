@@ -1,0 +1,66 @@
+<ng-container >
+  <p-button label="Nueva Red Académica" (click)="displayModal=true" icon="pi pi-plus"></p-button>
+  <p-dialog
+  header="Nueva Red Académica"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{width: '30vw'}"
+  [baseZIndex]="10000"
+  [draggable]="true"
+  [resizable]="false">
+  <form class="form-container" [formGroup]="formAddEdit">
+
+    <div class="p-inputgroup name">
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Nombre de la Red Académica</mat-label>
+        <input formControlName="name" matInput type="text" class="example-right-align" placeholder="Red Peruana de Universidades">
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="p-inputgroup acronym">
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>ACRÓNIMO</mat-label>
+        <input formControlName="acronym" matInput type="text" class="example-right-align" placeholder="RPU">
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="p- p-inputgroup description">
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea formControlName="description" class="example-right-align" matInput></textarea>
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:speaker_notes"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div class="logo-container">
+
+      <p-fileUpload (onSelect)="fileLoaded($event)" name="myfile" url="./upload.php" [multiple]="false"
+                        accept="image/*" chooseLabel="Logo" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
+                        >
+                        <ng-template pTemplate="toolbar">
+                        </ng-template>
+                        <ng-template let-file pTemplate="file">
+                            <div class="image-container">
+                              <img  [src]="file.objectURL"/>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-files>
+                            <div></div>
+                        </ng-template>
+                </p-fileUpload>
+    </div>
+
+  </form>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="createAcademicNetwork()" label="Agregar" class="p-button-text"></p-button>
+      <button pButton type="button" (click)="displayModal = false" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+  </ng-template>
+</p-dialog>
+
+</ng-container>

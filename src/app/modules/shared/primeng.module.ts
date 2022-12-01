@@ -17,7 +17,8 @@ import { DialogModule } from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {BadgeModule} from 'primeng/badge';
-
+import {TreeModule} from 'primeng/tree';
+import {TreeNode} from 'primeng/api';
 
 @NgModule({
   imports:[
@@ -38,7 +39,8 @@ import {BadgeModule} from 'primeng/badge';
     PasswordModule,
     DialogModule,
     ProgressSpinnerModule,
-    BadgeModule
+    BadgeModule,
+    TreeModule
   ],
   exports:[
     MultiSelectModule,
@@ -58,7 +60,8 @@ import {BadgeModule} from 'primeng/badge';
     PasswordModule,
     DialogModule,
     ProgressSpinnerModule,
-    BadgeModule
+    BadgeModule,
+    TreeModule
   ]
 })
 export class PrimeNGModule{}

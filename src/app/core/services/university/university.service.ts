@@ -36,4 +36,44 @@ export class UniversityService extends UniversityHelper{
       catchError(this.getUniversityByAcademicNetworkError)
     )
   }
+
+  getAllUniversity():Observable<IHttpServiceResponse<IUniversityResponse[]>>{
+
+    const response:IHttpServiceResponse<IUniversityResponse[]> = {
+      error:false,
+      msg:'',
+      data:[]
+    }
+
+    return this.http.get<IHttpResponse<IUniversityResponse[]>>(
+      this.url + UniversityHelper.API_ROUTES.UNIVERSITY_GET_ALL
+    )
+    .pipe(
+      map(resp =>{
+        response.data = resp.data
+        return response
+      }
+      ),
+      catchError(this.getUniversityByAcademicNetworkError)
+    )
+  }
+
+  postUniversity(form:FormData):Observable<IHttpServiceResponse<IUniversityResponse>>{
+    const response:IHttpServiceResponse<IUniversityResponse> = {
+      error:false,
+      msg:'',
+      data:{} as IUniversityResponse
+    };
+
+    return this.http.post<IHttpResponse<IUniversityResponse>>(this.url + UniversityHelper.API_ROUTES.UNIVERSITY_POST,form)
+    .pipe(
+      map( resp=>{
+          console.log(resp)
+          response.data=resp.data
+          return response
+        }
+      ),
+      catchError(this.errorPost)
+    )
+  }
 }

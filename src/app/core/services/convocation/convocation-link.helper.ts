@@ -4,11 +4,11 @@ import { environment } from "environments/environment"
 import { of } from 'rxjs';
 
 
-export class CreateConvocationDocumentHelper{
+export class ConvocationLinkHelper{
 
 
   protected static API_ROUTES = {
-    CREATE_CONVOCATION_DOCUMENT_TYPE_GET_ALL:"get-all-link-types"
+    CREATE_CONVOCATION_LINK_TYPE_GET_ALL:"get-all-link-types"
   }
 
   public url = environment.url
@@ -20,7 +20,7 @@ export class CreateConvocationDocumentHelper{
 
   }
 
-  getAllCreateConvocationDocumentTypesError(error:HttpErrorResponse){
+  getAllCreateConvocationLinkTypesError(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
       errorMessage = error.error.message
@@ -30,7 +30,7 @@ export class CreateConvocationDocumentHelper{
     return of({
       error:true,
       msg: errorMessage,
-      //data: [] as IDocumentTypeResponse,
+      //data: [] as ILinkTypeResponse,
       data: [
         {
           id:1,

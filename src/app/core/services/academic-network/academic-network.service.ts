@@ -1,3 +1,4 @@
+import { IUniversityResponse } from './../../../shared/interfaces/university.interface';
 import { IAcademicNetworkResponse } from './../../../shared/interfaces/academic-network.interface';
 import {map, catchError, Observable, BehaviorSubject} from 'rxjs';
 import { IHttpServiceResponse, IHttpResponse } from './../../../shared/interfaces/transactions/http-response.transaction';
@@ -33,6 +34,25 @@ export class AcademicNetworkService extends AcademicNetworkHelper{
       }
       ),
       catchError(this.getAllAcademicNetworkError)
+    )
+  }
+
+  postAcademicNetwork(form:FormData):Observable<IHttpServiceResponse<IAcademicNetworkResponse>>{
+    const response:IHttpServiceResponse<IAcademicNetworkResponse> = {
+      error:false,
+      msg:'',
+      data:{} as IAcademicNetworkResponse
+    };
+
+    return this.http.post<IHttpResponse<IAcademicNetworkResponse>>(this.url + AcademicNetworkHelper.API_ROUTES.ACADEMIC_NETWORK_POST,form)
+    .pipe(
+      map( resp=>{
+          console.log(resp)
+          response.data=resp.data
+          return response
+        }
+      ),
+      catchError(this.errorPost)
     )
   }
 }

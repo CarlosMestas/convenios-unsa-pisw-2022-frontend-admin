@@ -1,0 +1,59 @@
+<div class="card">
+  <h3>Requerimientos</h3>
+  <p>Tabla de Requerimientos</p>
+  <p-table *ngIf="requirements$|async as requirements" #dt2 [value]="requirements" dataKey="id"
+      [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+      [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="['id','description']">
+      <ng-template pTemplate="caption">
+          <div class="flex">
+              <span class="p-input-icon-left ml-auto mr-3">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="dt2.filterGlobal(returnValue($event.target),'contains')" placeholder="Buscar Requerimiento" class="p-inputtext p-component p-element" />
+              </span>
+              <app-create-requirement></app-create-requirement>
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Id</th>
+              <th>Descripción</th>
+              <th>Actions</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-requirement>
+          <tr>
+              <td>
+                  {{requirement.id}}
+              </td>
+              <td>
+                {{requirement.description}}
+              </td>
+              <td>
+                <div class="table-actions flex flex-center">
+
+                  <div class="table-action update mr-3" mat-icon-button>
+                    <mat-icon
+                    class="action-icon icon-sm"
+                    svgIcon="mat:edit"
+                    ></mat-icon>
+                  </div>
+                  <div class="table-action delete" mat-icon-button>
+                    <mat-icon
+                      class="action-icon icon-sm"
+                      svgIcon="mat:restore_from_trash"
+                    ></mat-icon>
+                  </div>
+                </div>
+              </td>
+
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="6">No data found.</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+<!-- <p-toast></p-toast> -->

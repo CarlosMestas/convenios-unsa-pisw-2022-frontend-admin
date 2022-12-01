@@ -3,16 +3,16 @@ import { Injectable } from "@angular/core"
 import { Actions, createEffect, ofType } from "@ngrx/effects"
 import { catchError, EMPTY, map, mergeMap, of } from "rxjs"
 import { RequirementActions, requirementPostRequestAction, requirementsGetAllRequestAction } from "../../actions/convocation/requirement.actions"
-import { CreateConvocationGeneralService } from '@app/core/services/convocation/create-convocation-general.service';
+import { ConvocationGeneralService } from '@app/core/services/convocation/convocation-general.service';
 import { CreateConvocationCoevanActions, postCreateConvocationCoevanRequestAction } from '@app/ngrx/actions/convocation/create-convocation-coevan.actions';
-import { CreateConvocationCoevanService } from '@app/core/services/convocation/create-convocation-coevan.service';
+import { ConvocationCoevanService } from '@app/core/services/convocation/convocation-coevan.service';
 
 @Injectable()
 export class ConvocationCoevanEffect{
   constructor(
     private actions$:Actions,
-    private createConvocationGeneralService: CreateConvocationGeneralService,
-    private createConvocationCoevanService:CreateConvocationCoevanService
+    private convocationGeneralService: ConvocationGeneralService,
+    private convocationCoevanService:ConvocationCoevanService
   ){
 
   }
@@ -34,14 +34,14 @@ export class ConvocationCoevanEffect{
       formData.append("end_date",action.data.general.end_date)
       formData.append("important_notes",action.data.general.important_notes)
       formData.append("afiche",action.data.general.afiche,action.data.general.afiche.name)
-      return this.createConvocationGeneralService.postCreateConvocationGeneral(formData)
+      return this.convocationGeneralService.postCreateConvocationGeneral(formData)
       .pipe(
         mergeMap(resp=>{
             console.log("change to string test")
             let formCoevan =  action.data.coevan
             formCoevan.append("id_convocation",resp.data.id.toString())
             // formCoevan.append("id_convocation","1")
-            return this.createConvocationCoevanService.postCreateConvocationCoevan(formCoevan)
+            return this.convocationCoevanService.postCreateConvocationCoevan(formCoevan)
             .pipe(
               map(resp=>({
                 type:CreateConvocationCoevanActions.POST_CREATE_CONVOCATION_COEVAN_SUCCESS_ACTION,

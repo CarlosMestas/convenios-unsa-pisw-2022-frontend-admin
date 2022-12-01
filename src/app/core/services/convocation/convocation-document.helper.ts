@@ -1,15 +1,14 @@
-import { IConvocationResponse } from './../../../shared/interfaces/convocation.interface';
 import { IModalityConvocationResponse, ITypeConvocationResponse } from '../../../shared/interfaces/convocation.interface';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http"
 import { environment } from "environments/environment"
 import { of } from 'rxjs';
 
 
-export class CreateConvocationGeneralHelper{
+export class ConvocationDocumentHelper{
 
 
-  public static API_ROUTES = {
-    CREATE_CONVOCATION_GENERAL_POST:"create-convocation"
+  protected static API_ROUTES = {
+    CREATE_CONVOCATION_DOCUMENT_TYPE_GET_ALL:"get-all-link-types"
   }
 
   public url = environment.url
@@ -21,7 +20,7 @@ export class CreateConvocationGeneralHelper{
 
   }
 
-  postCreateConvocationGeneralError(error:HttpErrorResponse){
+  getAllCreateConvocationDocumentTypesError(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
       errorMessage = error.error.message
@@ -31,19 +30,19 @@ export class CreateConvocationGeneralHelper{
     return of({
       error:true,
       msg: errorMessage,
-      //data: {} as IConvocationResponse,
-      data:
+      //data: [] as IDocumentTypeResponse,
+      data: [
         {
-          id: 0,
-          title: '',
-          type: 0,
-          correlative: '',
-          modality: 0,
-          description: '',
-          start_date: '',
-          end_date: '',
-          important_notes: ''
+          id:1,
+          name:"Formulario Universidad Destino",
+          category:"Formulario Universidad Destino"
+        },
+        {
+          id:2,
+          name:"Oferta Académica Universidad Destino",
+          category:"Oferta Académica Universidad Destino"
         }
+      ]
     })
   }
 

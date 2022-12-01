@@ -1,15 +1,15 @@
-import { IDocumentTypeResponse } from './../../../shared/interfaces/create-convocation-document.interface';
-import { IHttpServiceResponse, IHttpResponse } from './../../../shared/interfaces/transactions/http-response.transaction';
+import { IDocumentTypeResponse } from '../../../shared/interfaces/create-convocation-document.interface';
+import { IHttpServiceResponse, IHttpResponse } from '../../../shared/interfaces/transactions/http-response.transaction';
 import { Observable, map, catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { CreateConvocationDocumentHelper } from './create-convocation-document.helper';
+import { ConvocationDocumentHelper } from './convocation-document.helper';
 
 
 @Injectable({
   providedIn:"root"
 })
-export class CreateConvocationDocumentService extends CreateConvocationDocumentHelper{
+export class ConvocationDocumentService extends ConvocationDocumentHelper{
 
   constructor(
     protected override http:HttpClient
@@ -23,7 +23,7 @@ export class CreateConvocationDocumentService extends CreateConvocationDocumentH
       msg:'',
       data:[]
     }
-    return this.http.get<IHttpResponse<IDocumentTypeResponse[]>>(this.url + CreateConvocationDocumentHelper.API_ROUTES.CREATE_CONVOCATION_DOCUMENT_TYPE_GET_ALL)
+    return this.http.get<IHttpResponse<IDocumentTypeResponse[]>>(this.url + ConvocationDocumentHelper.API_ROUTES.CREATE_CONVOCATION_DOCUMENT_TYPE_GET_ALL)
     .pipe(
       map(resp=>{
         response.data=resp.data

@@ -6,8 +6,9 @@ import { of } from 'rxjs';
 export class UniversityHelper{
 
   protected static API_ROUTES = {
-    UNIVERSITY_GET_ALL:"admin-roles/all",
+    UNIVERSITY_GET_ALL:"get-all-universities",
     UNIVERSITY_GET_BY_ACADEMIC_NETWORK:"get-universities-by-academic-network",
+    UNIVERSITY_POST:""
   }
 
   public url = environment.url
@@ -34,24 +35,41 @@ export class UniversityHelper{
         {
           id:1,
           name:"Universidad Nacional de San Agustín",
-          acronym:"UNSA"
+          acronym:"UNSA",
+          logo:""
         },
         {
           id:1,
           name:"Universidad Católica de santa maría",
-          acronym:"UCSM"
+          acronym:"UCSM",
+          logo:""
         },
         {
           id:1,
           name:"Universidad Nacional de Ingenierías",
-          acronym:"UNI"
+          acronym:"UNI",
+          logo:""
         },
         {
           id:1,
           name:"Universidad Nacional Mayor de San Marcos",
-          acronym:"UNMSM"
+          acronym:"UNMSM",
+          logo:""
         }
     ]
+    })
+  }
+  errorPost(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage,
+      data: {} as IUniversityResponse
     })
   }
 

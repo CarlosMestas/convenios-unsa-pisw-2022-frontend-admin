@@ -11,3 +11,8 @@ export interface ISidenavItem{
   label:string,
   visible:boolean
 }
+
+export interface MenuChangeEvent {
+  key: string;
+  routeEvent?: boolean;
+}

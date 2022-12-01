@@ -1,16 +1,16 @@
-import { IDocumentTypeResponse } from './../../../shared/interfaces/create-convocation-document.interface';
-import { IHttpServiceResponse, IHttpResponse } from './../../../shared/interfaces/transactions/http-response.transaction';
+import { IDocumentTypeResponse } from '../../../shared/interfaces/create-convocation-document.interface';
+import { IHttpServiceResponse, IHttpResponse } from '../../../shared/interfaces/transactions/http-response.transaction';
 import { Observable, map, catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { CreateConvocationLinkHelper } from './create-convocation-link.helper';
+import { ConvocationLinkHelper } from './convocation-link.helper';
 import { ILinkTypeResponse } from '@app/shared/interfaces/create-convocation-link.interface';
 
 
 @Injectable({
   providedIn:"root"
 })
-export class CreateConvocationLinkService extends CreateConvocationLinkHelper{
+export class ConvocationLinkService extends ConvocationLinkHelper{
 
   constructor(
     protected override http:HttpClient
@@ -24,7 +24,7 @@ export class CreateConvocationLinkService extends CreateConvocationLinkHelper{
       msg:'',
       data:[]
     }
-    return this.http.get<IHttpResponse<ILinkTypeResponse[]>>(this.url + CreateConvocationLinkHelper.API_ROUTES.CREATE_CONVOCATION_LINK_TYPE_GET_ALL)
+    return this.http.get<IHttpResponse<ILinkTypeResponse[]>>(this.url + ConvocationLinkHelper.API_ROUTES.CREATE_CONVOCATION_LINK_TYPE_GET_ALL)
     .pipe(
       map(resp=>{
         response.data=resp.data

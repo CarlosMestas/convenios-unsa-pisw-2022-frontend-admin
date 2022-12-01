@@ -39,10 +39,7 @@ export class CreateConvocationComponent implements OnInit {
     this.formCreateConvocation = new FormGroup({
       nameConvocation:new FormControl('',[Validators.required]),
       typeConvocation:new FormControl('',[Validators.required]),
-      correlative:new FormControl({
-        value:'',
-        disabled:true
-      }),
+      correlative:new FormControl({value: '', disabled: true},[Validators.required]),
       modalityConvocation:new FormControl('',[Validators.required]),
       description:new FormControl('',[Validators.required]),
       startDate:new FormControl(new Date(),[Validators.required]),
@@ -88,7 +85,7 @@ export class CreateConvocationComponent implements OnInit {
 
   createConvocationGeneralData(){
 
-    console.log("test modality", this.formCreateConvocation.value["modalityConvocation"])
+
 
 
     let dateini:Date = this.formCreateConvocation.value["startDate"]
@@ -96,7 +93,7 @@ export class CreateConvocationComponent implements OnInit {
     let createConvocation:IFormCreateConvocationGeneral = {
       title: this.formCreateConvocation.value["nameConvocation"],
       type: (this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).id,
-      correlative: this.formCreateConvocation.value["correlative"],
+      correlative: this.formCreateConvocation.controls["correlative"].value,
       modality: (this.formCreateConvocation.value["modalityConvocation"] as IModalityConvocationResponse).id,
       description: this.formCreateConvocation.value["description"],
       start_date: dateini.getFullYear()+"-"+(dateini.getMonth()+1)+"-"+dateini.getDate(),
@@ -123,7 +120,7 @@ export class CreateConvocationComponent implements OnInit {
     let date = (this.formCreateConvocation.value["startDate"] as Date)
     this.formCreateConvocation.patchValue(
       {
-        correlative: date!.getFullYear()+""+ (date!.getMonth()+1) + "" + date.getDate() + "-" +(this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym
+        "correlative": date!.getFullYear()+""+ (date!.getMonth()+1) + "" + date.getDate() + "-" +(this.formCreateConvocation.value["typeConvocation"] as ITypeConvocationResponse).acronym
       }
     )
   }

@@ -1,0 +1,29 @@
+.logo-container{
+  .p-fileupload-content{
+    height: auto;
+    width: auto;
+  }
+
+  .p-fileupload{
+    max-width: 180px;
+  }
+
+  .p-fileupload-files{
+
+    height: 100%;
+    overflow: hidden;
+    .ng-star-inserted{
+      .image-container{
+        width: 100%;
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+  .p-fileupload .p-fileupload-buttonbar .p-button{
+    width: 100%;
+  }
+
+}

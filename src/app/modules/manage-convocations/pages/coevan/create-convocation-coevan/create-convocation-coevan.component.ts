@@ -1,26 +1,27 @@
-import { CreateConvocationGeneralService } from '@app/core/services/convocation/create-convocation-general.service';
-import { CreateConvocationCoevanService } from '@app/core/services/convocation/create-convocation-coevan.service';
-import { ManageConvocationsRouterModule } from './../../manage-convocations.routes';
+import { ConvocationGeneralService } from '@app/core/services/convocation/convocation-general.service';
+import { ConvocationCoevanService } from '@app/core/services/convocation/convocation-coevan.service';
+import { ManageConvocationsRouterModule } from '../../../manage-convocations.routes';
 import { Router, ActivatedRoute } from '@angular/router';
-import { postCreateConvocationCoevanRequestAction } from './../../../../ngrx/actions/convocation/create-convocation-coevan.actions';
-import { IFormCreateConvocationGeneral } from './../../../../shared/interfaces/convocation.interface';
-import { ILink } from './../../../../shared/interfaces/create-convocation-link.interface';
-import { IDocument, IDocumentWOFile } from './../../../../shared/interfaces/create-convocation-document.interface';
-import { IUniversityResponse } from './../../../../shared/interfaces/university.interface';
-import { IAppState } from './../../../../ngrx/app.state';
+import { postCreateConvocationCoevanRequestAction } from '../../../../../ngrx/actions/convocation/create-convocation-coevan.actions';
+import { IFormCreateConvocationGeneral } from '../../../../../shared/interfaces/convocation.interface';
+import { ILink } from '../../../../../shared/interfaces/create-convocation-link.interface';
+import { IDocument, IDocumentWOFile } from '../../../../../shared/interfaces/create-convocation-document.interface';
+import { IUniversityResponse } from '../../../../../shared/interfaces/university.interface';
+import { IAppState } from '../../../../../ngrx/app.state';
 import { Store } from '@ngrx/store';
 import { Observable, map, Subscription } from 'rxjs';
-import { IRequirementResponse } from './../../../../shared/interfaces/requirement.interface';
+import { IRequirementResponse } from '../../../../../shared/interfaces/requirement.interface';
 import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { requirementsGetAllRequestAction } from '@app/ngrx/actions/convocation/requirement.actions';
-import { documentsFormCreateConvocationCoevanStateSelector, linksFormCreateConvocationCoevanStateSelector, requirementsFormCreateConvocationCoevanStateSelector } from '@app/ngrx/selectors/convocation/form-create-coevan.selector';
+import { documentsFormCreateConvocationCoevanStateSelector, linksFormCreateConvocationCoevanStateSelector } from '@app/ngrx/selectors/convocation/form-create-coevan.selector';
 import { IAcademicNetworkResponse } from '@app/shared/interfaces/academic-network.interface';
 import { AcademicNetworkService } from '@app/core/services/academic-network/academic-network.service';
 import { UniversityService } from '@app/core/services/university/university.service';
 import { formCreateConvocationGeneralStateSelector } from '@app/ngrx/selectors/convocation/create-general.selector';
+import { requirementsSelector } from '@app/ngrx/selectors/convocation/requirements.selector';
 
 
 @Component({
@@ -61,7 +62,7 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     private universityService:UniversityService,
     private router:Router,
     private activatedRoute:ActivatedRoute,
-    private convocationCoevanService:CreateConvocationCoevanService
+    private convocationCoevanService:ConvocationCoevanService
   ) {
     this.formCreateConvocationCoevan = new FormGroup({
       academicNetwork: new FormControl({},[Validators.required]),
@@ -94,7 +95,7 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.store.dispatch(requirementsGetAllRequestAction())
-    this.requirements$ = this.store.select(requirementsFormCreateConvocationCoevanStateSelector)
+    this.requirements$ = this.store.select(requirementsSelector)
 
     this.documentsSubscription$=this.store.select(documentsFormCreateConvocationCoevanStateSelector).subscribe(documents=>{
       this.documents = documents
@@ -191,7 +192,7 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     }}))
 
 
-    // this.router.navigate(["../"+ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_LIST_CONVOCATION],{relativeTo: this.activatedRoute})
+    this.router.navigate(["../"+ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_LIST_CONVOCATION],{relativeTo: this.activatedRoute})
 
   }
 

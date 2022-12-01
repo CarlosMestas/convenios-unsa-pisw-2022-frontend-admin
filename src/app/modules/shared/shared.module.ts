@@ -10,13 +10,15 @@ import { PrimeNGModule } from './primeng.module';
 import {MenuTopBarComponent} from "@shared/components/menu-top-bar/menu-top-bar.component";
 
 import {HttpClientModule} from "@angular/common/http"
+import { AppMenuitemComponent } from '@app/shared/components/sidenav/app.menuitem.component';
 
 
 @NgModule({
   declarations: [
     SidenavComponent,
     SidenavItemComponent,
-    MenuTopBarComponent
+    MenuTopBarComponent,
+    AppMenuitemComponent
   ],
   imports: [
     FontAwesomeModule,

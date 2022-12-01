@@ -1,6 +1,6 @@
-import { IUniversityResponse } from './../../../shared/interfaces/university.interface';
-import { IAcademicNetworkResponse } from './../../../shared/interfaces/academic-network.interface';
-import { IConvocationCoevanResponseDetail, IConvocationResponse, IConvocationResponseDetail } from './../../../shared/interfaces/convocation.interface';
+import { IUniversityResponse } from '../../../shared/interfaces/university.interface';
+import { IAcademicNetworkResponse } from '../../../shared/interfaces/academic-network.interface';
+import { IConvocationCoevanResponseDetail, IConvocationResponse, IConvocationResponseDetail } from '../../../shared/interfaces/convocation.interface';
 import { IModalityConvocationResponse, ITypeConvocationResponse } from '../../../shared/interfaces/convocation.interface';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http"
 import { environment } from "environments/environment"
@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { IDocumentResponseDetail } from '@app/shared/interfaces/create-convocation-document.interface';
 
 
-export class CreateConvocationCoevanHelper{
+export class ConvocationCoevanHelper{
 
 
   protected static API_ROUTES = {
