@@ -19,6 +19,10 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {BadgeModule} from 'primeng/badge';
 import {TreeModule} from 'primeng/tree';
 import {TreeNode} from 'primeng/api';
+import {SidebarModule} from 'primeng/sidebar';
+import {AvatarModule} from 'primeng/avatar';
+import {ListboxModule} from 'primeng/listbox';
+
 
 @NgModule({
   imports:[
@@ -40,7 +44,10 @@ import {TreeNode} from 'primeng/api';
     DialogModule,
     ProgressSpinnerModule,
     BadgeModule,
-    TreeModule
+    TreeModule,
+    SidebarModule,
+    AvatarModule,
+    ListboxModule
   ],
   exports:[
     MultiSelectModule,
@@ -61,7 +68,10 @@ import {TreeNode} from 'primeng/api';
     DialogModule,
     ProgressSpinnerModule,
     BadgeModule,
-    TreeModule
+    TreeModule,
+    SidebarModule,
+    AvatarModule,
+    ListboxModule
   ]
 })
 export class PrimeNGModule{}

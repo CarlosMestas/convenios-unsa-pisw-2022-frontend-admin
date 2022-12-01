@@ -15,7 +15,7 @@ export class AuthService extends AuthHelper{
     super(http)
   }
 
-  login(user:string, password:String):Observable<IHttpServiceResponse<IAdminData>>{
+  login(user:string, password:string):Observable<IHttpServiceResponse<IAdminData>>{
     const response:IHttpServiceResponse<IAdminData> = {
       error:false,
       msg:'',
