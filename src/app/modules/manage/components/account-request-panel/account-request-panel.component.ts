@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
-//import {MessageService} from 'primeng/api';
+import {MessageService} from 'primeng/api';
 import {Store} from "@ngrx/store";
 import {IAppState} from "@ngrx/app.state";
 import {
@@ -11,7 +11,7 @@ import {ExternalStudentsService} from "@core/services/external-students/external
 import {IExternalStudent} from "@shared/interfaces/external-student.interface";
 
 @Component({
- // providers: [MessageService],
+  providers: [MessageService],
   selector: 'app-account-request-panel',
   templateUrl: './account-request-panel.component.html',
   styleUrls: ['./account-request-panel.component.scss']
@@ -30,7 +30,7 @@ export class AccountRequestPanelComponent implements OnInit {
   constructor(
     private store:Store<IAppState>,
     private externalStudent: ExternalStudentsService,
-    //private messageService: MessageService
+    private messageService: MessageService
   ) {
     this.showPanelComponent$ =  new Observable<boolean>()
     this.requestsExternal = []
@@ -68,8 +68,7 @@ export class AccountRequestPanelComponent implements OnInit {
       this.externalStudent.getAllRequestExternalStudents().subscribe(r=>{
         this.requestsExternal = r.data
       })
-     // this.messageService.add({key: 'myKey1',severity:'success', summary: 'Success', detail: 'Message Content'});
-
+      this.messageService.add({key: 'myKey1',severity:'success', summary: 'Operación exitosa', detail: 'La creación de cuenta confirmada'});
     })
     this.closeDialog()
   }
