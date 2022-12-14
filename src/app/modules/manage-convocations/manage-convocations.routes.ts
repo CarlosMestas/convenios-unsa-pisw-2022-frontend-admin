@@ -55,7 +55,7 @@ const routes:Routes =[
         component:CreateConvocationCoevanComponent
       },
       {
-        path:routesValues.ROUTE_VIEW_CONVOCATION_COEVAN,
+        path:routesValues.ROUTE_VIEW_CONVOCATION_COEVAN+"/:id",
         component:ViewConvocationComponent
       },
       {

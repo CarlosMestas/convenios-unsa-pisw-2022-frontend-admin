@@ -1,3 +1,4 @@
+import { universityGetByNetworkIdRequestAction } from './../../actions/convocation/university.actions';
 import { UniversityService } from '@app/core/services/university/university.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -24,6 +25,23 @@ export class UniversityEffect {
           map((resp) => {
             return {
               type: UniversityActions.UNIVERSITIES_GET_ALL_SUCCESS_ACTION,
+              universities: resp.data,
+            };
+          }),
+          catchError(() => EMPTY)
+        )
+      )
+    )
+  );
+
+  universitiesByAcademicNetworkRequestEffect = createEffect(() =>
+    this.actions$.pipe(
+      ofType(universityGetByNetworkIdRequestAction),
+      mergeMap((action) =>
+        this.universityService.getUniversityByAcademicNetwork(action.networkId).pipe(
+          map((resp) => {
+            return {
+              type: UniversityActions.UNIVERSITIES_GET_BY_NETWORK_ID_SUCCESS_ACTION,
               universities: resp.data,
             };
           }),

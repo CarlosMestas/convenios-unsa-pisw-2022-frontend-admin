@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card container-view-table">
   <h3>Convocatorias</h3>
   <p>Tabla de convocatorias</p>
   <p-table *ngIf="convocations$|async as convocations" #dt2 [value]="convocations" dataKey="id"
@@ -6,7 +6,7 @@
       [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [globalFilterFields]="['title','correlative','type','modality','start_date','end_date']">
       <ng-template pTemplate="caption">
-          <div class="flex">
+          <div class="flex-table-options">
               <span class="p-input-icon-left ml-auto">
                   <i class="pi pi-search"></i>
                   <input pInputText type="text" (input)="dt2.filterGlobal(returnValue($event.target),'contains')" placeholder="Buscar Convocatoria" class="p-inputtext p-component p-element" />
@@ -85,8 +85,8 @@
                 {{convocation.end_date}}
               </td>
               <td>
-                <div class="table-actions flex flex-center">
-                  <div class="table-action manage mr-3" routerLink="../view-convocatoria-coevan" mat-icon-button>
+                <div class="table-actions flex-table-options flex-center">
+                  <div class="table-action manage mr-3" (click)="viewConvocation(convocation.id)" mat-icon-button>
                     <mat-icon
                     class="action-icon icon-sm"
                     svgIcon="mat:folder_shared"

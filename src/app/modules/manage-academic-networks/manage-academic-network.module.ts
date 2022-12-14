@@ -6,13 +6,15 @@ import { BodyComponent } from './body/body.component';
 import { AcademicNetworkRouterModule } from './manage-academic-network.routes';
 import { NgModule } from '@angular/core';
 import { CreateAcademicNetworkComponent } from './components/create-academic-network/create-academic-network.component';
+import { ListUniversitiesComponent } from './components/list-universities/list-universities.component';
 
 
 @NgModule({
   declarations:[
     BodyComponent,
     ListAcademicNetworkComponent,
-    CreateAcademicNetworkComponent
+    CreateAcademicNetworkComponent,
+    ListUniversitiesComponent
   ],
   imports:[
     AcademicNetworkRouterModule,

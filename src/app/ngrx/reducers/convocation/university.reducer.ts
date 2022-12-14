@@ -1,3 +1,4 @@
+import { universityGetByNetworkIdRequestAction, universityGetByNetworkIdSuccessAction, universityGetByNetworkIdErrorAction } from './../../actions/convocation/university.actions';
 import { UniversityInitialState } from './../../initial-states/university.initial-state';
 
 import { createReducer, on } from '@ngrx/store';
@@ -20,6 +21,15 @@ export const UniversitiesReducer = createReducer(
     return {...state, working:false}
   }),
   on(universityPostErrorAction,(state)=>{
+    return {...state, working:false}
+  }),
+  on(universityGetByNetworkIdRequestAction,(state)=>{
+    return {...state, working:true}
+  }),
+  on(universityGetByNetworkIdSuccessAction,(state,params)=>{
+    return {...state,universities:params.universities, working:false}
+  }),
+  on(universityGetByNetworkIdErrorAction,(state)=>{
     return {...state, working:false}
   })
 )

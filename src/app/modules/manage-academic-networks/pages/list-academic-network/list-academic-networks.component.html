@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card container-view-table">
   <h3>Redes Académicas</h3>
   <p>Tabla de Redes Académicas</p>
   <p-table *ngIf="academicNetworks$|async as academicNetworks" #dt2 [value]="academicNetworks" dataKey="id"
@@ -36,7 +36,7 @@
               </td>
               <td>
                 <div class="table-actions flex flex-center">
-
+                  <app-list-universities [academicNetworkId]="academicnetwork.id"></app-list-universities>
                   <div class="table-action update mr-3" mat-icon-button>
                     <mat-icon
                     class="action-icon icon-sm"

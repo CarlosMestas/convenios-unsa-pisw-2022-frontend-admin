@@ -55,4 +55,23 @@ export class AcademicNetworkService extends AcademicNetworkHelper{
       catchError(this.errorPost)
     )
   }
+
+  asignAcademicNetwork(form:FormData):Observable<IHttpServiceResponse<IAcademicNetworkResponse>>{
+    const response:IHttpServiceResponse<IAcademicNetworkResponse> = {
+      error:false,
+      msg:'',
+      data:{} as IAcademicNetworkResponse
+    };
+
+    return this.http.post<IHttpResponse<IAcademicNetworkResponse>>(this.url + AcademicNetworkHelper.API_ROUTES.ASIGN_ACADEMIC_NETWORK,form)
+    .pipe(
+      map( resp=>{
+          console.log(resp)
+          response.data=resp.data
+          return response
+        }
+      ),
+      catchError(this.errorPost)
+    )
+  }
 }

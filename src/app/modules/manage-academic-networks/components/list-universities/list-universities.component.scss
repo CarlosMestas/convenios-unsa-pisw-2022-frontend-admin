@@ -1,0 +1,20 @@
+.container.universities{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background-color: aqua;
+    .item-container{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        width: 100%;
+        align-items: center;
+        background-color: aquamarine;
+        .name, .acronym{
+            height: 40px;
+            font-size: 13px;
+            line-height: 40px;
+        }
+    }
+}

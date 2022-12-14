@@ -1,4 +1,9 @@
-.coevanContainer textarea.mat-input-element{
+.convocationContainer textarea.mat-input-element{
+  min-height: 300px;
+  height: auto;
+}
+
+textarea.mat-input-element{
   min-height: 300px;
   height: auto;
 }

@@ -8,7 +8,7 @@ export class UniversityHelper{
   protected static API_ROUTES = {
     UNIVERSITY_GET_ALL:"get-all-universities",
     UNIVERSITY_GET_BY_ACADEMIC_NETWORK:"get-universities-by-academic-network",
-    UNIVERSITY_POST:""
+    UNIVERSITY_POST:"universities"
   }
 
   public url = environment.url

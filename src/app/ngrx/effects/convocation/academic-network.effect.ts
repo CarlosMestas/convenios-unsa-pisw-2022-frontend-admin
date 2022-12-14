@@ -40,6 +40,7 @@ export class AcademicNetworkEffect {
         let form: FormData = new FormData();
         form.append('name', action.value.name);
         form.append('acronym', action.value.acronym);
+        form.append('description', action.value.description);
         form.append('logo', action.value.logo, action.value.logo.name);
         return this.academicNetworkService.postAcademicNetwork(form).pipe(
           map((resp) => {

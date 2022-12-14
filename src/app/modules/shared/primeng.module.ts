@@ -22,7 +22,7 @@ import {TreeNode} from 'primeng/api';
 import {SidebarModule} from 'primeng/sidebar';
 import {AvatarModule} from 'primeng/avatar';
 import {ListboxModule} from 'primeng/listbox';
-
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   imports:[
@@ -47,7 +47,8 @@ import {ListboxModule} from 'primeng/listbox';
     TreeModule,
     SidebarModule,
     AvatarModule,
-    ListboxModule
+    ListboxModule,
+    CheckboxModule
   ],
   exports:[
     MultiSelectModule,
@@ -71,7 +72,8 @@ import {ListboxModule} from 'primeng/listbox';
     TreeModule,
     SidebarModule,
     AvatarModule,
-    ListboxModule
+    ListboxModule,
+    CheckboxModule
   ]
 })
 export class PrimeNGModule{}

@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { ModalityConvocationService } from '@app/core/services/convocation/modality-convocation.service';
 import { TypeConvocationService } from '@app/core/services/convocation/type-convocation.service';
 import { map } from 'rxjs';
@@ -32,7 +33,9 @@ export class ListConvocationComponent implements OnInit {
   constructor(
     private convocationGeneralService: ConvocationGeneralService,
     private typeConvocationService: TypeConvocationService,
-    private modalityConvocationService:ModalityConvocationService
+    private modalityConvocationService:ModalityConvocationService,
+    private router:Router,
+    private activatedRoute:ActivatedRoute
   ) // private messageService: MessageService
   {
     this.convocations$ = new Observable<IConvocationResponse[]>();
@@ -64,5 +67,8 @@ export class ListConvocationComponent implements OnInit {
 
   returnValue(type: EventTarget | null): string {
     return (type as HTMLInputElement).value;
+  }
+  viewConvocation(id:number){
+    this.router.navigate(["../"+ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_VIEW_CONVOCATION_COEVAN+"/"+id],{relativeTo: this.activatedRoute})
   }
 }

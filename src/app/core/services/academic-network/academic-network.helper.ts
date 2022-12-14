@@ -8,7 +8,8 @@ export class AcademicNetworkHelper{
 
   protected static API_ROUTES = {
     ACADEMIC_NETWORK_GET_ALL:"get-all-academic-networks",
-    ACADEMIC_NETWORK_POST:""
+    ACADEMIC_NETWORK_POST:"academic-networks",
+    ASIGN_ACADEMIC_NETWORK:"assign-academic-network"
   }
 
   public url = environment.url

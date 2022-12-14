@@ -7,4 +7,7 @@
   .p-card-content{
     padding: 0;
   }
+  .p-card-content, .p-card-body{
+    height: 100%;
+  }
 }

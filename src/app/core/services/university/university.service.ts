@@ -17,6 +17,8 @@ export class UniversityService extends UniversityHelper{
   }
   getUniversityByAcademicNetwork(id:number):Observable<IHttpServiceResponse<IUniversityResponse[]>>{
 
+
+    console.log("id de red académica:", id)
     const response:IHttpServiceResponse<IUniversityResponse[]> = {
       error:false,
       msg:'',
@@ -30,6 +32,7 @@ export class UniversityService extends UniversityHelper{
     .pipe(
       map(resp =>{
         response.data = resp.data
+        console.log("university by academic network:", resp.data)
         return response
       }
       ),
