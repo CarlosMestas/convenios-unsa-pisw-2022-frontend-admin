@@ -3,6 +3,7 @@ import { ILink, ILinkResponseDetail } from './create-convocation-link.interface'
 import { IDocument, IDocumentResponseDetail } from './create-convocation-document.interface';
 import { IUniversityResponse } from './university.interface';
 import { IAcademicNetworkResponse } from "./academic-network.interface"
+import { ENUMConvocationStatus } from '../enums/convocation.enum';
 
 export enum ETypeConvocations{
   PIVE="PIVE",
@@ -70,7 +71,8 @@ export interface IFormCreateConvocationGeneral{
   start_date:string,
   end_date:string,
   important_notes:string,
-  afiche:File
+  afiche:File,
+  conv_state:ENUMConvocationStatus
 }
 
 export interface IConvocationResponse{

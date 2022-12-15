@@ -11,6 +11,7 @@ import { IModalityConvocationResponse, ITypeConvocationResponse } from '@app/sha
 import { ModalityConvocationService } from '@app/core/services/convocation/modality-convocation.service';
 import { TypeConvocationService } from '@app/core/services/convocation/type-convocation.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { ENUMConvocationCoevanStatus, ENUMConvocationStatus } from '@app/shared/enums/convocation.enum';
 
 @Component({
   selector: 'app-create-convocation',
@@ -85,9 +86,6 @@ export class CreateConvocationComponent implements OnInit {
 
   createConvocationGeneralData(){
 
-
-
-
     let dateini:Date = this.formCreateConvocation.value["startDate"]
     let dateend:Date = this.formCreateConvocation.value["endDate"]
     let createConvocation:IFormCreateConvocationGeneral = {
@@ -99,7 +97,8 @@ export class CreateConvocationComponent implements OnInit {
       start_date: dateini.getFullYear()+"-"+(dateini.getMonth()+1)+"-"+dateini.getDate(),
       end_date: dateend.getFullYear()+"-"+(dateend.getMonth()+1)+"-"+dateend.getDate(),
       important_notes: this.formCreateConvocation.value["importantNotes"],
-      afiche: this.aficheFile
+      afiche: this.aficheFile,
+      conv_state:ENUMConvocationStatus.EN_PROCESO
     }
 
     this.store.dispatch(createConvocationSetStateAction({data:createConvocation}))

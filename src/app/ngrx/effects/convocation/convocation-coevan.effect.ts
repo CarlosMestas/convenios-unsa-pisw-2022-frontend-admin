@@ -34,6 +34,7 @@ export class ConvocationCoevanEffect{
       formData.append("end_date",action.data.general.end_date)
       formData.append("important_notes",action.data.general.important_notes)
       formData.append("afiche",action.data.general.afiche,action.data.general.afiche.name)
+      formData.append("conv_state",action.data.general.conv_state.toString())
       return this.convocationGeneralService.postCreateConvocationGeneral(formData)
       .pipe(
         mergeMap(resp=>{

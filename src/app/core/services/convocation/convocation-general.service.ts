@@ -45,6 +45,7 @@ export class ConvocationGeneralService extends ConvocationGeneralHelper{
     return this.http.get<IHttpResponse<IConvocationResponse[]>>(this.url + ConvocationGeneralHelper.API_ROUTES.GET_ALL_CONVOCATION_GENERAL)
     .pipe(
       map(resp=>{
+        console.log("all convocation general:", resp.data)
         response.data=resp.data
         return response
       }),
