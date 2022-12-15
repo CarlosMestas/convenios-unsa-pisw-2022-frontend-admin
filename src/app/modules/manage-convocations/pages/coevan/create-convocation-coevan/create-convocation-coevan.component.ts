@@ -20,7 +20,7 @@ import { documentsFormCreateConvocationCoevanStateSelector, linksFormCreateConvo
 import { IAcademicNetworkResponse } from '@app/shared/interfaces/academic-network.interface';
 import { AcademicNetworkService } from '@app/core/services/academic-network/academic-network.service';
 import { UniversityService } from '@app/core/services/university/university.service';
-import { formCreateConvocationGeneralStateSelector } from '@app/ngrx/selectors/convocation/create-general.selector';
+import { formCreateConvocationGeneralStateSelector } from '@app/ngrx/selectors/convocation/convocation-general.selector';
 import { requirementsSelector } from '@app/ngrx/selectors/convocation/requirements.selector';
 
 
@@ -158,6 +158,7 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
       }))
     })
 
+    //------------- lo siguiente es un work arround para enviar el tipo IDocument a través de un FormData
     documents.forEach((value,index,array)=>{
         newCoevanConvocation.append("documents[]",JSON.stringify({
           name:value.name,
@@ -169,7 +170,7 @@ export class CreateConvocationCoevanComponent implements OnInit,OnDestroy {
     documents.forEach((value,index,array)=>{
       newCoevanConvocation.append("files[]",value.document,value.document.name)
     })
-
+    // ----------------------------------------------------------------------------------------
 
 
       newCoevanConvocation.append("semester",(this.formCreateConvocationCoevan.value["semester"]))

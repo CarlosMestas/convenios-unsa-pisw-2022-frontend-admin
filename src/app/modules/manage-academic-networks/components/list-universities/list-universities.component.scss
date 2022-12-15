@@ -2,15 +2,16 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    background-color: aqua;
+    gap: 1px;
+    background-color: rgb(202, 202, 202);
     .item-container{
         display: flex;
         flex-direction: row;
         gap: 1rem;
         width: 100%;
         align-items: center;
-        background-color: aquamarine;
+        background-color: rgb(225, 235, 255);
+        padding: 0 1rem ;
         .name, .acronym{
             height: 40px;
             font-size: 13px;

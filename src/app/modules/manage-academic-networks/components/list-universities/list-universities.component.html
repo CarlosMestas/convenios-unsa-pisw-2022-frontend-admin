@@ -1,18 +1,21 @@
-<div class="table-action view mr-3" (click)="displayModal=true" mat-icon-button>
+<div class="table-action view mr-3" (click)="viewModal()" mat-icon-button>
     <mat-icon
       class="action-icon icon-sm"
       svgIcon="mat:list_alt"
     ></mat-icon>
   </div>
   <p-dialog
-  header="Universidades de la red Académica"
+  header="Universidades"
   [(visible)]="displayModal"
   [modal]="true"
   [style]="{width: '30vw'}"
   [baseZIndex]="10000"
   [draggable]="true"
-  [resizable]="false">
+  [resizable]="false"
+  [transitionOptions]="'300ms'"
+  >
 
+  Universidades de la red Académica
   <div class="container universities" *ngIf="universitiesByNetwork$ | async as universitiesByNetwork">
     <div class="item-container" *ngFor="let university of universitiesByNetwork">
         <div class="name">{{university.name}}</div>

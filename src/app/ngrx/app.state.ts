@@ -2,13 +2,13 @@ import { IAcademicNetworkState } from './../shared/interfaces/academic-network.i
 import { IUniversityState } from './../shared/interfaces/university.interface';
 import {IAdminState, IAdminViewState} from "@app/shared/interfaces/admin.interface";
 import { IAuthState } from "@app/shared/interfaces/auth.interface";
-import { IConvocationCoevanState, ICreateConvocationGeneralState, IFormCreateConvocationCoevanState } from "@app/shared/interfaces/convocation.interface";
+import { IConvocationCoevanState, IConvocationGeneralState, IFormCreateConvocationCoevanState } from "@app/shared/interfaces/convocation.interface";
 import {IRole, IRoleState} from "@app/shared/interfaces/role.interface";
 import { ActionReducerMap } from "@ngrx/store";
 import {adminReducer, adminViewItemReducer} from "./reducers/admin/admin.reducer";
 import { authReducer } from "./reducers/auth/auth.reducer";
 import { convocationCoevanReducer } from "./reducers/convocation/convocation-coevan.reducer";
-import { createConvocationGeneralReducer } from "./reducers/convocation/create-convocation-general.reducer";
+import { ConvocationGeneralReducer } from "./reducers/convocation/convocation-general.reducer";
 import { formCreateConvocationCoevanReducer } from "./reducers/convocation/form-create-coevan.reducer";
 import { roleReducer } from "./reducers/role/role.reducer";
 import {roleLogReducer} from "@ngrx/reducers/role/roleLog.reducer";
@@ -25,7 +25,7 @@ export interface IAppState{
   auth:IAuthState,
   admin:IAdminState,
   formCreateConvocationCoevan:IFormCreateConvocationCoevanState,
-  createConvocationGeneral:ICreateConvocationGeneralState,
+  createConvocationGeneral:IConvocationGeneralState,
   convocationCoevan:IConvocationCoevanState
   role:IRoleState
   viewAdmin:IAdminViewState,
@@ -41,7 +41,7 @@ export const ROOT_REDUCERS: ActionReducerMap<IAppState> ={
   admin:adminReducer,
   role:roleReducer,
   formCreateConvocationCoevan:formCreateConvocationCoevanReducer,
-  createConvocationGeneral:createConvocationGeneralReducer,
+  createConvocationGeneral:ConvocationGeneralReducer,
   convocationCoevan:convocationCoevanReducer,
   viewAdmin: adminViewItemReducer,
   roleLog: roleLogReducer,

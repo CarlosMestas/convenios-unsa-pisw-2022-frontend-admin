@@ -1,4 +1,4 @@
-import { createConvocationSetStateAction } from './../../../../ngrx/actions/convocation/create-convocation-general.actions';
+import { createConvocationSetStateAction } from '../../../../ngrx/actions/convocation/convocation-general.actions';
 import { IAppState } from '@app/ngrx/app.state';
 import { Store } from '@ngrx/store';
 import { ManageConvocationsRouterModule } from './../../manage-convocations.routes';

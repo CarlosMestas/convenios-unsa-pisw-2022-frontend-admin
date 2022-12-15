@@ -1,6 +1,7 @@
+import { IConvocationResponse } from './../../shared/interfaces/convocation.interface';
 import { IUniversityResponse } from './../../shared/interfaces/university.interface';
 import { IAcademicNetworkResponse } from './../../shared/interfaces/academic-network.interface';
-import { IConvocationCoevanResponseDetail, IConvocationCoevanState, ICreateConvocationGeneralState, IFormCreateConvocationCoevanState, IFormCreateConvocationGeneral } from "@app/shared/interfaces/convocation.interface";
+import { IConvocationCoevanResponseDetail, IConvocationCoevanState, IConvocationGeneralState, IFormCreateConvocationCoevanState, IFormCreateConvocationGeneral } from "@app/shared/interfaces/convocation.interface";
 
 export const FormCreateConvocationCoevanInitialState:IFormCreateConvocationCoevanState = {
   working: false,
@@ -11,9 +12,10 @@ export const FormCreateConvocationCoevanInitialState:IFormCreateConvocationCoeva
   requirements: []
 }
 
-export const CreateConvocationGeneralInitialState:ICreateConvocationGeneralState ={
+export const ConvocationGeneralInitialState:IConvocationGeneralState ={
   working: false,
-  form: {} as IFormCreateConvocationGeneral
+  form: {} as IFormCreateConvocationGeneral,
+  convocations: []
 }
 
 export const ConvocationCoevanInitialState:IConvocationCoevanState ={

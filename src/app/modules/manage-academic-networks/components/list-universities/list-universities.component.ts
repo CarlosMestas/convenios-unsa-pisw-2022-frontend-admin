@@ -33,16 +33,11 @@ export class ListUniversitiesComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-
-    this.store.dispatch(universityGetByNetworkIdRequestAction({ networkId:this.academicNetworkId}))
-
     const subs1 = this.universityService.getAllUniversity().subscribe(data=>{
       this.universities = data.data
       subs1.unsubscribe()
     })
-
     this.universitiesByNetwork$ = this.store.select(universitiesSelector)
-
     this.unsubscribe.push(subs1)
   }
 
@@ -58,7 +53,7 @@ export class ListUniversitiesComponent implements OnInit,OnDestroy {
       subs2.unsubscribe()
     })
     this.unsubscribe.push(subs2)
-
+    this.universitiesSelected = []
   }
 
 
@@ -66,5 +61,9 @@ export class ListUniversitiesComponent implements OnInit,OnDestroy {
     this.unsubscribe.forEach(sb => sb.unsubscribe());
   }
 
+  viewModal(){
+    this.displayModal = true
+    this.store.dispatch(universityGetByNetworkIdRequestAction({ networkId:this.academicNetworkId}))
+  }
 
 }

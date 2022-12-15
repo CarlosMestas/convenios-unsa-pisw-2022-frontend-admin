@@ -25,9 +25,10 @@ export interface IModalityConvocationResponse{
   name:string
 }
 
-export interface ICreateConvocationGeneralState{
+export interface IConvocationGeneralState{
   working:boolean,
-  form:IFormCreateConvocationGeneral
+  form:IFormCreateConvocationGeneral,
+  convocations:IConvocationResponse[]
 }
 export interface IFormCreateConvocationCoevanState{
   working:boolean,

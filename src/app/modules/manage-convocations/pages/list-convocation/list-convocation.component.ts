@@ -1,3 +1,5 @@
+import { IAppState } from '@ngrx/app.state';
+import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalityConvocationService } from '@app/core/services/convocation/modality-convocation.service';
 import { TypeConvocationService } from '@app/core/services/convocation/type-convocation.service';
@@ -12,6 +14,8 @@ import {
 import { ManageConvocationsRouterModule } from './../../manage-convocations.routes';
 import { Component, OnInit } from '@angular/core';
 import { Table } from 'primeng/table';
+import { getAllConvocationGeneralStateSelector } from '@app/ngrx/selectors/convocation/convocation-general.selector';
+import { convocationGeneralGetAllRequestAction } from '@app/ngrx/actions/convocation/convocation-general.actions';
 
 @Component({
   selector: 'app-list-convocation',
@@ -35,7 +39,8 @@ export class ListConvocationComponent implements OnInit {
     private typeConvocationService: TypeConvocationService,
     private modalityConvocationService:ModalityConvocationService,
     private router:Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private store:Store<IAppState>
   ) // private messageService: MessageService
   {
     this.convocations$ = new Observable<IConvocationResponse[]>();
@@ -48,9 +53,9 @@ export class ListConvocationComponent implements OnInit {
 
   ngOnInit() {
     this.loading = false;
-    this.convocations$ = this.convocationGeneralService
-      .getConvocationGeneralAll()
-      .pipe(map((data) => data.data));
+
+    this.store.dispatch(convocationGeneralGetAllRequestAction())
+    this.convocations$ = this.store.select(getAllConvocationGeneralStateSelector);
 
     this.typesConvocation$ = this.typeConvocationService
       .getAllTypeConvocations()
