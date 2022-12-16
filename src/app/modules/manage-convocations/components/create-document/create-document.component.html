@@ -21,8 +21,8 @@
       </span>
     </div>
     <div class="p-inputgroup document">
-      <p-fileUpload name="myfile[]" (onSelect)="fileLoaded($event)"
-       [maxFileSize]="5000000" [showUploadButton]="false" accept="*.pdf, application/pdf">
+      <p-fileUpload name="myfile[]" (onSelect)="fileLoaded($event)" chooseLabel="Seleccionar"
+       [maxFileSize]="5000000" [showCancelButton]="false" [showUploadButton]="false" accept="*.pdf, application/pdf">
       </p-fileUpload>
     </div>
       <div class="p-inputgroup description">

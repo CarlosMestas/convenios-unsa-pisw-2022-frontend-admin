@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { IUniversityResponse } from './../../../shared/interfaces/university.interface';
 import { map, catchError, Observable, BehaviorSubject } from 'rxjs';
 import {
@@ -23,16 +24,15 @@ export class PostulationService extends PostulationHelper {
       msg: '',
       data: [],
     };
-
+    let params = new HttpParams()
+    params = params.set("id_convocation", id)
     return this.http
       .get<IHttpResponse<IPostulationCoevanResponseDetail[]>>(
         this.url +
-          PostulationHelper.API_ROUTES.POSTULATIONS_GET_BY_CONVOCATION +
-          '?id=' +
-          id
-      )
+          PostulationHelper.API_ROUTES.POSTULATIONS_GET_BY_CONVOCATION,{params})
       .pipe(
         map((resp) => {
+          console.log("postulations:",resp.data)
           response.data = resp.data;
           return response;
         }),
