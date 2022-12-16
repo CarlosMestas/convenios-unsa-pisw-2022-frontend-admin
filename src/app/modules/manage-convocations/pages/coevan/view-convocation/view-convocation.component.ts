@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Observable, pipe, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { IPostulationCoevanResponse } from '@app/shared/interfaces/postulation.interface';
+import { IPostulationCoevanResponseDetail } from '@app/shared/interfaces/postulation.interface';
 import { PostulationService } from '@app/core/services/postulation/postulation.service';
 
 @Component({
@@ -12,13 +12,13 @@ import { PostulationService } from '@app/core/services/postulation/postulation.s
 export class ViewConvocationComponent implements OnInit {
   id:number
   loading:boolean = false
-  postulations$:Observable<IPostulationCoevanResponse[]>
+  postulations$:Observable<IPostulationCoevanResponseDetail[]>
   constructor(
     private postulation:PostulationService,
     route:ActivatedRoute,
   ) {
     this.id = route.snapshot.params['id']
-    this.postulations$ = new Observable<IPostulationCoevanResponse[]>()
+    this.postulations$ = new Observable<IPostulationCoevanResponseDetail[]>()
   }
 
   ngOnInit(): void {

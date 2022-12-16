@@ -7,7 +7,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PostulationHelper } from './postulation.helper';
-import { IPostulationCoevanResponse } from '@app/shared/interfaces/postulation.interface';
+import { IPostulationCoevanResponseDetail } from '@app/shared/interfaces/postulation.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,15 +17,15 @@ export class PostulationService extends PostulationHelper {
   }
   getPostulationsByConvocation(
     id: number
-  ): Observable<IHttpServiceResponse<IPostulationCoevanResponse[]>> {
-    const response: IHttpServiceResponse<IPostulationCoevanResponse[]> = {
+  ): Observable<IHttpServiceResponse<IPostulationCoevanResponseDetail[]>> {
+    const response: IHttpServiceResponse<IPostulationCoevanResponseDetail[]> = {
       error: false,
       msg: '',
       data: [],
     };
 
     return this.http
-      .get<IHttpResponse<IPostulationCoevanResponse[]>>(
+      .get<IHttpResponse<IPostulationCoevanResponseDetail[]>>(
         this.url +
           PostulationHelper.API_ROUTES.POSTULATIONS_GET_BY_CONVOCATION +
           '?id=' +
