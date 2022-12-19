@@ -1,3 +1,4 @@
+import { StepperComponent } from './../../shared/components/stepper/stepper.component';
 import { CommonModule } from '@angular/common';
 import { SidenavItemComponent } from './../../shared/components/sidenav-item/sidenav-item.component';
 import { SidenavComponent } from './../../shared/components/sidenav/sidenav.component';
@@ -11,6 +12,7 @@ import {MenuTopBarComponent} from "@shared/components/menu-top-bar/menu-top-bar.
 
 import {HttpClientModule} from "@angular/common/http"
 import { AppMenuitemComponent } from '@app/shared/components/sidenav/app.menuitem.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { AppMenuitemComponent } from '@app/shared/components/sidenav/app.menuite
     SidenavComponent,
     SidenavItemComponent,
     MenuTopBarComponent,
-    AppMenuitemComponent
+    AppMenuitemComponent,
+    StepperComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -28,7 +31,8 @@ import { AppMenuitemComponent } from '@app/shared/components/sidenav/app.menuite
     ReactiveFormsModule,
     PrimeNGModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxDocViewerModule
   ],
   exports:[
     SidenavComponent,
@@ -39,7 +43,9 @@ import { AppMenuitemComponent } from '@app/shared/components/sidenav/app.menuite
     FormsModule,
     ReactiveFormsModule,
     PrimeNGModule,
-    MenuTopBarComponent
+    MenuTopBarComponent,
+    StepperComponent,
+    NgxDocViewerModule
   ]
 })
 export class SharedModule { }

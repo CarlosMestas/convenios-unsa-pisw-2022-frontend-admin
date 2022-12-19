@@ -13,7 +13,8 @@ const AdminRoutesValues = {
   ROUTE_CONVOCATIONS:"convocatorias",
   ROUTE_UNIVERSITIES:"universidades",
   ROUTE_REQUIREMENTS:"requerimientos",
-  ROUTE_ACADEMIC_NETWORKS:"redes-academicas"
+  ROUTE_ACADEMIC_NETWORKS:"redes-academicas",
+  ROUTE_POSTULATIONS:"postulaciones"
 };
 const AdminRoutes: Routes  = [
   {
@@ -53,6 +54,10 @@ const AdminRoutes: Routes  = [
       {
         path:AdminRoutesValues.ROUTE_REQUIREMENTS,
         loadChildren:()=>import('../manage-requirements/manage-requirements.module').then(m=>m.ManageRequirementsModule)
+      },
+      {
+        path:AdminRoutesValues.ROUTE_POSTULATIONS+"/:id",
+        loadChildren:()=>import('../manage-postulations/postulation.module').then(m=>m.PostulationModule)
       }
     ]
   }

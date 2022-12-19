@@ -146,7 +146,7 @@
               </td>
               <td>
                 <div class="table-actions flex flex-center">
-                  <div class="table-action manage mr-3" routerLink="../view-convocatoria-coevan" mat-icon-button>
+                  <div class="table-action manage mr-3" (click)="viewPostulation(postulation.id)" mat-icon-button>
                     <mat-icon
                     class="action-icon icon-sm"
                     svgIcon="mat:remove_red_eye"

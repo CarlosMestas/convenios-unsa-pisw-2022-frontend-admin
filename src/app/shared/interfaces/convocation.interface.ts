@@ -52,6 +52,14 @@ export interface IConvocationResponseDetail{
   start_date:string,
   end_date:string,
   important_notes:string
+  conv_state:IConvocationStateResponse,
+  banner:string
+}
+
+export interface IConvocationStateResponse{
+  id:number,
+  name:string,
+  description:string
 }
 export interface IConvocationCoevanResponseDetail{
   id:number,

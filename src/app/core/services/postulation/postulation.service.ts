@@ -39,4 +39,25 @@ export class PostulationService extends PostulationHelper {
         catchError(this.getPostulationsByConvocationError)
       );
   }
+
+  getPostulationById(id:number):Observable<
+  IHttpServiceResponse<IPostulationCoevanResponseDetail>>{
+
+    const response = {
+      error:false,
+      msg:'',
+      data:{} as IPostulationCoevanResponseDetail
+    };
+
+    let params:HttpParams = new HttpParams()
+    params = params.set("id",id)
+    return this.http.get<IHttpResponse<IPostulationCoevanResponseDetail>>(this.url + PostulationHelper.API_ROUTES.GET_POSTULATION, {params})
+    .pipe(
+      map( r =>{
+        response.data = r.data;
+        return response;
+      }),
+      catchError(this.error)
+    );
+  }
 }

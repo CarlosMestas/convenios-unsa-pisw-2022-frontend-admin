@@ -1,0 +1,136 @@
+
+<div class="postulation container" *ngIf="postulation; else loader">
+  <div class="personal-data">
+    <div class="photo-container">
+      <img [src]="postulation.photo" alt="imagen de postulante" class="photo">
+    </div>
+    <div class="data">
+      <app-field-data label="Nombre Completo" [data]="postulation.lastname + ', ' + postulation.name"></app-field-data>
+      <app-field-data label="Fecha Nacimiento" [data]="postulation.birth_date"></app-field-data>
+      <app-field-data label="DNI" [data]="postulation.dni"></app-field-data>
+      <app-field-data label="Ciudad/Región" [data]="postulation.city_region_postulant"></app-field-data>
+      <app-field-data label="CUI" [data]="postulation.cui"></app-field-data>
+      <app-field-data label="Dirección" [data]="postulation.current_address"></app-field-data>
+      <app-field-data label="Celular" [data]="postulation.phone"></app-field-data>
+      <app-field-data label="Correo Institucional" [data]="postulation.email"></app-field-data>
+      <app-field-data label="Número caso de Emergencia" [data]="postulation.contact_emergency_number"></app-field-data>
+    </div>
+  </div>
+  <div class="postulation data">
+    <div class="academic-info datalist">
+      <div class="subsection label">
+        Información Académica y Universidad de origen
+      </div>
+      <app-field-data class="subsection data-field" label="Universidad de Origen" [data]="postulation.origin_university.name"></app-field-data>
+      <app-field-data class="subsection data-field" label="Página web" [data]="postulation.web_page"></app-field-data>
+      <app-field-data class="subsection data-field" label="Ciudad/Región Universidad" [data]="postulation.city_region_university"></app-field-data>
+      <app-field-data class="subsection data-field" label="Facutlad" [data]="postulation.faculty.name"></app-field-data>
+      <app-field-data class="subsection data-field" label="Programa Profesional" [data]="postulation.professional_program.name"></app-field-data>
+      <app-field-data class="subsection data-field" label="Ciclo Actual" [data]="postulation.current_cicle.description"></app-field-data>
+      <app-field-data class="subsection data-field" label="Año Académico" [data]="postulation.academic_year.description"></app-field-data>
+      <app-field-data class="subsection data-field" label="Promedio de Notas" [data]="postulation.mean_grades.toString()"></app-field-data>
+      <app-field-data class="subsection data-field" label="Total Créditos Acumulados" [data]="postulation.total_credits.toString()"></app-field-data>
+      <app-field-data class="subsection data-field" label="Coordinador del Programa" [data]="postulation.coordinator"></app-field-data>
+      <app-field-data class="subsection data-field" label="Cargo del Coordinador" [data]="postulation.coordinator_cargue"></app-field-data>
+      <app-field-data class="subsection data-field" label="Correo del coordinador" [data]="postulation.coordinator_email"></app-field-data>
+
+    </div>
+    <div class="courses datalist">
+      <div class="subsection label">
+        Información Académica y Universidad de origen
+      </div>
+      <div class="table-container">
+        <p-table [value]="postulation.courses" class="table-courses-coevan" dataKey="order" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nro</th>
+                    <th> Créditos Curso UNSA</th>
+                    <th>Código curso Unsa</th>
+                    <th>UNSA Nombre de curso</th>
+                    <th>Año</th>
+                    <th>Semestre</th>
+                    <th>UNMSM Nombre Curso</th>
+                  </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-courseconvalidate let-ri="rowIndex">
+                <tr>
+                    <td>
+                      {{ri+1}}
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="output">
+                                {{courseconvalidate.number_credits}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="output">
+                                {{courseconvalidate.course_code}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="output">
+                                {{courseconvalidate.unsa_course_name}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                      <p-cellEditor>
+                          <ng-template pTemplate="output">
+                              {{courseconvalidate.year}}
+                          </ng-template>
+                      </p-cellEditor>
+                  </td>
+                  <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="output">
+                            {{courseconvalidate.semester}}
+                        </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="output">
+                            {{courseconvalidate.target_university_course_name}}
+                        </ng-template>
+                    </p-cellEditor>
+                  </td>
+                </tr>
+            </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="documents datalist">
+      <div class="subsection label">
+        Documentos Cargados
+      </div>
+      <div class="document item">
+        <div class="card-container">
+          <div class="header">
+            <div class="title">Formulario de Postulación UNSA</div>
+            <div class="item-circle" (click)="downloadDocument(postulation.postulation_document)" pTooltip="Descargar" tooltipPosition="left">
+              <span class="icon-container" >
+                <i class="icon pi pi-cloud-download">
+                </i>
+              </span>
+            </div>
+          </div>
+          <div class="card-content">
+            <ngx-doc-viewer
+              [url]="postulation.postulation_document"
+              viewer="google"
+              style="width:100%;height:70vh;"
+            ></ngx-doc-viewer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <div>loading</div>
+</ng-template>

@@ -1,4 +1,6 @@
-import { ActivatedRoute } from '@angular/router';
+import { ManageRoutingModule } from '@app/modules/manage/manage.routes';
+import { AppRoutingModule } from './../../../../main/app.routes';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, pipe, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { IPostulationCoevanResponseDetail } from '@app/shared/interfaces/postulation.interface';
@@ -15,9 +17,10 @@ export class ViewConvocationComponent implements OnInit {
   postulations$:Observable<IPostulationCoevanResponseDetail[]>
   constructor(
     private postulation:PostulationService,
-    route:ActivatedRoute,
+    private activatedRoute:ActivatedRoute,
+    private router:Router
   ) {
-    this.id = route.snapshot.params['id']
+    this.id = activatedRoute.snapshot.params['id']
     this.postulations$ = new Observable<IPostulationCoevanResponseDetail[]>()
   }
 
@@ -27,5 +30,9 @@ export class ViewConvocationComponent implements OnInit {
   }
   returnValue(type: EventTarget | null): string {
     return (type as HTMLInputElement).value;
+  }
+
+  viewPostulation(id:number){
+    this.router.navigate(["./"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_ADMIN+"/"+ManageRoutingModule.ROUTES_VALUES.ROUTE_POSTULATIONS,id])
   }
 }

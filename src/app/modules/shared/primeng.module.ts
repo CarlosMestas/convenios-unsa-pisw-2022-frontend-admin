@@ -23,7 +23,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {AvatarModule} from 'primeng/avatar';
 import {ListboxModule} from 'primeng/listbox';
 import {CheckboxModule} from 'primeng/checkbox';
-
+import {StepsModule} from 'primeng/steps';
 @NgModule({
   imports:[
     MultiSelectModule,
@@ -48,7 +48,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     SidebarModule,
     AvatarModule,
     ListboxModule,
-    CheckboxModule
+    CheckboxModule,
+    StepsModule
   ],
   exports:[
     MultiSelectModule,
@@ -73,7 +74,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     SidebarModule,
     AvatarModule,
     ListboxModule,
-    CheckboxModule
+    CheckboxModule,
+    StepsModule
   ]
 })
 export class PrimeNGModule{}

@@ -1,3 +1,4 @@
+import { IConvocationResponseDetail } from './../../../shared/interfaces/convocation.interface';
 import { IConvocationResponse } from '../../../shared/interfaces/convocation.interface';
 import {
   IModalityConvocationResponse,
@@ -11,6 +12,7 @@ export class ConvocationGeneralHelper {
   public static API_ROUTES = {
     CREATE_CONVOCATION_GENERAL_POST: 'create-convocation',
     GET_ALL_CONVOCATION_GENERAL: 'convocations/all',
+    GET_CONVOCATION: 'convocations',
   };
 
   public url = environment.url;
@@ -80,4 +82,18 @@ export class ConvocationGeneralHelper {
       ],
     });
   }
+  error(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage,
+      data: {} as IConvocationResponseDetail
+    })
+  }
+
 }
