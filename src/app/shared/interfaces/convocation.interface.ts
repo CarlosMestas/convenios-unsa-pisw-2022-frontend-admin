@@ -95,3 +95,9 @@ export interface IConvocationResponse{
   end_date:string,
   important_notes:string
 }
+
+
+export interface IConvocationReviewActionObservation{
+  description:string,
+  esquela:File
+}

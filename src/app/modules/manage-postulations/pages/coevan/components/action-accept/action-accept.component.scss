@@ -1,0 +1,29 @@
+.item-circle.check{
+  background-color: #1a51e9de;
+}
+.item-circle.check:hover{
+  background-color: #13389cde;
+}
+
+
+.item-circle{
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 16px;
+  box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+  .icon{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 32px;
+  }
+}
+.item-circle:hover{
+  background-color: #ec0043de;
+}

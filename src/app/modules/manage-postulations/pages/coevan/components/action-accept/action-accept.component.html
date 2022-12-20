@@ -1,0 +1,12 @@
+
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<div class="item-circle check" (click)="confirm()" pTooltip="Aceptar Postulación" tooltipPosition="left">
+  <span class="icon-container">
+    <i class="icon pi pi-check">
+    </i>
+  </span>
+</div>
+
+<p-messages [(value)]="msgs"></p-messages>

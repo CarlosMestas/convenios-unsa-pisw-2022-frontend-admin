@@ -47,11 +47,9 @@
               <th>DNI</th>
               <th>CUI</th>
               <th>Programa Profesional</th>
-              <th>Año</th>
-              <th>Ranking</th>
               <th>Promedio</th>
               <th>Créditos</th>
-              <th>Matrícula</th>
+              <th>Estado</th>
               <th>Actions</th>
           </tr>
           <tr>
@@ -130,19 +128,13 @@
                 {{postulation.professional_program.name}}
               </td>
               <td>
-                {{postulation.academic_year.name}}
-              </td>
-              <td>
-                {{postulation.mean_grades}}
-              </td>
-              <td>
                 {{postulation.mean_grades}}
               </td>
               <td>
                 {{postulation.total_credits}}
               </td>
-              <td>
-                {{postulation.total_credits}}
+              <td [ngStyle]="{color:postulation.post_state.id==1?'#000EEA':'#0EEA00', fontWeight:'bolder'}" >
+                {{postulation.post_state.name}}
               </td>
               <td>
                 <div class="table-actions flex flex-center">

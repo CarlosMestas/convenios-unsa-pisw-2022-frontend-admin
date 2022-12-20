@@ -24,6 +24,9 @@ import {AvatarModule} from 'primeng/avatar';
 import {ListboxModule} from 'primeng/listbox';
 import {CheckboxModule} from 'primeng/checkbox';
 import {StepsModule} from 'primeng/steps';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
+
 @NgModule({
   imports:[
     MultiSelectModule,
@@ -49,7 +52,8 @@ import {StepsModule} from 'primeng/steps';
     AvatarModule,
     ListboxModule,
     CheckboxModule,
-    StepsModule
+    StepsModule,
+    ConfirmDialogModule
   ],
   exports:[
     MultiSelectModule,
@@ -75,7 +79,8 @@ import {StepsModule} from 'primeng/steps';
     AvatarModule,
     ListboxModule,
     CheckboxModule,
-    StepsModule
+    StepsModule,
+    ConfirmDialogModule
   ]
 })
 export class PrimeNGModule{}

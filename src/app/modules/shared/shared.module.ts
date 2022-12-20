@@ -14,6 +14,8 @@ import {HttpClientModule} from "@angular/common/http"
 import { AppMenuitemComponent } from '@app/shared/components/sidenav/app.menuitem.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     PrimeNGModule,
     CommonModule,
     HttpClientModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    MessagesModule,
+    MessageModule
   ],
   exports:[
     SidenavComponent,
@@ -45,7 +49,9 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     PrimeNGModule,
     MenuTopBarComponent,
     StepperComponent,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    MessagesModule,
+    MessageModule
   ]
 })
 export class SharedModule { }

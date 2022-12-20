@@ -5,18 +5,18 @@
   padding: .25rem;
   .label{
     width: 100%;
-    font-size: 12px;
+    font-size: 11px;
     overflow:hidden;
+    color: #838383;
   }
   .data{
     width: 100%;
-    font-weight: bolder;
+    font-weight: 500;
     font-size: 13px;
     overflow-x:scroll;
+    color: #0e0e0e;
   }
-  .data{
-    color: #686868;
-  }
+
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   .label::-webkit-scrollbar {
