@@ -1,4 +1,3 @@
-import { IRole } from './../../../shared/interfaces/role.interface';
 import {map, catchError, Observable} from 'rxjs';
 import { IHttpServiceResponse, IHttpResponse } from './../../../shared/interfaces/transactions/http-response.transaction';
 import { HttpClient } from '@angular/common/http';
@@ -78,7 +77,7 @@ export class ExternalStudentsService extends ExternalStudentsHelper{
       )
   }
 
-  attendRequest(idRequest: number, email:string):Observable<IHttpServiceResponse<IExternalStudent>>{
+  attendRequest(idRequest: number, password:string):Observable<IHttpServiceResponse<IExternalStudent>>{
 
     const response:IHttpServiceResponse<IExternalStudent> = {
       error:false,
@@ -90,7 +89,7 @@ export class ExternalStudentsService extends ExternalStudentsHelper{
       this.url + ExternalStudentsHelper.API_EXTERNAL_STUDENTS_SERVICE_ROUTES.ATTEND_REQUEST,
       {
         id : idRequest,
-        email: email
+        password_created: password
       }
     )
       .pipe(

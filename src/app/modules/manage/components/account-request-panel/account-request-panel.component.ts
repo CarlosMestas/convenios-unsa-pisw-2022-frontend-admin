@@ -24,7 +24,7 @@ export class AccountRequestPanelComponent implements OnInit {
   newExternalStudent = {
     oldEmail: '',
     requestSelected: -1,
-    emailCreated: ''
+    password_created: ''
   }
 
   constructor(
@@ -41,6 +41,7 @@ export class AccountRequestPanelComponent implements OnInit {
       this.display = evt
     })
     this.externalStudent.getAllRequestExternalStudents().subscribe(r=>{
+      console.log("REQUEST", r)
       this.requestsExternal = r.data
     })
   }
@@ -58,12 +59,12 @@ export class AccountRequestPanelComponent implements OnInit {
     this.displayDialog=false
     this.newExternalStudent.requestSelected = -1
     this.newExternalStudent.oldEmail = ''
-    this.newExternalStudent.emailCreated = ''
+    this.newExternalStudent.password_created = ''
   }
   acceptRequest(){
     this.externalStudent.attendRequest(
       this.newExternalStudent.requestSelected,
-      this.newExternalStudent.emailCreated
+      this.newExternalStudent.password_created
     ).subscribe(r=>{
       this.externalStudent.getAllRequestExternalStudents().subscribe(r=>{
         this.requestsExternal = r.data
