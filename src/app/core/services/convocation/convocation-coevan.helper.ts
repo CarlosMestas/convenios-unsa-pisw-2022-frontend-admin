@@ -26,6 +26,7 @@ export class ConvocationCoevanHelper{
   }
 
   postCreateConvocationCoevanError(error:HttpErrorResponse){
+
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
       errorMessage = error.error.message
@@ -39,12 +40,15 @@ export class ConvocationCoevanHelper{
       data:
         {
           id: 1,
-          convocation: {} as IConvocationResponseDetail,
           academicNetwork: {} as IAcademicNetworkResponse,
           university: {} as IUniversityResponse,
           documents: [],
           links: [],
-          requirements: []
+          requirements: [],
+          semester: '',
+          avaltext: '',
+          coursestext: '',
+          commitment: ''
         }
     })
   }

@@ -6,7 +6,7 @@
     </div>
     <div class="data">
       <app-field-data label="Nombre Completo" [data]="postulation.lastname + ', ' + postulation.name"></app-field-data>
-      <app-field-data label="Fecha Nacimiento" [data]="postulation.birth_date"></app-field-data>
+      <app-field-data label="Fecha Nacimiento" [data]="postulation.birth_date | date"></app-field-data>
       <app-field-data label="DNI" [data]="postulation.dni"></app-field-data>
       <app-field-data label="Ciudad/Región" [data]="postulation.city_region_postulant"></app-field-data>
       <app-field-data label="CUI" [data]="postulation.cui"></app-field-data>
@@ -37,7 +37,7 @@
     </div>
     <div class="courses datalist">
       <div class="subsection label">
-        Información Académica y Universidad de origen
+        Cursos a llevar
       </div>
       <div class="table-container">
         <p-table [value]="postulation.courses" class="table-courses-coevan" dataKey="order" responsiveLayout="scroll">
@@ -49,7 +49,7 @@
                     <th>UNSA Nombre de curso</th>
                     <th>Año</th>
                     <th>Semestre</th>
-                    <th>UNMSM Nombre Curso</th>
+                    <th>{{convocation.university.acronym}} Nombre Curso</th>
                   </tr>
             </ng-template>
             <ng-template pTemplate="body" let-courseconvalidate let-ri="rowIndex">

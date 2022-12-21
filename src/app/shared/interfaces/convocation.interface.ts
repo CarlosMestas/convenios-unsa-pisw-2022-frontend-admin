@@ -63,12 +63,15 @@ export interface IConvocationStateResponse{
 }
 export interface IConvocationCoevanResponseDetail{
   id:number,
-  convocation:IConvocationResponseDetail,
-  academicNetwork:IAcademicNetworkResponse,
-  university:IUniversityResponse,
-  documents:IDocumentResponseDetail[],
-  links:ILinkResponseDetail[],
-  requirements:IRequirementResponse[]
+    academicNetwork:IAcademicNetworkResponse,
+    university:IUniversityResponse,
+    documents:IDocumentResponseDetail[],
+    links:ILinkResponseDetail[],
+    requirements:IRequirementResponse[],
+    semester:string,
+    avaltext:string,
+    coursestext:string,
+    commitment:string
 }
 
 export interface IFormCreateConvocationGeneral{
