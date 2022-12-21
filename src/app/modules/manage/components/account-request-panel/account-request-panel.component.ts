@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
-//import {MessageService} from 'primeng/api';
+import {MessageService} from 'primeng/api';
 import {Store} from "@ngrx/store";
 import {IAppState} from "@ngrx/app.state";
 import {
@@ -9,9 +9,10 @@ import {
 import {hideAccountRequestComponentAction} from "@ngrx/actions/components/components.actions";
 import {ExternalStudentsService} from "@core/services/external-students/external-students.service";
 import {IExternalStudent} from "@shared/interfaces/external-student.interface";
+import {ResourcesService} from "@core/services/postulation/resources.service";
 
 @Component({
- // providers: [MessageService],
+  providers: [MessageService],
   selector: 'app-account-request-panel',
   templateUrl: './account-request-panel.component.html',
   styleUrls: ['./account-request-panel.component.scss']
@@ -24,14 +25,15 @@ export class AccountRequestPanelComponent implements OnInit {
   newExternalStudent = {
     oldEmail: '',
     requestSelected: -1,
-    emailCreated: ''
+    password_created: ''
   }
 
   constructor(
     private store:Store<IAppState>,
     private externalStudent: ExternalStudentsService,
-    //private messageService: MessageService
-  ) {
+    private messageService: MessageService,
+    private resourcesService:ResourcesService
+) {
     this.showPanelComponent$ =  new Observable<boolean>()
     this.requestsExternal = []
   }
@@ -41,6 +43,7 @@ export class AccountRequestPanelComponent implements OnInit {
       this.display = evt
     })
     this.externalStudent.getAllRequestExternalStudents().subscribe(r=>{
+      console.log("REQUEST", r)
       this.requestsExternal = r.data
     })
   }
@@ -58,20 +61,26 @@ export class AccountRequestPanelComponent implements OnInit {
     this.displayDialog=false
     this.newExternalStudent.requestSelected = -1
     this.newExternalStudent.oldEmail = ''
-    this.newExternalStudent.emailCreated = ''
+    this.newExternalStudent.password_created = ''
   }
   acceptRequest(){
     this.externalStudent.attendRequest(
       this.newExternalStudent.requestSelected,
-      this.newExternalStudent.emailCreated
+      this.newExternalStudent.password_created
     ).subscribe(r=>{
       this.externalStudent.getAllRequestExternalStudents().subscribe(r=>{
         this.requestsExternal = r.data
       })
-     // this.messageService.add({key: 'myKey1',severity:'success', summary: 'Success', detail: 'Message Content'});
-
+      this.messageService.add({key: 'myKey1',severity:'success', summary: 'Operación exitosa', detail: 'La creación de cuenta confirmada'});
     })
     this.closeDialog()
   }
-
+  downloadDocument(url:string){
+    this.resourcesService.downloadDocument(url).subscribe(data=>{
+      let a  = document.createElement('a')
+      a.download = "Justificación"
+      a.href = window.URL.createObjectURL(data.data)
+      a.click()
+    })
+  }
 }

@@ -10,6 +10,7 @@ import {ProfileAdminComponent} from "./pages/profile-admin/profile-admin.compone
 import {
   AccountRequestPanelComponent
 } from "@modules/manage/components/account-request-panel/account-request-panel.component";
+import {NgxDocViewerModule} from "ngx-doc-viewer";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {
     ManageRoutingModule,
     SharedModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxDocViewerModule
   ]
 })
 export class ManageModule { }

@@ -4,8 +4,8 @@ export interface IExternalStudent{
   lastname:string,
   email:string,
   justification:string,
-  status_request:number,
-  email_created:string
+  status_request: number,
+  password_created: string
 }
 
 export interface IExternalStudentError{
