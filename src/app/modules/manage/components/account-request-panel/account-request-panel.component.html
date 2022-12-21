@@ -19,12 +19,12 @@
           </div>
           <div class="body">
             <p> Correo: {{request.email}}</p>
-            <button pButton pRipple label="Ver justificación" icon="pi pi-download"></button>
-            <ngx-doc-viewer
-              [url]="request.justification"
+            <button pButton pRipple label="Descargar justificación" icon="pi pi-download" (click)="downloadDocument('https://images-profiles-pis.s3.amazonaws.com/'+request.justification)"></button>
+            <!--<ngx-doc-viewer
+              [url]="'https://images-profiles-pis.s3.amazonaws.com/'+request.justification"
               viewer="google"
               style="width:100%;height:50vh;"
-            ></ngx-doc-viewer>
+            ></ngx-doc-viewer> -->
           </div>
           <div class="footer" *ngIf="request.status_request==0">
             <p-button label="Aprobar" icon="pi pi-check" styleClass="p-button-success" (click)="showDialog(request.id, request.email)"></p-button>
@@ -63,8 +63,8 @@
 
     <div class="footer-dialog-msg">
 
-      <p>No olvide enviar la constraseña creada: <span class="email-links">{{newExternalStudent.password_created}}</span></p>
-      <p> al correo: <span class="email-links">{{newExternalStudent.oldEmail}}</span> para confirmar su creación de cuenta, gracias.</p>
+      <p>No olvide enviar la cuenta temporal al correo: <span class="email-links">{{newExternalStudent.oldEmail}}</span>. </p>
+      <p> La cuenta se registra con el mismo correo de solicitud y la constraseña creada: <span class="email-links">{{newExternalStudent.password_created}}</span></p>
     </div>
   </div>
   <ng-template pTemplate="footer">

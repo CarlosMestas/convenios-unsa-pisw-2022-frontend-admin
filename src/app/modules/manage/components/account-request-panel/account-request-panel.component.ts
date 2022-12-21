@@ -9,6 +9,7 @@ import {
 import {hideAccountRequestComponentAction} from "@ngrx/actions/components/components.actions";
 import {ExternalStudentsService} from "@core/services/external-students/external-students.service";
 import {IExternalStudent} from "@shared/interfaces/external-student.interface";
+import {ResourcesService} from "@core/services/postulation/resources.service";
 
 @Component({
   providers: [MessageService],
@@ -30,8 +31,9 @@ export class AccountRequestPanelComponent implements OnInit {
   constructor(
     private store:Store<IAppState>,
     private externalStudent: ExternalStudentsService,
-    private messageService: MessageService
-  ) {
+    private messageService: MessageService,
+    private resourcesService:ResourcesService
+) {
     this.showPanelComponent$ =  new Observable<boolean>()
     this.requestsExternal = []
   }
@@ -73,5 +75,12 @@ export class AccountRequestPanelComponent implements OnInit {
     })
     this.closeDialog()
   }
-
+  downloadDocument(url:string){
+    this.resourcesService.downloadDocument(url).subscribe(data=>{
+      let a  = document.createElement('a')
+      a.download = "Justificación"
+      a.href = window.URL.createObjectURL(data.data)
+      a.click()
+    })
+  }
 }
