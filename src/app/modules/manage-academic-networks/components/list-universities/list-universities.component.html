@@ -1,0 +1,42 @@
+<div class="table-action view mr-3" (click)="viewModal()" mat-icon-button>
+    <mat-icon
+      class="action-icon icon-sm"
+      svgIcon="mat:list_alt"
+    ></mat-icon>
+  </div>
+  <p-dialog
+  header="Universidades"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{width: '30vw'}"
+  [baseZIndex]="10000"
+  [draggable]="true"
+  [resizable]="false"
+  [transitionOptions]="'300ms'"
+  >
+
+  Universidades de la red Académica
+  <div class="container universities" *ngIf="universitiesByNetwork$ | async as universitiesByNetwork">
+    <div class="item-container" *ngFor="let university of universitiesByNetwork">
+        <div class="name">{{university.name}}</div>
+        <div class="acronym">{{university.acronym}}</div>
+    </div>
+  </div>
+
+  Todas las Universidades
+
+
+
+  <div class="container universities" *ngIf="universities">
+    <div class="item-container" *ngFor="let university of universities">
+        <p-checkbox name="groupname" [value]="university.id" [(ngModel)]="universitiesSelected"></p-checkbox>
+        <div class="name">{{university.name}}</div>
+        <div class="acronym">{{university.acronym}}</div>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="save()" label="Guardar" class="p-button-text"></p-button>
+      <button pButton type="button" (click)="displayModal = false" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+  </ng-template>
+</p-dialog>

@@ -1,93 +1,112 @@
-<div class="container">
+<div class="container convocationContainer">
   <div class="header">Crear Convocatoria</div>
   <div class="content">
     <div class="left">
+
       <form class="form-content" [formGroup]="formCreateConvocation">
+
         <div class="p-inputgroup name">
-          <span class="p-form-element p-inputgroup-addon">
-              <i class="pi pi-user"></i>
-          </span>
-          <span class="p-form-element p-float-label">
-              <input type="text" id="inputgroup" pInputText formControlName="nameConvocation">
-              <label for="inputgroup">Nombre de la Convocatoria</label>
-          </span>
-        </div>
-        <div class="p-inputgroup" *ngIf="convocationTypes$|async as convocationTypes">
-          <span class="p-form-element p-inputgroup-addon">
-            <i class="pi pi-briefcase"></i>
-          </span>
-          <span class="p-form-element p-float-label">
-              <p-dropdown inputId="typeconvocation" [autoDisplayFirst]="false" [options]="convocationTypes" optionLabel="name" formControlName="typeConvocation"></p-dropdown>
-              <label for="typeconvocation">Tipo de Convocatoria</label>
-          </span>
+          <mat-form-field class="flex-auto" appearance="fill">
+            <mat-label>Nombre de la Convocatoria</mat-label>
+            <input formControlName="nameConvocation" matInput type="text" class="example-right-align" placeholder="AGUSTINO, EL 2022-B, ESTUDIA EN LA RPU – UPCH">
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
         </div>
 
         <div class="p-inputgroup">
-          <span class="p-form-element p-inputgroup-addon">
-              <i class="pi pi-tag"></i>
-          </span>
-          <span class="p-form-element p-float-label">
-              <input type="text" id="inputgroup" pInputText formControlName="correlative">
-              <label for="inputgroup">Correlativo</label>
-          </span>
+          <mat-form-field class="flex-auto" appearance="fill" *ngIf="convocationTypes$|async as convocationTypes">
+            <mat-label>Tipo de Convocatoria</mat-label>
+            <mat-select formControlName="typeConvocation" (selectionChange)="generateCorrelative($event.value)">
+                <mat-option *ngFor="let convocationType of convocationTypes" [value]="convocationType">
+                  {{convocationType.name}}
+                </mat-option>
+            </mat-select>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:type_specimen"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
         </div>
 
-        <div class="p-inputgroup" *ngIf="convocationModalities$ | async as convocationModalities">
-          <span class="p-form-element p-inputgroup-addon">
-            <i class="pi pi-car"></i>
-          </span>
-          <span class="p-form-element p-float-label">
-              <p-dropdown inputId="typeconvocation" [autoDisplayFirst]="false" [options]="convocationModalities" optionLabel="name" formControlName="modalityConvocation"></p-dropdown>
-              <label for="typeconvocation">Modalidad Convocatoria</label>
-          </span>
+        <div class="p-inputgroup">
+          <mat-form-field class="flex-auto" appearance="fill">
+            <mat-label>Correlativo</mat-label>
+            <input formControlName="correlative" matInput type="text" class="example-right-align" placeholder="">
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="p-inputgroup">
+          <mat-form-field class="flex-auto" appearance="fill" *ngIf="convocationModalities$|async as convocationModalities">
+            <mat-label>Modalidad Convocatoria</mat-label>
+            <mat-select formControlName="modalityConvocation">
+                <mat-option *ngFor="let convocationModality of convocationModalities" [value]="convocationModality">
+                  {{convocationModality.name}}
+                </mat-option>
+            </mat-select>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:merge_type"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="p-inputgroup date-start-end">
+
+          <mat-form-field appearance="fill">
+            <mat-label>Rango de Inicio a Fin </mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="startDate" placeholder="Fecha Inicio">
+              <input matEndDate formControlName="endDate" (dateChange)="generateCorrelative($event)" placeholder="Fecha Fin">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
         </div>
 
         <div class="p-inputgroup description">
-          <span class="p-form-element p-inputgroup-addon">
-              <i class="pi pi-info-circle"></i>
-          </span>
-          <span class="p-form-element p-float-label">
-              <input type="text" id="inputgroup" pInputText formControlName="description">
-              <label for="inputgroup">Descripción</label>
-          </span>
-        </div>
 
-        <div class="p-inputgroup date-start">
-            <span class="p-form-element p-inputgroup-addon">
-              <i class="pi pi-calendar"></i>
-            </span>
-            <span class="p-float-label">
-                <p-calendar inputId="calendar-start" formControlName="startDate"></p-calendar>
-                <label for="calendar-start">Fecha de inicio</label>
-            </span>
-        </div>
-
-        <div class="p-inputgroup date-end">
-          <span class="p-form-element p-inputgroup-addon">
-            <i class="pi pi-calendar"></i>
-          </span>
-          <span class="p-float-label">
-              <p-calendar inputId="calendar-end" formControlName="endDate" (onSelect)="generateCorrelative($event)"></p-calendar>
-              <label for="calendar-end">Fecha de Finalización</label>
-          </span>
+          <mat-form-field class="flex-auto" appearance="fill">
+            <mat-label>Descripción</mat-label>
+            <input formControlName="description" matInput type="text" class="example-right-align" placeholder="">
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:description"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
         </div>
 
         <div class="p-inputgroup importantnotes">
-          <span class="p-float-label">
-            <textarea inputId="importantnotes" rows="3" style="resize: none;" cols="30" formControlName="importantNotes" pInputTextarea></textarea>
-            <label for="importantnotes">Nota Importante</label>
-          </span>
+
+          <mat-form-field class="flex-auto" appearance="fill">
+            <mat-label>Nota Importante</mat-label>
+            <textarea formControlName="importantNotes" class="example-right-align" matInput></textarea>
+            <mat-icon class="mr-3" matPrefix svgIcon="mat:speaker_notes"></mat-icon>
+            <mat-hint>(obligatorio)</mat-hint>
+          </mat-form-field>
         </div>
       </form>
     </div>
     <div class="right">
-      <p-fileUpload name="myfile[]" accept="image/*" [showUploadButton]="false" (onSelect)="fileLoaded($event)"></p-fileUpload>
-      <!-- <p-image class="image-design" src="assets/images/post.png" alt="Image" width="300"></p-image> -->
+
+<div class="banner-container">
+      <p-fileUpload (onSelect)="fileLoaded($event)" name="myfile" url="./upload.php" [multiple]="false"
+                      accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
+                      >
+                      <ng-template pTemplate="toolbar">
+                      </ng-template>
+                      <ng-template let-file pTemplate="file">
+                          <div class="image-container">
+                            <img  [src]="file.objectURL"/>
+                          </div>
+                      </ng-template>
+                      <ng-template pTemplate="content" let-files>
+                          <div></div>
+                      </ng-template>
+              </p-fileUpload>
+            </div>
     </div>
   </div>
   <div class="footer-controls">
     <p-button label="Siguiente" (click)="createConvocationGeneralData()" icon="pi pi-check"></p-button>
-    <button pButton type="button" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+    <button pButton type="button" icon="pi pi-trash" label="Cancelar" routerLink="../"  class="p-button-outlined p-button-danger"></button>
     <!-- <p-button label="Cancelar" icon="pi pi-trash" class="p-button-danger"></p-button> -->
   </div>
 </div>

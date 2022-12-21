@@ -1,4 +1,4 @@
-<p-dialog header="Crear Document" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+<p-dialog header="Crear Documento" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
     [draggable]="true" [resizable]="false" (onHide)="hideModalDialog()">
     <form class="form-container" [formGroup]="formCreateDocument">
 
@@ -21,8 +21,8 @@
       </span>
     </div>
     <div class="p-inputgroup document">
-      <p-fileUpload name="myfile[]" (onSelect)="fileLoaded($event)"
-        accept="image/*" [maxFileSize]="1000000" [showUploadButton]="false" accept="*.pdf, application/pdf">
+      <p-fileUpload name="myfile[]" (onSelect)="fileLoaded($event)" chooseLabel="Seleccionar"
+       [maxFileSize]="5000000" [showCancelButton]="false" [showUploadButton]="false" accept="*.pdf, application/pdf">
       </p-fileUpload>
     </div>
       <div class="p-inputgroup description">

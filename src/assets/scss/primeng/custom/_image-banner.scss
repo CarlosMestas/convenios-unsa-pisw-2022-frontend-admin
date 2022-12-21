@@ -1,0 +1,29 @@
+.banner-container{
+  .p-fileupload-content{
+    height: 100%;
+    min-height: 400px;
+    width: auto;
+  }
+
+  .p-fileupload{
+    width: 100%;
+    min-width: 480px;
+  }
+
+  .p-fileupload-files{
+
+    height: 100%;
+    overflow: hidden;
+    .ng-star-inserted{
+      .image-container{
+        width: 100%;
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+
+}

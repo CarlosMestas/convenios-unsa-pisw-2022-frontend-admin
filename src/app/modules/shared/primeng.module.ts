@@ -17,9 +17,14 @@ import { DialogModule } from 'primeng/dialog';
 import {PasswordModule} from 'primeng/password';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {BadgeModule} from 'primeng/badge';
+import {TreeModule} from 'primeng/tree';
+import {TreeNode} from 'primeng/api';
 import {SidebarModule} from 'primeng/sidebar';
 import {AvatarModule} from 'primeng/avatar';
 import {ListboxModule} from 'primeng/listbox';
+import {CheckboxModule} from 'primeng/checkbox';
+import {StepsModule} from 'primeng/steps';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -42,9 +47,13 @@ import {ListboxModule} from 'primeng/listbox';
     DialogModule,
     ProgressSpinnerModule,
     BadgeModule,
+    TreeModule,
     SidebarModule,
     AvatarModule,
-    ListboxModule
+    ListboxModule,
+    CheckboxModule,
+    StepsModule,
+    ConfirmDialogModule
   ],
   exports:[
     MultiSelectModule,
@@ -65,9 +74,13 @@ import {ListboxModule} from 'primeng/listbox';
     DialogModule,
     ProgressSpinnerModule,
     BadgeModule,
+    TreeModule,
     SidebarModule,
     AvatarModule,
-    ListboxModule
+    ListboxModule,
+    CheckboxModule,
+    StepsModule,
+    ConfirmDialogModule
   ]
 })
 export class PrimeNGModule{}

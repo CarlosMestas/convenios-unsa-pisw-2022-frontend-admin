@@ -5,6 +5,9 @@ import { AdminEffect } from "./admin/admin.effects";
 import { AuthEffect } from "./auth/auth.effects";
 import { RequirementEffect } from "./convocation/requirement.effect";
 import { RoleEffect } from "./role/role.effects";
+import { UniversityEffect } from './convocation/universities.effect';
+import { AcademicNetworkEffect } from './convocation/academic-network.effect';
+import { ConvocationEffect } from './convocation/convocation.effect';
 
 // para que funcione dentro del entorno de la aplicación
 export const effectsOF = [
@@ -12,5 +15,8 @@ export const effectsOF = [
   AdminEffect,
   RoleEffect,
   RequirementEffect,
-  ConvocationCoevanEffect
+  ConvocationCoevanEffect,
+  UniversityEffect,
+  AcademicNetworkEffect,
+  ConvocationEffect
 ]

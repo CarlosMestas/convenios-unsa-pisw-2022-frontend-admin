@@ -10,7 +10,11 @@ const AdminRoutesValues = {
   ROUTE_HOME:"home",
   ROUTE_PROFILE:"perfil",
   ROUTE_ADMINS:"administradores",
-  ROUTE_CONVOCATIONS:"convocatorias"
+  ROUTE_CONVOCATIONS:"convocatorias",
+  ROUTE_UNIVERSITIES:"universidades",
+  ROUTE_REQUIREMENTS:"requerimientos",
+  ROUTE_ACADEMIC_NETWORKS:"redes-academicas",
+  ROUTE_POSTULATIONS:"postulaciones"
 };
 const AdminRoutes: Routes  = [
   {
@@ -38,6 +42,22 @@ const AdminRoutes: Routes  = [
       {
         path:AdminRoutesValues.ROUTE_CONVOCATIONS,
         loadChildren:()=>import('../manage-convocations/manage-convocations.module').then(m=>m.ManageConvocationsModule)
+      },
+      {
+        path:AdminRoutesValues.ROUTE_UNIVERSITIES,
+        loadChildren:()=>import('../manage-universities/manage-universities.module').then(m=>m.ManageUniversitiesModule)
+      },
+      {
+        path:AdminRoutesValues.ROUTE_ACADEMIC_NETWORKS,
+        loadChildren:()=>import('../manage-academic-networks/manage-academic-network.module').then(m=>m.ManageAcademicNetworkModule)
+      },
+      {
+        path:AdminRoutesValues.ROUTE_REQUIREMENTS,
+        loadChildren:()=>import('../manage-requirements/manage-requirements.module').then(m=>m.ManageRequirementsModule)
+      },
+      {
+        path:AdminRoutesValues.ROUTE_POSTULATIONS+"/:id",
+        loadChildren:()=>import('../manage-postulations/postulation.module').then(m=>m.PostulationModule)
       }
     ]
   }

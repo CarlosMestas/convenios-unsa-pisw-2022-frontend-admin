@@ -1,0 +1,64 @@
+<div class="card container-view-table">
+  <h3>Redes Académicas</h3>
+  <p>Tabla de Redes Académicas</p>
+  <p-table *ngIf="academicNetworks$|async as academicNetworks" #dt2 [value]="academicNetworks" dataKey="id"
+      [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+      [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="['id','name','acronym']">
+      <ng-template pTemplate="caption">
+          <div class="flex">
+              <span class="p-input-icon-left mr-3 ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="dt2.filterGlobal(returnValue($event.target),'contains')" placeholder="Buscar Red Académica" class="p-inputtext p-component p-element" />
+              </span>
+             <app-create-academic-network></app-create-academic-network>
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Acrónimo</th>
+              <th>Actions</th>
+          </tr>
+
+      </ng-template>
+      <ng-template pTemplate="body" let-academicnetwork>
+          <tr>
+              <td>
+                  {{academicnetwork.id}}
+              </td>
+              <td>
+                {{academicnetwork.name}}
+              </td>
+              <td>
+                {{academicnetwork.acronym}}
+              </td>
+              <td>
+                <div class="table-actions flex flex-center">
+                  <app-list-universities [academicNetworkId]="academicnetwork.id"></app-list-universities>
+                  <div class="table-action update mr-3" mat-icon-button>
+                    <mat-icon
+                    class="action-icon icon-sm"
+                    svgIcon="mat:edit"
+                    ></mat-icon>
+                  </div>
+                  <div class="table-action delete" mat-icon-button>
+                    <mat-icon
+                      class="action-icon icon-sm"
+                      svgIcon="mat:restore_from_trash"
+                    ></mat-icon>
+                  </div>
+                </div>
+              </td>
+
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+          <tr>
+              <td colspan="6">No Data found.</td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+<!-- <p-toast></p-toast> -->

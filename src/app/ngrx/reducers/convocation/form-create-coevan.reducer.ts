@@ -5,24 +5,6 @@ import { FormCreateConvocationCoevanInitialState } from '@app/ngrx/initial-state
 import { createReducer, on } from '@ngrx/store';
 export const formCreateConvocationCoevanReducer = createReducer(
   FormCreateConvocationCoevanInitialState,
-  on(requirementsGetAllRequestAction,(state)=>{
-    return {...state,working:true}
-  }),
-  on(requirementsGetAllSuccessAction,(state,params)=>{
-    return {...state, requirements:params.requirements}
-  }),
-  on(requirementsGetAllErrorAction,(state)=>{
-    return {...state,working:false}
-  }),
-  on(requirementPostRequestAction,(state)=>{
-    return {...state, working:true}
-  }),
-  on(requirementPostSuccessAction,(state)=>{
-    return {...state, working:false}
-  }),
-  on(requirementPostErrorAction,(state)=>{
-    return {...state, working:false}
-  }),
   on(requirementGetByConvocationIdRequestAction,(state)=>{
     return {...state,working:true}
   }),

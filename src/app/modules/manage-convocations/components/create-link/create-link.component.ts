@@ -7,7 +7,7 @@ import { IAppState } from '@app/ngrx/app.state';
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { linksFormCreateConvocationCoevanStateSelector } from '@app/ngrx/selectors/convocation/form-create-coevan.selector';
-import { CreateConvocationLinkService } from '@app/core/services/convocation/create-convocation-link.service';
+import { ConvocationLinkService } from '@app/core/services/convocation/convocation-link.service';
 import { createConvocationLinkSetStateAction } from '@app/ngrx/actions/convocation/create-convocation-link.actions';
 
 @Component({
@@ -24,7 +24,7 @@ export class CreateLinkComponent implements OnInit {
   linkTypes$:Observable<ILinkTypeResponse[]>
   constructor(
     private store:Store<IAppState>,
-    private createConvocationLinkService:CreateConvocationLinkService
+    private convocationLinkService:ConvocationLinkService
   ) {
     this.emitDisplayModal = new EventEmitter<boolean>(false)
     this.linkTypes$ = new Observable<ILinkTypeResponse[]>()
@@ -37,7 +37,7 @@ export class CreateLinkComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.linkTypes$ = this.createConvocationLinkService.getAllCreateConvocationLinkTypes()
+    this.linkTypes$ = this.convocationLinkService.getAllCreateConvocationLinkTypes()
     .pipe(
       map(resp=>resp.data)
     )

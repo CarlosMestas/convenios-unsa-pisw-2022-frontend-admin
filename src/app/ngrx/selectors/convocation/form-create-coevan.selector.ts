@@ -7,10 +7,6 @@ import { IFormCreateConvocationCoevanState } from '@app/shared/interfaces/convoc
 
 export const formCreateConvocationCoevanStateSelector = (state:IAppState) =>  state.formCreateConvocationCoevan
 
-export const requirementsFormCreateConvocationCoevanStateSelector = createSelector(
-  formCreateConvocationCoevanStateSelector,
-  (formCreateConvocationCoevanState:IFormCreateConvocationCoevanState)=> formCreateConvocationCoevanState.requirements
-)
 export const documentsFormCreateConvocationCoevanStateSelector = createSelector(
   formCreateConvocationCoevanStateSelector,
   (formCreateConvocationCoevanState:IFormCreateConvocationCoevanState)=> formCreateConvocationCoevanState.documents

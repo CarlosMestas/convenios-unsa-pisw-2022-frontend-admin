@@ -2,9 +2,12 @@
 .body-container{
   .p-card{
     overflow-y: auto;
-    height: calc(100vh - 1rem);
+    height: calc(100vh - 1rem - 60px);
   }
   .p-card-content{
     padding: 0;
+  }
+  .p-card-content, .p-card-body{
+    height: 100%;
   }
 }

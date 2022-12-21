@@ -1,0 +1,50 @@
+<ng-container >
+  <div class="item-circle winner" (click)="displayModal=true" pTooltip="Ganador" tooltipPosition="left">
+    <span class="icon-container" >
+      <i class="icon pi pi pi-star">
+
+      </i>
+    </span>
+  </div>
+
+
+  <p-dialog
+  header="Definir Ganador"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{width: '30vw'}"
+  [baseZIndex]="10000"
+  [draggable]="true"
+  [resizable]="false">
+  <form class="form-container" [formGroup]="form">
+
+    <div class="p- p-inputgroup description">
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea formControlName="description" class="example-right-align" matInput></textarea>
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:speaker_notes"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div class="logo-container">
+
+      <div class="logo-container">
+        <p-fileUpload [multiple]="false" name="myfile[]" (onSelect)="fileLoaded($event)" chooseLabel="Carta de Aceptación"
+        [maxFileSize]="10000000" [showCancelButton]="false" [showUploadButton]="false" accept="*.pdf, application/pdf">
+       </p-fileUpload>
+</div>
+    </div>
+
+  </form>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="sendWinner()" label="Guardar Ganador" class="p-button-text"></p-button>
+      <button pButton type="button" (click)="displayModal = false" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+  </ng-template>
+</p-dialog>
+
+</ng-container>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<p-messages [(value)]="msgs"></p-messages>

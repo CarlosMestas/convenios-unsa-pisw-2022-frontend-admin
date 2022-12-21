@@ -1,0 +1,29 @@
+<ng-container >
+  <p-button label="Nuevo Requerimiento" (click)="displayModal=true" icon="pi pi-plus"></p-button>
+  <p-dialog
+  header="Nuevo Requerimiento"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{width: '30vw'}"
+  [baseZIndex]="10000"
+  [draggable]="true"
+  [resizable]="false">
+  <form class="form-container" [formGroup]="formAddEdit">
+
+    <div class="p- p-inputgroup description">
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea formControlName="description" class="example-right-align" matInput></textarea>
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:speaker_notes"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="createRequirement()" label="Agregar" class="p-button-text"></p-button>
+      <button pButton type="button" (click)="displayModal = false" icon="pi pi-trash" label="Cancelar" class="p-button-outlined p-button-danger"></button>
+  </ng-template>
+</p-dialog>
+
+</ng-container>
+

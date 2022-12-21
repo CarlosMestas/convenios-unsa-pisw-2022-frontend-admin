@@ -1,3 +1,4 @@
+import { MenuService } from './../../../shared/components/sidenav/app.menu.service';
 import { ISidenavToggle } from '@shared/interfaces/sidebar.interface';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of, delay } from 'rxjs';
@@ -22,20 +23,24 @@ export class BodyComponent implements OnInit{
     }
     return styleClass;
   }
-  constructor() {
+  constructor(
+    private menuService:MenuService
+  ) {
       this.dialogProfileNotConfigured$ = new Observable<boolean>()
       this.dialogUserRegisterWrongEmail$ = new Observable<boolean>()
       this.classLoaded = []
   }
-  onToggleSideNav(sideNavData:ISidenavToggle):void{
-    this.isSideNavCollapsed = sideNavData.collapsed
-    this.screenWidth = sideNavData.screenWidth
-  }
+
   ngOnInit(): void {
     of("loaded").pipe(
       delay(1000)
     ).subscribe((loadedclass)=>{
       this.classLoaded.push(loadedclass)
+    })
+
+    this.menuService.collapsed$.subscribe(data=>{
+      this.isSideNavCollapsed = data.collapsed
+      this.screenWidth = data.screenWidth
     })
   }
 }

@@ -5,7 +5,7 @@ import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { CreateConvocationDocumentService } from '@app/core/services/convocation/create-convocation-document.service';
+import { ConvocationDocumentService } from '@app/core/services/convocation/convocation-document.service';
 import { Store } from '@ngrx/store';
 import { createConvocationDocumentSetStateAction } from '@app/ngrx/actions/convocation/create-convocation-document.actions';
 
@@ -21,7 +21,7 @@ export class CreateDocumentComponent implements OnInit {
   formCreateDocument:FormGroup
   documentFile!:File
   constructor(
-    private createConvocationDocumentService:CreateConvocationDocumentService,
+    private convocationDocumentService:ConvocationDocumentService,
     private store:Store<IAppState>
   ) {
     this.emitDisplayModal = new EventEmitter<boolean>(false)
@@ -36,7 +36,7 @@ export class CreateDocumentComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.documentTypes$=this.createConvocationDocumentService.getAllCreateConvocationDocumentTypes()
+    this.documentTypes$=this.convocationDocumentService.getAllCreateConvocationDocumentTypes()
     .pipe(
       map(resp=> resp.data)
     )

@@ -1,10 +1,10 @@
 <a class="sidenav-nav-link" [routerLink] = "url"
         routerLinkActive = "active"
-        [routerLinkActiveOptions] = "{exact: false}"
+        [routerLinkActiveOptions]="{exact: false}"
       >
         <fa-icon class= "sidenav-link-icon" [icon]="icon">
         </fa-icon>
-        <span class="sidenav-link-text" *ngIf = "!collapsed">
+        <span class="sidenav-link-text" *ngIf="!collapsed">
           {{label}}
         </span>
 </a>
