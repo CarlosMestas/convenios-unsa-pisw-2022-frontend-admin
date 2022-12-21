@@ -17,7 +17,6 @@ export class ActionWinnerComponent implements OnInit {
   form:FormGroup
   cartaAceptacion!:File
 
-  msgs: Message[] = [];
   constructor(
     private store:Store<IAppState>,
     private messageService: MessageService,
@@ -40,22 +39,20 @@ export class ActionWinnerComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Está seguro que desea concretar esta acción?',
       accept: () => {
-        this.msgs = [
-          {
-            severity: 'success',
-            summary: 'Asignado Ganador ',
-            detail: 'Usted ha asignado un ganador',
-          },
-        ];
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Asignado Ganador ',
+          detail: 'Usted ha asignado un ganador',
+        });
       },
       reject: () => {
-        this.msgs = [
-          {
-            severity: 'error',
-            summary: 'Acción Cancelada',
-            detail: 'Usted ha cancelado la acción',
-          },
-        ];
+
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Acción Cancelada',
+          detail: 'Usted ha cancelado la acción',
+        });
       },
     });
 
@@ -65,5 +62,7 @@ export class ActionWinnerComponent implements OnInit {
   fileLoaded(event:any){
     this.cartaAceptacion = event.files[0]
   }
-
+  ngOnDestroy(): void {
+    this.messageService.clear();
+  }
 }

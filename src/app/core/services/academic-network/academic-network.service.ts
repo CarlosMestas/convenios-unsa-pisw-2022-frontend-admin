@@ -29,6 +29,7 @@ export class AcademicNetworkService extends AcademicNetworkHelper{
     )
     .pipe(
       map(resp =>{
+        console.log("academic networks: ",resp.data)
         response.data = resp.data
         return response
       }

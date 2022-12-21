@@ -10,13 +10,12 @@ import { Message } from 'primeng//api';
   selector: 'app-action-observation',
   templateUrl: './action-observation.component.html',
   styleUrls: ['./action-observation.component.scss'],
-  providers:[MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService],
 })
 export class ActionObservationComponent implements OnInit {
   displayModal: boolean;
   form: FormGroup;
   esquela!: File;
-  msgs: Message[] = [];
   constructor(
     private store: Store<IAppState>,
     private messageService: MessageService,
@@ -31,28 +30,22 @@ export class ActionObservationComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
   sendObservation() {
-
     this.confirmationService.confirm({
       message: 'Está seguro que desea concretar esta acción?',
       accept: () => {
-        this.msgs = [
-          {
-            severity: 'success',
-            summary: 'Observación Enviada',
-            detail: 'Usted ha enviado su observación',
-          },
-        ];
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Observación Enviada',
+          detail: 'Usted ha enviado su observación',
+        });
       },
       reject: () => {
-        this.msgs = [
-          {
-            severity: 'error',
-            summary: 'Acción Cancelada',
-            detail: 'Usted ha cancelado la acción',
-          },
-        ];
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Acción Cancelada',
+          detail: 'Usted ha cancelado la acción',
+        });
       },
     });
 
@@ -60,5 +53,9 @@ export class ActionObservationComponent implements OnInit {
   }
   fileLoaded(event: any) {
     this.esquela = event.files[0];
+  }
+
+  ngOnDestroy(): void {
+    this.messageService.clear();
   }
 }
