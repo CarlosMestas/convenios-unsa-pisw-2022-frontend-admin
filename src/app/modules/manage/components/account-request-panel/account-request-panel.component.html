@@ -19,7 +19,7 @@
           </div>
           <div class="body">
             <p> Correo: {{request.email}}</p>
-            <button pButton pRipple label="Descargar justificación" icon="pi pi-download" (click)="downloadDocument('https://images-profiles-pis.s3.amazonaws.com/'+request.justification)"></button>
+            <button pButton pRipple label="Descargar justificación" icon="pi pi-download" (click)="downloadDocument(request.justification)"></button>
             <!--<ngx-doc-viewer
               [url]="'https://images-profiles-pis.s3.amazonaws.com/'+request.justification"
               viewer="google"
