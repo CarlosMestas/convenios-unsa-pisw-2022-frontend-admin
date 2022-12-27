@@ -22,6 +22,7 @@
               <th>Modalidad</th>
               <th>Fecha Inicio</th>
               <th>Fecha Fin</th>
+              <th>Estado</th>
               <th>Actions</th>
           </tr>
           <tr>
@@ -34,7 +35,7 @@
               <th>
                   <p-columnFilter field="type" matchMode="equals" [showMenu]="false">
                       <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                          <p-dropdown *ngIf="typesConvocation$ |async as typesConvocation" [ngModel]="value" [options]="typesConvocation" placeholder="tipo" (onChange)="filter($event.value.id)" optionLabel="acronym">
+                          <p-dropdown *ngIf="typesConvocation$ |async as typesConvocation" [ngModel]="value" [options]="typesConvocation" placeholder="tipo" (onChange)="filter($event.value.acronym)" optionLabel="acronym">
                               <ng-template let-option pTemplate="item">
                                   <div class="p-multiselect-representative-option">
                                       <span class="ml-1">{{option.acronym}}</span>
@@ -62,6 +63,8 @@
               </th>
               <th>
               </th>
+              <th>
+              </th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-convocation>
@@ -73,10 +76,10 @@
                 {{convocation.correlative}}
               </td>
               <td>
-                {{convocation.type}}
+                {{convocation.type.acronym}}
               </td>
               <td>
-                {{convocation.modality}}
+                {{convocation.modality.name}}
               </td>
               <td>
                 {{convocation.start_date}}
@@ -84,9 +87,12 @@
               <td>
                 {{convocation.end_date}}
               </td>
+              <td [ngStyle]="{color:convocation.conv_state.id==1?'#000EEA':'#0EEA00', fontWeight:'bolder'}">
+                {{convocation.conv_state.name}}
+              </td>
               <td>
                 <div class="table-actions flex-table-options flex-center">
-                  <div class="table-action manage mr-3" (click)="viewConvocation(convocation.id)" mat-icon-button>
+                  <div pTooltip="Ver Postulaciones" class="table-action manage mr-3" (click)="viewConvocation(convocation.id)" mat-icon-button>
                     <mat-icon
                     class="action-icon icon-sm"
                     svgIcon="mat:folder_shared"

@@ -28,7 +28,7 @@ export interface IModalityConvocationResponse{
 export interface IConvocationGeneralState{
   working:boolean,
   form:IFormCreateConvocationGeneral,
-  convocations:IConvocationResponse[]
+  convocations:IConvocationResponseDetail[]
 }
 export interface IFormCreateConvocationCoevanState{
   working:boolean,
@@ -51,9 +51,9 @@ export interface IConvocationResponseDetail{
   description:string,
   start_date:string,
   end_date:string,
-  important_notes:string
+  important_notes:string,
   conv_state:IConvocationStateResponse,
-  banner:string
+  afiche:string
 }
 
 export interface IConvocationStateResponse{

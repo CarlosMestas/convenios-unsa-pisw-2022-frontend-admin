@@ -10,6 +10,7 @@ import {
   IConvocationResponse,
   ITypeConvocationResponse,
   IModalityConvocationResponse,
+  IConvocationResponseDetail,
 } from './../../../../shared/interfaces/convocation.interface';
 import { ManageConvocationsRouterModule } from './../../manage-convocations.routes';
 import { Component, OnInit } from '@angular/core';
@@ -28,7 +29,7 @@ export class ListConvocationComponent implements OnInit {
     '../' +
     ManageConvocationsRouterModule.ROUTES_VALUES.ROUTE_CREATE_CONVOCATION;
 
-  convocations$: Observable<IConvocationResponse[]>;
+  convocations$: Observable<IConvocationResponseDetail[]>;
   typesConvocation$: Observable<ITypeConvocationResponse[]>;
   modalities$: Observable<IModalityConvocationResponse[]>;
 
@@ -43,7 +44,7 @@ export class ListConvocationComponent implements OnInit {
     private store:Store<IAppState>
   ) // private messageService: MessageService
   {
-    this.convocations$ = new Observable<IConvocationResponse[]>();
+    this.convocations$ = new Observable<IConvocationResponseDetail[]>();
 
     this.typesConvocation$ = new Observable<ITypeConvocationResponse[]>();
 

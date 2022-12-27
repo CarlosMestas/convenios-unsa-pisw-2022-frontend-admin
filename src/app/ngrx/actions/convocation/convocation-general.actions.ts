@@ -1,4 +1,4 @@
-import { IConvocationResponse } from './../../../shared/interfaces/convocation.interface';
+import { IConvocationResponse, IConvocationResponseDetail } from './../../../shared/interfaces/convocation.interface';
 import { IDocument } from '../../../shared/interfaces/create-convocation-document.interface';
 import { createAction, props } from '@ngrx/store';
 import { IFormCreateConvocationGeneral } from '@app/shared/interfaces/convocation.interface';
@@ -24,7 +24,7 @@ export const convocationGeneralGetAllRequestAction = createAction(
 
 export const convocationGeneralGetAllSuccessAction = createAction(
   ConvocationGeneralActions.CONVOCATION_GENERAL_GET_ALL_SUCCESS_ACTION,
-  props<{data:IConvocationResponse[]}>()
+  props<{data:IConvocationResponseDetail[]}>()
 )
 
 export const convocationGeneralGetAllErrorAction = createAction(

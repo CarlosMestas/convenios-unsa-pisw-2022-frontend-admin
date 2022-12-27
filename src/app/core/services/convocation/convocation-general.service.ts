@@ -37,14 +37,14 @@ export class ConvocationGeneralService extends ConvocationGeneralHelper{
     )
   }
 
-  getConvocationGeneralAll():Observable<IHttpServiceResponse<IConvocationResponse[]>>{
-    const response:IHttpServiceResponse<IConvocationResponse[]> = {
+  getConvocationGeneralAll():Observable<IHttpServiceResponse<IConvocationResponseDetail[]>>{
+    const response:IHttpServiceResponse<IConvocationResponseDetail[]> = {
       error:false,
       msg:'',
-      data:{} as IConvocationResponse[]
+      data:{} as IConvocationResponseDetail[]
     }
 
-    return this.http.get<IHttpResponse<IConvocationResponse[]>>(this.url + ConvocationGeneralHelper.API_ROUTES.GET_ALL_CONVOCATION_GENERAL)
+    return this.http.get<IHttpResponse<IConvocationResponseDetail[]>>(this.url + ConvocationGeneralHelper.API_ROUTES.GET_ALL_CONVOCATION_GENERAL)
     .pipe(
       map(resp=>{
         console.log("all convocation general:", resp.data)
