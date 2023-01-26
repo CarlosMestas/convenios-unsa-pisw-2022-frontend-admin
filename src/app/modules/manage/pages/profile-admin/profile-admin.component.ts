@@ -14,6 +14,7 @@ import {rolesGetAllRequestAction} from "@ngrx/actions/role/role.actions";
 import {roleGetAllStateSelector} from "@ngrx/selectors/role/role.selectors";
 import {Role} from "@shared/models/role.model";
 import {showLoadComponentAction, unshowLoadComponentAction} from "@ngrx/actions/components/components.actions";
+import {AuthService} from "@core/services/auth/auth.service";
 
 @Component({
   selector: 'app-profile-admin',
@@ -31,8 +32,9 @@ export class ProfileAdminComponent implements OnInit {
 
   constructor(
     private store:Store<IAppState>,
-    private adminService: AdminService
-) {
+    private adminService: AdminService,
+    private authService:AuthService
+  ) {
     this.form=new FormGroup({
       name:new FormControl('',[Validators.required]),
       lastname:new FormControl('',[Validators.required]),
@@ -49,11 +51,10 @@ export class ProfileAdminComponent implements OnInit {
     this.store.dispatch(showLoadComponentAction())
     this.store.dispatch(rolesGetAllRequestAction())
     this.roles$ = this.store.select(roleGetAllStateSelector)
-    this.store.select(idAdminStateSelector).subscribe(id => {
-      this.adminService.getAdminById(id).subscribe(resp => {
-        this.adminData = resp.data
-        this.store.dispatch(unshowLoadComponentAction())
-      })
+    let idTemp = +this.authService.getLocalStorageSesionId()!
+    this.adminService.getAdminById(idTemp).subscribe(resp => {
+      this.adminData = resp.data
+      this.store.dispatch(unshowLoadComponentAction())
     })
   }
   generatePassword(){

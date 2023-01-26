@@ -20,6 +20,7 @@ import { roleGetStateSelector } from '@ngrx/selectors/role/roleLog.selectors';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@ngrx/app.state';
 import { Router } from '@angular/router';
+import {AuthService} from "@core/services/auth/auth.service";
 
 @Component({
   selector: 'app-sidenav',
@@ -80,7 +81,8 @@ export class SidenavComponent implements OnInit {
   constructor(
     private store: Store<IAppState>,
     private router: Router,
-    private menuService:MenuService
+    private menuService:MenuService,
+    private authService:AuthService,
     ) {}
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -100,9 +102,8 @@ export class SidenavComponent implements OnInit {
   }
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-    this.store.select(roleGetStateSelector).subscribe((evt) => {
-      this.sidenavData['admins'].visible = evt.id == 1;
-    });
+    let idTemp = +this.authService.getLocalStorageSesionId()!
+    this.sidenavData['admins'].visible = idTemp == 1;
 
     this.menuService.collapsed$.subscribe(data=>{
       this.collapsed = data.collapsed
@@ -139,7 +140,6 @@ export class SidenavComponent implements OnInit {
     ];
   }
   cerrarSesion() {
-    this.router.navigate(['../login']);
-    //this.store.dispatch(userLogoutRequestAction())//TODO: call user logout action
+    this.authService.adminLogout().subscribe()
   }
 }

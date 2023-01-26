@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
     private router:Router
   ) {
     this.formLogin = new FormGroup({
-      user: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('',Validators.required)
     })
   }
 
-  public get user():AbstractControl|null{
-    return this.formLogin.get('user')
+  public get email():AbstractControl|null{
+    return this.formLogin.get('email')
   }
   public get password():AbstractControl| null{
     return this.formLogin.get('password')
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(showLoadComponentAction())
     this.exist = true
     const credentials = new AdminLogin(
-      this.formLogin.value["user"],
+      this.formLogin.value["email"],
       this.formLogin.value["password"]
     )
 

@@ -5,9 +5,10 @@ import { environment } from "environments/environment";
 
 export class AuthHelper{
 
-  public static ADMIN_LOGIN_TOKEN:string = "userLoginToken";
+  public static USER_LOGIN_TOKEN:string = "userLoginToken";
+  public static USER_ID_ENCODED:string = "userIdCoded";
   protected static API_AUTH_SERVICE_ROUTES = {
-    LOGOUT:"logout",
+    LOGOUT:"admins/logout",
     LOGIN:"admins/login"
   }
 
@@ -45,4 +46,37 @@ export class AuthHelper{
       data: {} as IAdminData
     })
   }
+
+  errorLogout(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage
+    })
+  }
+  /**
+   * Delete user session from local storage
+   */
+  removeLocalStorageSesion(){
+    localStorage.removeItem(AuthHelper.USER_LOGIN_TOKEN)
+    localStorage.removeItem(AuthHelper.USER_ID_ENCODED)
+  }
+
+  //INSTEAD
+  saveLocalStorageSesionToken(token:string, adminId:number){
+    localStorage.setItem(AuthHelper.USER_LOGIN_TOKEN,token)
+    localStorage.setItem(AuthHelper.USER_ID_ENCODED,adminId.toString())
+  }
+  getLocalStorageSesionToken():string|null{
+    return localStorage.getItem(AuthHelper.USER_LOGIN_TOKEN)
+  }
+  getLocalStorageSesionId():string|null{
+    return localStorage.getItem(AuthHelper.USER_ID_ENCODED)
+  }
+
 }
