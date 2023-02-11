@@ -11,6 +11,7 @@ import { IAdmin } from '@shared/interfaces/admin.interface';
 import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { adminGetAllStateSelector } from '@app/ngrx/selectors/admin/admin.selectors';
 import { Router, ActivatedRoute } from '@angular/router';
+import {AdminService} from "@core/services/admin/admin.service";
 
 @Component({
   selector: 'app-manage-admins',
@@ -22,24 +23,28 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
   updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
 
   displayedColumns: string[] = ['name', 'lastname','address', 'phone', 'email', 'role','actions'];
-  adminsData$: Observable<IAdmin[]>
+  adminsData$:IAdmin[] = []
 
   resultsLength = 0;
 
  constructor(
     private store:Store<IAppState>,
     private router:Router,
-    private activatedRoute:ActivatedRoute
+    private activatedRoute:ActivatedRoute,
+    private adminService: AdminService,
   ) {
-    this.adminsData$ = new Observable<IAdmin[]>()
+
    }
 
   ngAfterViewInit(): void {
 
   }
   ngOnInit(): void {
-    this.store.dispatch(adminGetAllRequestAction())
-    this.adminsData$ = this.store.select(adminGetAllStateSelector)
+    //this.store.dispatch(adminGetAllRequestAction())
+    //this.adminsData$ = this.store.select(adminGetAllStateSelector)
+    this.adminService.getAllAdmin().subscribe()
+    this.getSongs()
+    console.log(this.adminsData$)
   }
 
   detail(element:IAdmin):void{
@@ -52,6 +57,14 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
   update(element:IAdmin):void{
     this.router.navigate(["../"+this.updateAdminLink], {relativeTo: this.activatedRoute})
     this.store.dispatch(adminChangeDataAdminStateAction( {admin: element}))
+  }
+
+  getSongs(): any {
+    this.adminService.listAdmins.subscribe(r=>{
+      this.adminsData$ = r
+
+    })
+    return this.adminsData$;
   }
 
 }

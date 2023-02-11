@@ -12,8 +12,10 @@ import {ManageAdminRoutingModule} from "@modules/manage-admins/manage-admins.rou
 import {adminViewDataAdminStateSelector} from "@ngrx/selectors/admin/admin.selectors";
 import {AdminService} from "@core/services/admin/admin.service";
 import {showLoadComponentAction, unshowLoadComponentAction} from "@ngrx/actions/components/components.actions";
+import {MessageService} from "primeng/api";
 
 @Component({
+  providers: [MessageService],
   selector: 'app-create-admin',
   templateUrl: './create-admin.component.html',
   styleUrls: ['./create-admin.component.scss']
@@ -21,18 +23,17 @@ import {showLoadComponentAction, unshowLoadComponentAction} from "@ngrx/actions/
 export class CreateAdminComponent implements OnInit {
   roles$:Observable<IRole[]>
   form:FormGroup
-  selectedRole!:IRole
   passwordSuggest = ""
   isEditForm = false
   updateAdminLink:string= ManageAdminRoutingModule.ROUTES_VALUES.ROUTE_UPDATE_ADMIN
-  idRole = 0
   constructor(
     private store:Store<IAppState>,
     private router: Router,
     private activatedRoute:ActivatedRoute,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private messageService: MessageService,
   ) {
-    this.form=new FormGroup({
+    this.form = new FormGroup({
       name:new FormControl('',[Validators.required]),
       lastname:new FormControl('',[Validators.required]),
       address:new FormControl(''),
@@ -57,7 +58,7 @@ export class CreateAdminComponent implements OnInit {
           this.form.controls['address'].reset(resp.data.address);
           this.form.controls['phone'].reset(resp.data.phone);
           this.form.controls['email'].reset(resp.data.email);
-          this.form.controls['password'].reset(resp.data.password);
+          this.form.controls['password'].reset(resp.data.password)
           this.form.controls['role'].setValue(resp.data.role.id)
 
           this.store.dispatch(unshowLoadComponentAction())
@@ -98,10 +99,11 @@ export class CreateAdminComponent implements OnInit {
           })
         })
       }
+      //modificar
       this.router.navigate(["../lista-administradores"], {relativeTo: this.activatedRoute})
     }else{
-      console.log("Error en registro")
       this.store.dispatch(unshowLoadComponentAction())
+      this.messageService.add({key: 'myKey1',severity:'error', summary: 'Ups! algo salió mal', detail: 'Revise los datos'});
     }
   }
 }

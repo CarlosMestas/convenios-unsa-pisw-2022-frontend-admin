@@ -7,7 +7,7 @@ import {
   RouterStateSnapshot,
   UrlTree
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {roleGetStateSelector} from "@ngrx/selectors/role/roleLog.selectors";
 import {Store} from "@ngrx/store";
 import {IAppState} from "@ngrx/app.state";
@@ -27,11 +27,15 @@ export class TypeAdminGuard implements CanActivateChild {
   canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.authService.isSuperAdmin()){
-      return true;
-    }else{
-      this.router.navigate(['../login'])
-      return false;
-    }
+    return this.authService.isUserSigned()
+      .pipe(
+        map(resp => {
+          return resp?.data.role.id == 1;
+        }),
+        catchError((err) => {
+          this.router.navigate(['../home']);
+          return of(false);
+        })
+      );
   }
 }

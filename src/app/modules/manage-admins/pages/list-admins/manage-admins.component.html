@@ -8,8 +8,8 @@
       Crear Administrador
     </a>
   </div>
-  <div class="table-container mat-elevation-z1" *ngIf="adminsData$|async as adminsData">
-    <p-table [value]="adminsData" styleClass="p-datatable-striped" >
+  <div class="table-container mat-elevation-z1" *ngIf="adminsData$">
+    <p-table [value]="adminsData$" styleClass="p-datatable-striped" >
       <ng-template pTemplate="header">
         <tr>
           <th>Nombre</th>

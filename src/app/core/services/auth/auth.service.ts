@@ -7,8 +7,7 @@ import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {AppRoutingModule} from "@modules/main/app.routes";
 import {AdminService} from "@core/services/admin/admin.service";
-import {Store} from "@ngrx/store";
-import {IAppState} from "@ngrx/app.state";
+
 @Injectable({
   providedIn:"root"
 })
@@ -20,7 +19,6 @@ export class AuthService extends AuthHelper{
     private router:Router,
     protected override http:HttpClient,
     private AdminService: AdminService,
-    private store:Store<IAppState>
   ){
     super(http)
     this.user$ = new BehaviorSubject<IAdminData|null>(null);
@@ -66,28 +64,20 @@ export class AuthService extends AuthHelper{
     };
       this.removeLocalStorageSesion()
       this.user$.next(null)
-      //this.sidenavService.sidenavUserNotLogged()
       this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_LOGIN])
     return of(response)
   }
 
-  isUserSigned():boolean{
+  isUserSigned():Observable<null|IHttpServiceResponse<IAdminData>>{
     let tempIsLocalStorage = this.getLocalStorageSesionId()
     if (tempIsLocalStorage!=null){
-      this.AdminService.getAdminById(+tempIsLocalStorage).subscribe(r=>{
-        this.user$.next(r.data)
-      })
-      return true
-    }else {
-      return this.user$.getValue()!=null
+      return this.AdminService.getAdminById(+tempIsLocalStorage)
     }
+    else { return of(null) }
   }
 
   getUserLoginToken():string|null|undefined {
     return this.getLocalStorageSesionToken()
   }
 
-  isSuperAdmin(): boolean {
-    return this.user$.getValue()?.role.id == 1
-  }
 }
