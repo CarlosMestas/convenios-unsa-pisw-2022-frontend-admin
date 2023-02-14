@@ -1,4 +1,4 @@
-import {map, catchError, Observable, BehaviorSubject} from 'rxjs';
+import {map, catchError, Observable, BehaviorSubject, Subject} from 'rxjs';
 import { IHttpServiceResponse, IHttpResponse } from './../../../shared/interfaces/transactions/http-response.transaction';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,7 +9,7 @@ import { AdminLogin } from '@app/shared/models/admin-login.model';
   providedIn:"root"
 })
 export class AdminService extends AdminHelper{
-
+  listAdmins = new Subject<IAdmin[]>()
   constructor(
     protected override http:HttpClient,
 
@@ -38,57 +38,16 @@ export class AdminService extends AdminHelper{
       )
   }
   getAllAdmin():Observable<IHttpServiceResponse<IAdmin[]>>{
-
     const response:IHttpServiceResponse<IAdmin[]> = {
       error:false,
       msg:'',
       data:[]
     }
-
     return this.http.get<IHttpResponse<IAdmin[]>>(this.url + AdminHelper.API_ADMIN_SERVICE_ROUTES.ADMIN_GET_ALL)
     .pipe(
       map(resp =>{
         response.data = resp.data
-        if(resp.data.length==0){
-          response.data = [
-            {
-              id:1,
-              name:"Juan",
-              lastname:"Pérez",
-              address:"Av. Brasil 512",
-              phone:"+51 958277612",
-              email:"juanpe@gmail.com",
-              role:2
-            },
-            {
-              id:2,
-              name:"Martín",
-              lastname:"Chávez",
-              address:"Av. Ecuador 512",
-              phone:"+51 958277612",
-              email:"macha@gmail.com",
-              role:2
-            },
-            {
-              id:3,
-              name:"Alberto",
-              lastname:"Gómez",
-              address:"Av. Venezuela 512",
-              phone:"+51 958277612",
-              email:"albgo@gmail.com",
-              role:2
-            },
-            {
-              id:4,
-              name:"Pedro",
-              lastname:"Ortiz",
-              address:"Av. Chile 512",
-              phone:"+51 958277612",
-              email:"peort@gmail.com",
-              role:2
-            },
-          ];
-        }
+        this.listAdmins.next(resp.data)
         return response
       }
       ),
@@ -109,7 +68,7 @@ export class AdminService extends AdminHelper{
     .pipe(
         map( resp =>{
           if(resp.code == 200){
-            console.log("Registro exitoso")
+            this.getAllAdmin()
           }
           response.data = resp.data.admin
           return response
@@ -131,7 +90,6 @@ export class AdminService extends AdminHelper{
       .pipe(
         map( resp =>{
           if(resp.code == 200){
-            console.log("update exitoso")
             response.data = resp.data.admin
           }
           return response
@@ -140,4 +98,24 @@ export class AdminService extends AdminHelper{
       );
   }
 
+  deleteAdmin(idAdmin: number):  Observable<IHttpServiceResponse<any>>{
+    const response = {
+      error:false,
+      msg:'',
+      data: ''
+    };
+
+    return this.http.delete<IHttpResponse<any>>(
+      this.url+AdminHelper.API_ADMIN_SERVICE_ROUTES.ADMIN_DELETE + '/' + idAdmin
+    )
+      .pipe(
+        map( resp =>{
+          if(resp.code == 200){
+            this.getAllAdmin()
+          }
+          return response
+        }),
+        catchError(this.errorSignUp)
+      );
+  }
 }

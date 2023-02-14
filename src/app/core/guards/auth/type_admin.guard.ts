@@ -1,32 +1,39 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanActivateChild,
+  Router,
+  RouterStateSnapshot,
+  UrlTree
+} from '@angular/router';
 import {catchError, map, Observable, of} from 'rxjs';
+import {roleGetStateSelector} from "@ngrx/selectors/role/roleLog.selectors";
+import {Store} from "@ngrx/store";
+import {IAppState} from "@ngrx/app.state";
 import {AuthService} from "@core/services/auth/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class TypeAdminGuard implements CanActivateChild {
 
   constructor(
     private authService:AuthService,
-    private router:Router,
+    private router:Router
   ){
 
   }
-  canActivate(
+  canActivateChild(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isUserSigned()
       .pipe(
         map(resp => {
-          if (resp){
-            return !resp.error
-          }
-          else { return false}
+          return resp?.data.role.id == 1;
         }),
         catchError((err) => {
-          this.router.navigate(['../login']);
+          this.router.navigate(['../home']);
           return of(false);
         })
       );

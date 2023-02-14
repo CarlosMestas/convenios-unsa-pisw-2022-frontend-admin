@@ -1,6 +1,6 @@
 import { LoginComponent } from './pages/login/login.component';
 import { environment } from '../../../environments/environment.prod';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routes';
@@ -14,6 +14,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from '../../ngrx/app.state';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
+import {AuthInterceptorProviders} from "@core/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,11 @@ import {FormsModule} from "@angular/forms";
     EffectsModule.forRoot(effectsOF),
     FormsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthInterceptorProviders
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class AppModule { }

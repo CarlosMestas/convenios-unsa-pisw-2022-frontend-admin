@@ -11,8 +11,8 @@
           </label>
           <span class="p-input-icon-left">
           <i class="pi pi-envelope"></i>
-          <input id="user" type="username" formControlName="user" class="form-input" [ngClass]="(user && user.invalid && user.touched)? 'ng-invalid ng-dirty':''" placeholder="Ingresa tu correo" pInputText />
-          <span class="invalid-field" *ngIf = "user && user.invalid && user.touched">Ingrese un correo válido</span>
+          <input id="user" type="username" formControlName="email" class="form-input" [ngClass]="(email && email.invalid && email.touched)? 'ng-invalid ng-dirty':''" placeholder="Ingresa tu correo" pInputText />
+          <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">Ingrese un correo válido</span>
         </span>
         </div>
         <div class="form-item">
