@@ -99,4 +99,24 @@ export class AdminService extends AdminHelper{
       );
   }
 
+  deleteAdmin(idAdmin: number):  Observable<IHttpServiceResponse<any>>{
+    const response = {
+      error:false,
+      msg:'',
+      data: ''
+    };
+
+    return this.http.delete<IHttpResponse<any>>(
+      this.url+AdminHelper.API_ADMIN_SERVICE_ROUTES.ADMIN_DELETE + '/' + idAdmin
+    )
+      .pipe(
+        map( resp =>{
+          if(resp.code == 200){
+            this.getAllAdmin()
+          }
+          return response
+        }),
+        catchError(this.errorSignUp)
+      );
+  }
 }

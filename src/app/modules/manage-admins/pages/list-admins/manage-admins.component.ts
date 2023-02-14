@@ -12,8 +12,10 @@ import { Component, OnInit,AfterViewInit } from '@angular/core';
 import { adminGetAllStateSelector } from '@app/ngrx/selectors/admin/admin.selectors';
 import { Router, ActivatedRoute } from '@angular/router';
 import {AdminService} from "@core/services/admin/admin.service";
+import {MessageService} from "primeng/api";
 
 @Component({
+  providers: [MessageService],
   selector: 'app-manage-admins',
   templateUrl: './manage-admins.component.html',
   styleUrls: ['./manage-admins.component.scss']
@@ -32,7 +34,8 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private adminService: AdminService,
-  ) {
+    private messageService: MessageService,
+ ) {
 
    }
 
@@ -40,11 +43,8 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
 
   }
   ngOnInit(): void {
-    //this.store.dispatch(adminGetAllRequestAction())
-    //this.adminsData$ = this.store.select(adminGetAllStateSelector)
     this.adminService.getAllAdmin().subscribe()
-    this.getSongs()
-    console.log(this.adminsData$)
+    this.getAdmins()
   }
 
   detail(element:IAdmin):void{
@@ -52,17 +52,20 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
     this.store.dispatch(adminChangeDataAdminStateAction( {admin: element}))
   }
   remove(element:IAdmin):void{
-
+    this.adminService.deleteAdmin(element.id).subscribe(r=>{
+      this.messageService.add({key: 'myKey1',severity:'success', summary: 'Éxito', detail: 'El registro se eliminó correctamente'});
+    })
+    this.adminService.getAllAdmin().subscribe()
+    this.getAdmins()
   }
   update(element:IAdmin):void{
     this.router.navigate(["../"+this.updateAdminLink], {relativeTo: this.activatedRoute})
     this.store.dispatch(adminChangeDataAdminStateAction( {admin: element}))
   }
 
-  getSongs(): any {
+  getAdmins(): any {
     this.adminService.listAdmins.subscribe(r=>{
       this.adminsData$ = r
-
     })
     return this.adminsData$;
   }
