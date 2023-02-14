@@ -4,6 +4,10 @@
       <div class="title" *ngIf="!isEdit">Mi perfil</div>
       <div class="title" *ngIf="isEdit">Modificación mi perfil</div>
       <div class="description" *ngIf="isEdit">Modifica tus datos de tu perfil</div>
+
+      <div class="container-img">
+        <p-image src="./assets/images/users-profile.png" alt="Image" width="150"></p-image>
+      </div>
     </div>
     <div class="content-container"  *ngIf="!isEdit">
       <div class="bi-content-icon-label-name">
