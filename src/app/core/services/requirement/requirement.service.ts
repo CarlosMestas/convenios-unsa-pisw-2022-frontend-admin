@@ -11,7 +11,6 @@ import { RequirementHelper } from "./requirement.helper";
 })
 export class RequirementService extends RequirementHelper{
 
-
   constructor(protected override http:HttpClient){
     super(http)
   }

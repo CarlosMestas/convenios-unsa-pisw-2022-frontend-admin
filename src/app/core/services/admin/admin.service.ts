@@ -38,7 +38,6 @@ export class AdminService extends AdminHelper{
       )
   }
   getAllAdmin():Observable<IHttpServiceResponse<IAdmin[]>>{
-
     const response:IHttpServiceResponse<IAdmin[]> = {
       error:false,
       msg:'',
