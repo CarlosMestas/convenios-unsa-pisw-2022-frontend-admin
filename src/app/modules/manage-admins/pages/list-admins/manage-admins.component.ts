@@ -54,9 +54,9 @@ export class ListAdminsComponent implements OnInit, AfterViewInit  {
   remove(element:IAdmin):void{
     this.adminService.deleteAdmin(element.id).subscribe(r=>{
       this.messageService.add({key: 'myKey1',severity:'success', summary: 'Éxito', detail: 'El registro se eliminó correctamente'});
+      this.adminService.getAllAdmin().subscribe()
+      this.getAdmins()
     })
-    this.adminService.getAllAdmin().subscribe()
-    this.getAdmins()
   }
   update(element:IAdmin):void{
     this.router.navigate(["../"+this.updateAdminLink], {relativeTo: this.activatedRoute})
